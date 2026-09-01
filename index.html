@@ -48,9 +48,7 @@ button:active{
     overflow:hidden;
 }
 
-/* =========================
-   START SCREEN
-========================= */
+/* START SCREEN */
 
 .startScreen{
     position:fixed;
@@ -137,9 +135,7 @@ button:active{
     100%{opacity:0;visibility:hidden;pointer-events:none;}
 }
 
-/* =========================
-   HOME
-========================= */
+/* HOME */
 
 .home{
     min-height:100vh;
@@ -211,9 +207,7 @@ button:active{
     font-size:42px;
 }
 
-/* =========================
-   HOMEWORK
-========================= */
+/* HOMEWORK */
 
 .homeworkBox{
     background:var(--light);
@@ -355,9 +349,7 @@ button:active{
     font-size:11px;
 }
 
-/* =========================
-   QUICK MENU
-========================= */
+/* QUICK MENU */
 
 .quickTitle{
     font-size:19px;
@@ -405,9 +397,7 @@ button:active{
     font-weight:bold;
 }
 
-/* =========================
-   BOTTOM NAV
-========================= */
+/* BOTTOM NAV */
 
 .bottomNav{
     position:fixed;
@@ -442,9 +432,7 @@ button:active{
     font-weight:bold;
 }
 
-/* =========================
-   MODAL
-========================= */
+/* MODAL */
 
 .modal{
     position:fixed;
@@ -505,9 +493,7 @@ button:active{
     color:white;
 }
 
-/* =========================
-   NOTE LIST
-========================= */
+/* NOTE LIST */
 
 .notesPage{
     position:fixed;
@@ -617,9 +603,7 @@ button:active{
     color:#d84d72;
 }
 
-/* =========================
-   NOTE EDITOR
-========================= */
+/* NOTE EDITOR */
 
 .notePage{
     position:fixed;
@@ -682,9 +666,7 @@ button:active{
     color:var(--border);
 }
 
-/* =========================
-   TOOLBAR
-========================= */
+/* TOOLBAR */
 
 .toolbar{
     display:flex;
@@ -718,9 +700,7 @@ button:active{
     border-radius:9px;
 }
 
-/* =========================
-   WRITING TOOLS
-========================= */
+/* WRITING TOOLS */
 
 .writeTools{
     display:none;
@@ -760,9 +740,7 @@ button:active{
     width:85px;
 }
 
-/* =========================
-   EDITOR
-========================= */
+/* EDITOR */
 
 .editorWrap{
     position:relative;
@@ -816,9 +794,7 @@ button:active{
     pointer-events:none;
 }
 
-/* =========================
-   FILES
-========================= */
+/* FILES */
 
 .fileSection{
     margin-top:20px;
@@ -895,9 +871,7 @@ button:active{
     font-size:10px;
 }
 
-/* =========================
-   SETTINGS
-========================= */
+/* SETTINGS */
 
 .settingsPage{
     position:fixed;
@@ -984,9 +958,7 @@ button:active{
     line-height:1.8;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE */
 
 @media(max-width:500px){
 
@@ -1016,8 +988,6 @@ button:active{
 
 <body>
 
-<!-- START SCREEN -->
-
 <div class="startScreen" id="startScreen">
 
     <div class="spiderWeb"></div>
@@ -1036,10 +1006,7 @@ button:active{
 
 </div>
 
-
 <div class="app">
-
-<!-- HOME -->
 
 <div class="home" id="homePage">
 
@@ -1054,7 +1021,6 @@ button:active{
         </div>
 
     </div>
-
 
     <div class="content">
 
@@ -1078,18 +1044,13 @@ button:active{
 
             <div class="avatar">
 
-                <div
-                    class="avatarFace"
-                    id="avatarFace">
+                <div class="avatarFace" id="avatarFace">
                     🕷️
                 </div>
 
             </div>
 
         </div>
-
-
-        <!-- การบ้าน -->
 
         <div class="homeworkBox">
 
@@ -1109,7 +1070,6 @@ button:active{
 
             </div>
 
-
             <div class="tabs">
 
                 <button
@@ -1121,7 +1081,6 @@ button:active{
                     (<span id="pendingCount">0</span>)
 
                 </button>
-
 
                 <button
                     id="doneTab"
@@ -1135,7 +1094,6 @@ button:active{
 
             </div>
 
-
             <div
                 class="homeworkList"
                 id="homeworkList">
@@ -1143,11 +1101,9 @@ button:active{
 
         </div>
 
-
         <h2 class="quickTitle">
             เมนูลัด
         </h2>
-
 
         <div class="quick">
 
@@ -1163,7 +1119,6 @@ button:active{
 
             </button>
 
-
             <button onclick="createNote()">
 
                 <span class="quickIcon">
@@ -1176,7 +1131,6 @@ button:active{
 
             </button>
 
-
             <button onclick="showHelp()">
 
                 <span class="quickIcon">
@@ -1188,7 +1142,6 @@ button:active{
                 </span>
 
             </button>
-
 
             <button
                 onclick="document.getElementById('globalFileInput').click()">
@@ -1207,9 +1160,6 @@ button:active{
 
     </div>
 
-
-    <!-- BOTTOM NAV -->
-
     <nav class="bottomNav">
 
         <button
@@ -1222,7 +1172,6 @@ button:active{
 
         </button>
 
-
         <button
             id="navNotes"
             onclick="openNotesList()">
@@ -1232,7 +1181,6 @@ button:active{
 
         </button>
 
-
         <button
             id="navHomework"
             onclick="showHomeworkTab('pending')">
@@ -1241,7 +1189,6 @@ button:active{
             การบ้าน
 
         </button>
-
 
         <button
             id="navSettings"
@@ -1255,9 +1202,6 @@ button:active{
     </nav>
 
 </div>
-
-
-<!-- HOMEWORK MODAL -->
 
 <div class="modal" id="homeworkModal">
 
@@ -1311,9 +1255,6 @@ button:active{
 
 </div>
 
-
-<!-- NOTES LIST -->
-
 <div class="notesPage" id="notesPage">
 
     <div class="notesHeader">
@@ -1326,11 +1267,9 @@ button:active{
 
         </button>
 
-
         <h2>
             📝 My Note
         </h2>
-
 
         <button
             class="circleButton bigPlus"
@@ -1342,16 +1281,12 @@ button:active{
 
     </div>
 
-
     <div
         class="noteGrid"
         id="noteGrid">
     </div>
 
 </div>
-
-
-<!-- NOTE PAGE -->
 
 <div class="notePage" id="notePage">
 
@@ -1365,7 +1300,6 @@ button:active{
 
         </button>
 
-
         <div
             class="noteTopTitle"
             id="noteTopTitle">
@@ -1374,7 +1308,6 @@ button:active{
 
         </div>
 
-
         <button
             class="circleButton"
             onclick="saveCurrentNote()">
@@ -1382,7 +1315,6 @@ button:active{
             💾
 
         </button>
-
 
         <button
             class="circleButton"
@@ -1394,15 +1326,13 @@ button:active{
 
     </div>
 
-
     <div class="paper">
 
         <input
             class="noteTitle"
             id="noteTitle"
             placeholder="ตั้งชื่อโน้ต..."
-            oninput="updateNoteTitle">
-
+            oninput="updateNoteTitle()">
 
         <div class="toolbar">
 
@@ -1448,7 +1378,6 @@ button:active{
                 value="#d94b7c"
                 onchange="changeTextColor(this.value)">
 
-
             <button
                 id="writeButton"
                 onclick="toggleWriting()">
@@ -1457,14 +1386,12 @@ button:active{
 
             </button>
 
-
             <button
                 onclick="document.getElementById('imageInput').click()">
 
                 🖼️ รูป
 
             </button>
-
 
             <button
                 onclick="document.getElementById('fileInput').click()">
@@ -1474,7 +1401,6 @@ button:active{
             </button>
 
         </div>
-
 
         <div
             class="writeTools"
@@ -1486,7 +1412,6 @@ button:active{
                 type="color"
                 value="#e94f88"
                 title="สีปากกา">
-
 
             <label style="font-size:10px;">
 
@@ -1502,7 +1427,6 @@ button:active{
 
             </label>
 
-
             <button
                 id="penButton"
                 class="active"
@@ -1512,7 +1436,6 @@ button:active{
 
             </button>
 
-
             <button
                 id="eraserButton"
                 onclick="setDrawMode('eraser')">
@@ -1521,13 +1444,11 @@ button:active{
 
             </button>
 
-
             <button onclick="clearDrawing()">
 
                 🗑️ ล้าง
 
             </button>
-
 
             <button onclick="finishWriting()">
 
@@ -1536,7 +1457,6 @@ button:active{
             </button>
 
         </div>
-
 
         <div
             class="editorWrap"
@@ -1549,13 +1469,9 @@ button:active{
                 data-placeholder="พิมพ์ข้อความลงบนบรรทัดได้เลย...">
             </div>
 
-
-            <canvas
-                id="drawingCanvas">
-            </canvas>
+            <canvas id="drawingCanvas"></canvas>
 
         </div>
-
 
         <input
             type="file"
@@ -1565,7 +1481,6 @@ button:active{
             hidden
             onchange="insertImages(event)">
 
-
         <input
             type="file"
             id="fileInput"
@@ -1573,13 +1488,11 @@ button:active{
             hidden
             onchange="addFiles(event)">
 
-
         <input
             type="file"
             id="globalFileInput"
             multiple
             hidden>
-
 
         <div class="fileSection">
 
@@ -1597,9 +1510,6 @@ button:active{
     </div>
 
 </div>
-
-
-<!-- SETTINGS -->
 
 <div
     class="settingsPage"
@@ -1621,13 +1531,11 @@ button:active{
 
     </div>
 
-
     <div class="settingsContent">
 
         <div class="settingsTitle">
             🎨 เลือกธีมแอป
         </div>
-
 
         <div class="themeGrid">
 
@@ -1650,7 +1558,6 @@ button:active{
 
             </button>
 
-
             <button
                 class="themeCard"
                 data-theme="cat"
@@ -1669,7 +1576,6 @@ button:active{
                 </div>
 
             </button>
-
 
             <button
                 class="themeCard"
@@ -1690,7 +1596,6 @@ button:active{
 
             </button>
 
-
             <button
                 class="themeCard"
                 data-theme="bear"
@@ -1709,7 +1614,6 @@ button:active{
                 </div>
 
             </button>
-
 
             <button
                 class="themeCard"
@@ -1731,7 +1635,6 @@ button:active{
             </button>
 
         </div>
-
 
         <div class="settingInfo">
 
@@ -1757,12 +1660,9 @@ button:active{
 
 </div>
 
-
 <script>
 
-/* =========================================================
-   DATA
-========================================================= */
+/* DATA */
 
 let homework =
     JSON.parse(
@@ -1785,9 +1685,7 @@ let drawing = false;
 let lastPoint = null;
 
 
-/* =========================================================
-   ลบข้อมูลการบ้านเดิมที่มีชื่อเกี่ยวกับจุมาพร
-========================================================= */
+/* ลบข้อมูลการบ้านเดิมที่มีชื่อเกี่ยวกับจุมาพร */
 
 homework = homework.filter(item => {
 
@@ -1804,13 +1702,10 @@ homework = homework.filter(item => {
 saveHomework();
 
 
-/* =========================================================
-   THEME SYSTEM
-========================================================= */
+/* THEME */
 
 const themes = {
 
-    /* สไปเดอร์แมน - แบบเดิม */
     spiderman:{
         main:"#f06496",
         main2:"#e74e84",
@@ -1824,7 +1719,6 @@ const themes = {
         body2:"#fff7fa"
     },
 
-    /* แมว - สีครีม */
     cat:{
         main:"#c59a6c",
         main2:"#9b7047",
@@ -1838,7 +1732,6 @@ const themes = {
         body2:"#fffaf2"
     },
 
-    /* นางเงือก */
     mermaid:{
         main:"#35bfc4",
         main2:"#168f9a",
@@ -1852,7 +1745,6 @@ const themes = {
         body2:"#f5ffff"
     },
 
-    /* หมี - น้ำตาล */
     bear:{
         main:"#a96f45",
         main2:"#7c4d2f",
@@ -1866,7 +1758,6 @@ const themes = {
         body2:"#fff7ed"
     },
 
-    /* หมู - ชมพูเข้ม */
     pig:{
         main:"#d83d70",
         main2:"#b52658",
@@ -1887,11 +1778,9 @@ function changeTheme(themeName){
 
     const theme = themes[themeName];
 
-    if(!theme)
-        return;
+    if(!theme) return;
 
-    const root =
-        document.documentElement;
+    const root = document.documentElement;
 
     root.style.setProperty("--main",theme.main);
     root.style.setProperty("--main2",theme.main2);
@@ -1904,18 +1793,12 @@ function changeTheme(themeName){
     document.body.style.background =
         `linear-gradient(135deg,${theme.body1},${theme.body2})`;
 
-    document.getElementById(
-        "avatarFace"
-    ).textContent = theme.avatar;
+    document.getElementById("avatarFace").textContent =
+        theme.avatar;
 
-    localStorage.setItem(
-        "myTheme",
-        themeName
-    );
+    localStorage.setItem("myTheme",themeName);
 
-    document.querySelectorAll(
-        ".themeCard"
-    ).forEach(card => {
+    document.querySelectorAll(".themeCard").forEach(card => {
 
         card.classList.toggle(
             "selected",
@@ -1938,9 +1821,7 @@ function loadTheme(){
 }
 
 
-/* =========================================================
-   TIME
-========================================================= */
+/* TIME */
 
 function updateTime(){
 
@@ -1952,9 +1833,7 @@ function updateTime(){
     const m =
         String(now.getMinutes()).padStart(2,"0");
 
-    document.getElementById(
-        "time"
-    ).textContent =
+    document.getElementById("time").textContent =
         h + ":" + m + " น.";
 
 }
@@ -1964,9 +1843,7 @@ updateTime();
 setInterval(updateTime,1000);
 
 
-/* =========================================================
-   STORAGE
-========================================================= */
+/* STORAGE */
 
 function saveHomework(){
 
@@ -1988,9 +1865,7 @@ function saveNotes(){
 }
 
 
-/* =========================================================
-   SAFE TEXT
-========================================================= */
+/* SAFE TEXT */
 
 function escapeHTML(text){
 
@@ -2005,15 +1880,15 @@ function escapeHTML(text){
 }
 
 
-/* =========================================================
-   HOME
-========================================================= */
+/* HOME */
 
 function goHome(){
 
     document.getElementById("notesPage").style.display="none";
     document.getElementById("notePage").style.display="none";
     document.getElementById("settingsPage").style.display="none";
+
+    document.getElementById("homePage").style.display="block";
 
     document.getElementById("navHome").classList.add("active");
     document.getElementById("navNotes").classList.remove("active");
@@ -2023,9 +1898,7 @@ function goHome(){
 }
 
 
-/* =========================================================
-   HOMEWORK
-========================================================= */
+/* HOMEWORK */
 
 function renderHomework(){
 
@@ -2110,9 +1983,7 @@ function renderHomework(){
                           formatThaiDate(item.date) +
                           (
                               item.time
-                              ? " " +
-                                item.time +
-                                " น."
+                              ? " " + item.time + " น."
                               : ""
                           )
                     }
@@ -2172,6 +2043,7 @@ function showHomeworkTab(tab){
     renderHomework();
 
     document.getElementById("notesPage").style.display="none";
+    document.getElementById("notePage").style.display="none";
     document.getElementById("settingsPage").style.display="none";
 
     document.getElementById("navHome").classList.remove("active");
@@ -2186,18 +2058,16 @@ function showHomeworkTab(tab){
 
 function openHomeworkModal(){
 
-    document.getElementById(
-        "homeworkModal"
-    ).classList.add("show");
+    document.getElementById("homeworkModal")
+        .classList.add("show");
 
 }
 
 
 function closeHomeworkModal(){
 
-    document.getElementById(
-        "homeworkModal"
-    ).classList.remove("show");
+    document.getElementById("homeworkModal")
+        .classList.remove("show");
 
 }
 
@@ -2205,9 +2075,8 @@ function closeHomeworkModal(){
 function addHomework(){
 
     const name =
-        document.getElementById(
-            "homeworkName"
-        ).value.trim();
+        document.getElementById("homeworkName")
+            .value.trim();
 
     if(!name){
 
@@ -2223,19 +2092,16 @@ function addHomework(){
         name:name,
 
         subject:
-            document.getElementById(
-                "homeworkSubject"
-            ).value.trim(),
+            document.getElementById("homeworkSubject")
+                .value.trim(),
 
         date:
-            document.getElementById(
-                "homeworkDate"
-            ).value,
+            document.getElementById("homeworkDate")
+                .value,
 
         time:
-            document.getElementById(
-                "homeworkTime"
-            ).value,
+            document.getElementById("homeworkTime")
+                .value,
 
         done:false
 
@@ -2260,8 +2126,7 @@ function toggleHomework(id){
     const item =
         homework.find(x => x.id === id);
 
-    if(!item)
-        return;
+    if(!item) return;
 
     item.done = !item.done;
 
@@ -2277,16 +2142,13 @@ function deleteHomework(id){
     const item =
         homework.find(x => x.id === id);
 
-    if(!item)
-        return;
+    if(!item) return;
 
-    if(
-        !confirm(
-            "ต้องการลบการบ้าน\n\n" +
-            item.name +
-            "\n\nใช่ไหมคะ?"
-        )
-    )
+    if(!confirm(
+        "ต้องการลบการบ้าน\n\n" +
+        item.name +
+        "\n\nใช่ไหมคะ?"
+    ))
         return;
 
     homework =
@@ -2299,9 +2161,7 @@ function deleteHomework(id){
 }
 
 
-/* =========================================================
-   NOTES
-========================================================= */
+/* NOTES */
 
 function createNote(){
 
@@ -2349,9 +2209,7 @@ function openNotesList(){
 
 function closeNotesList(){
 
-    document.getElementById(
-        "notesPage"
-    ).style.display="none";
+    document.getElementById("notesPage").style.display="none";
 
     goHome();
 
@@ -2453,16 +2311,13 @@ function deleteNote(id){
     const note =
         notes.find(x => x.id === id);
 
-    if(!note)
-        return;
+    if(!note) return;
 
-    if(
-        !confirm(
-            'ต้องการลบโน้ต "' +
-            note.title +
-            '" ใช่ไหมคะ?'
-        )
-    )
+    if(!confirm(
+        'ต้องการลบโน้ต "' +
+        note.title +
+        '" ใช่ไหมคะ?'
+    ))
         return;
 
     notes =
@@ -2475,17 +2330,14 @@ function deleteNote(id){
 }
 
 
-/* =========================================================
-   OPEN NOTE
-========================================================= */
+/* OPEN NOTE */
 
 function openNote(id){
 
     const note =
         notes.find(x => x.id === id);
 
-    if(!note)
-        return;
+    if(!note) return;
 
     currentNoteId=id;
 
@@ -2540,9 +2392,7 @@ function openNote(id){
 }
 
 
-/* =========================================================
-   CLOSE NOTE
-========================================================= */
+/* CLOSE NOTE */
 
 function closeNote(){
 
@@ -2550,9 +2400,7 @@ function closeNote(){
 
     finishWriting();
 
-    document.getElementById(
-        "notePage"
-    ).style.display="none";
+    document.getElementById("notePage").style.display="none";
 
     currentNoteId=null;
 
@@ -2563,28 +2411,21 @@ function closeNote(){
 }
 
 
-/* =========================================================
-   TITLE
-========================================================= */
+/* TITLE */
 
 function updateNoteTitle(){
 
     const title =
-        document.getElementById(
-            "noteTitle"
-        ).value.trim();
+        document.getElementById("noteTitle")
+            .value.trim();
 
-    document.getElementById(
-        "noteTopTitle"
-    ).textContent =
+    document.getElementById("noteTopTitle").textContent =
         title || "My Note";
 
 }
 
 
-/* =========================================================
-   SAVE NOTE
-========================================================= */
+/* SAVE NOTE */
 
 function saveCurrentNote(){
 
@@ -2600,15 +2441,13 @@ function saveCurrentNote(){
         return;
 
     note.title =
-        document.getElementById(
-            "noteTitle"
-        ).value.trim() ||
+        document.getElementById("noteTitle")
+            .value.trim() ||
         "My Note";
 
     note.content =
-        document.getElementById(
-            "noteEditor"
-        ).innerHTML;
+        document.getElementById("noteEditor")
+            .innerHTML;
 
     note.files =
         attachedFiles;
@@ -2627,9 +2466,7 @@ function saveCurrentNote(){
 }
 
 
-/* =========================================================
-   TEXT EDITING
-========================================================= */
+/* TEXT EDITING */
 
 function formatText(command){
 
@@ -2639,9 +2476,7 @@ function formatText(command){
         null
     );
 
-    document.getElementById(
-        "noteEditor"
-    ).focus();
+    document.getElementById("noteEditor").focus();
 
     saveCurrentNote();
 
@@ -2656,18 +2491,14 @@ function changeTextColor(color){
         color
     );
 
-    document.getElementById(
-        "noteEditor"
-    ).focus();
+    document.getElementById("noteEditor").focus();
 
     saveCurrentNote();
 
 }
 
 
-/* =========================================================
-   WRITING
-========================================================= */
+/* WRITING */
 
 function toggleWriting(){
 
@@ -2705,33 +2536,27 @@ function setDrawMode(mode){
 
     drawMode=mode;
 
-    document.getElementById(
-        "penButton"
-    ).classList.toggle(
-        "active",
-        mode==="pen"
-    );
+    document.getElementById("penButton")
+        .classList.toggle(
+            "active",
+            mode==="pen"
+        );
 
-    document.getElementById(
-        "eraserButton"
-    ).classList.toggle(
-        "active",
-        mode==="eraser"
-    );
+    document.getElementById("eraserButton")
+        .classList.toggle(
+            "active",
+            mode==="eraser"
+        );
 
 }
 
 
-/* =========================================================
-   CANVAS
-========================================================= */
+/* CANVAS */
 
 function setupCanvas(){
 
     canvas =
-        document.getElementById(
-            "drawingCanvas"
-        );
+        document.getElementById("drawingCanvas");
 
     ctx =
         canvas.getContext("2d");
@@ -2753,8 +2578,7 @@ function resizeCanvas(){
         return;
 
     const rect =
-        canvas.parentElement
-            .getBoundingClientRect();
+        canvas.parentElement.getBoundingClientRect();
 
     const oldImage =
         canvas.width > 0
@@ -2844,10 +2668,8 @@ function startDrawing(e){
         canvas.setPointerCapture(e.pointerId);
     }catch(error){}
 
-    const point =
+    lastPoint =
         getPointerPosition(e);
-
-    lastPoint=point;
 
 }
 
@@ -2864,9 +2686,7 @@ function drawLine(e){
 
     const size =
         Number(
-            document.getElementById(
-                "penSize"
-            ).value
+            document.getElementById("penSize").value
         );
 
     ctx.lineWidth=size;
@@ -2882,9 +2702,7 @@ function drawLine(e){
             "source-over";
 
         ctx.strokeStyle =
-            document.getElementById(
-                "penColor"
-            ).value;
+            document.getElementById("penColor").value;
 
     }
 
@@ -2933,11 +2751,9 @@ function clearDrawing(){
     if(!canvas || !ctx)
         return;
 
-    if(
-        !confirm(
-            "ต้องการลบลายมือทั้งหมดใช่ไหมคะ?"
-        )
-    )
+    if(!confirm(
+        "ต้องการลบลายมือทั้งหมดใช่ไหมคะ?"
+    ))
         return;
 
     ctx.clearRect(
@@ -2980,9 +2796,7 @@ function finishWriting(){
 }
 
 
-/* =========================================================
-   IMAGES
-========================================================= */
+/* IMAGES */
 
 function insertImages(event){
 
@@ -3007,9 +2821,7 @@ function insertImages(event){
             image.style.borderRadius="10px";
 
             const editor =
-                document.getElementById(
-                    "noteEditor"
-                );
+                document.getElementById("noteEditor");
 
             editor.appendChild(image);
 
@@ -3030,9 +2842,7 @@ function insertImages(event){
 }
 
 
-/* =========================================================
-   FILES
-========================================================= */
+/* FILES */
 
 function addFiles(event){
 
@@ -3142,11 +2952,9 @@ function renderFiles(){
 
 function deleteFile(index){
 
-    if(
-        !confirm(
-            "ต้องการลบไฟล์นี้ใช่ไหมคะ?"
-        )
-    )
+    if(!confirm(
+        "ต้องการลบไฟล์นี้ใช่ไหมคะ?"
+    ))
         return;
 
     attachedFiles.splice(index,1);
@@ -3284,22 +3092,18 @@ function formatFileSize(size){
 }
 
 
-/* =========================================================
-   DOWNLOAD NOTE
-========================================================= */
+/* DOWNLOAD NOTE */
 
 function downloadNote(){
 
     const title =
-        document.getElementById(
-            "noteTitle"
-        ).value.trim() ||
+        document.getElementById("noteTitle")
+            .value.trim() ||
         "My Note";
 
     const content =
-        document.getElementById(
-            "noteEditor"
-        ).innerHTML;
+        document.getElementById("noteEditor")
+            .innerHTML;
 
     let drawing="";
 
@@ -3406,9 +3210,7 @@ ${drawing}
 }
 
 
-/* =========================================================
-   HELP
-========================================================= */
+/* HELP */
 
 function showHelp(){
 
@@ -3441,23 +3243,15 @@ function showHelp(){
 }
 
 
-/* =========================================================
-   SETTINGS
-========================================================= */
+/* SETTINGS */
 
 function openSettings(){
 
-    document.getElementById(
-        "settingsPage"
-    ).style.display="block";
+    document.getElementById("settingsPage").style.display="block";
 
-    document.getElementById(
-        "notesPage"
-    ).style.display="none";
+    document.getElementById("notesPage").style.display="none";
 
-    document.getElementById(
-        "notePage"
-    ).style.display="none";
+    document.getElementById("notePage").style.display="none";
 
     document.getElementById("navHome")
         .classList.remove("active");
@@ -3478,18 +3272,15 @@ function openSettings(){
 
 function closeSettings(){
 
-    document.getElementById(
-        "settingsPage"
-    ).style.display="none";
+    document.getElementById("settingsPage")
+        .style.display="none";
 
     goHome();
 
 }
 
 
-/* =========================================================
-   AUTO SAVE
-========================================================= */
+/* AUTO SAVE */
 
 document.addEventListener(
     "input",
@@ -3514,18 +3305,15 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   RESIZE CANVAS
-========================================================= */
+/* RESIZE CANVAS */
 
 window.addEventListener(
     "resize",
     function(){
 
         if(
-            document.getElementById(
-                "notePage"
-            ).style.display === "block"
+            document.getElementById("notePage")
+                .style.display === "block"
         ){
 
             if(canvas){
@@ -3592,9 +3380,7 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   START APP
-========================================================= */
+/* START APP */
 
 loadTheme();
 
@@ -3604,9 +3390,7 @@ setTimeout(
     function(){
 
         const start =
-            document.getElementById(
-                "startScreen"
-            );
+            document.getElementById("startScreen");
 
         if(start){
 
@@ -3621,4 +3405,4 @@ setTimeout(
 </script>
 
 </body>
-
+</html>
