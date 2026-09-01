@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Homework & Notes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Note</title>
 
 <style>
 *{
@@ -13,36 +14,145 @@
     font-family:Tahoma,Arial,sans-serif;
 }
 
-body{
-    min-height:100vh;
-    background:linear-gradient(135deg,#ffdce9,#fff5f8);
-    color:#503b44;
+:root{
+    --main:#f06496;
+    --main2:#e74e84;
+    --light:#ffe5ef;
+    --light2:#fff0f5;
+    --border:#ffc4d8;
+    --text:#543d47;
+    --sub:#9b858d;
 }
 
-button,input{
-    font-family:inherit;
+body{
+    background:linear-gradient(135deg,#ffdce9,#fff7fa);
+    min-height:100vh;
+    color:var(--text);
 }
 
 button{
+    font-family:inherit;
     cursor:pointer;
 }
 
-.phone{
+button:active{
+    transform:scale(.96);
+}
+
+.app{
     width:390px;
     max-width:100%;
     min-height:100vh;
     margin:auto;
-    background:linear-gradient(180deg,#fff7fa,#fff);
+    background:#fff8fb;
     position:relative;
     overflow:hidden;
 }
 
-.top{
-    height:78px;
-    padding:20px;
+/* =========================
+   START SCREEN
+========================= */
+
+.startScreen{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#ff5b91,#e82d69);
+    z-index:9999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    animation:fadeOut 1s ease 3s forwards;
+}
+
+.spiderWeb{
+    position:absolute;
+    width:450px;
+    height:450px;
+    border:2px solid rgba(255,255,255,.25);
+    border-radius:50%;
+    animation:spinWeb 4s linear infinite;
+}
+
+.spiderWeb:before,
+.spiderWeb:after{
+    content:"";
+    position:absolute;
+    inset:45px;
+    border:2px solid rgba(255,255,255,.22);
+    border-radius:50%;
+}
+
+.spiderWeb:after{
+    inset:100px;
+}
+
+.spider{
+    font-size:100px;
+    z-index:2;
+    animation:spiderJump 1s ease-in-out infinite;
+    filter:drop-shadow(0 10px 12px rgba(0,0,0,.2));
+}
+
+.webLine{
+    position:absolute;
+    width:3px;
+    height:220px;
+    background:white;
+    top:-80px;
+    animation:webShoot 1s ease-out infinite;
+}
+
+.startText{
+    margin-top:20px;
+    font-size:24px;
+    font-weight:bold;
+    z-index:2;
+}
+
+.startSub{
+    margin-top:8px;
+    font-size:13px;
+    z-index:2;
+}
+
+@keyframes spiderJump{
+    0%,100%{transform:translateY(0) rotate(-3deg);}
+    50%{transform:translateY(-22px) rotate(3deg);}
+}
+
+@keyframes webShoot{
+    0%{height:0;opacity:0;}
+    50%{height:220px;opacity:1;}
+    100%{height:0;opacity:0;}
+}
+
+@keyframes spinWeb{
+    from{transform:rotate(0);}
+    to{transform:rotate(360deg);}
+}
+
+@keyframes fadeOut{
+    0%{opacity:1;visibility:visible;}
+    100%{opacity:0;visibility:hidden;pointer-events:none;}
+}
+
+/* =========================
+   HOME
+========================= */
+
+.home{
+    min-height:100vh;
+    padding-bottom:90px;
+}
+
+.topbar{
+    height:75px;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    padding:18px 20px;
 }
 
 .time{
@@ -51,401 +161,496 @@ button{
 }
 
 .question{
-    background:#ffe5ef;
-    color:#e44e82;
-    padding:9px 14px;
-    border-radius:22px;
-    font-size:13px;
+    background:var(--light);
+    color:var(--main2);
+    padding:9px 13px;
+    border-radius:20px;
+    font-size:12px;
     font-weight:bold;
 }
 
 .content{
-    padding:5px 20px 105px;
+    padding:0 18px 30px;
 }
 
 .profile{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin:10px 0 20px;
+    margin:5px 2px 20px;
 }
 
-.hello small{
-    color:#8d7780;
+.profile small{
+    color:var(--sub);
 }
 
-.hello h1{
+.profile h1{
+    color:var(--main2);
     font-size:29px;
-    color:#e94f88;
-    margin-top:4px;
+    margin-top:3px;
 }
 
-.hello p{
-    font-size:12px;
-    color:#927d85;
+.profile p{
+    color:var(--sub);
+    font-size:11px;
     margin-top:5px;
 }
 
 .avatar{
-    width:78px;
-    height:78px;
+    width:75px;
+    height:75px;
     border-radius:50%;
-    background:linear-gradient(145deg,#ff8bb7,#df3470);
-    border:5px solid #fff;
+    background:linear-gradient(145deg,#ff9fc2,#dd3d76);
+    border:5px solid white;
+    box-shadow:0 8px 20px #d94b792c;
     display:flex;
-    align-items:center;
     justify-content:center;
-    box-shadow:0 8px 20px #dc326055;
+    align-items:center;
 }
 
-.shead{
-    width:55px;
-    height:60px;
-    background:#e5326c;
-    border:3px solid #62152e;
-    border-radius:46%;
-    position:relative;
+.avatarFace{
+    font-size:42px;
 }
 
-.shead:before,
-.shead:after{
-    content:"";
-    position:absolute;
-    top:11px;
-    width:22px;
-    height:29px;
-    background:#fff;
-    border:3px solid #62152e;
+/* =========================
+   HOMEWORK
+========================= */
+
+.homeworkBox{
+    background:var(--light);
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:15px;
 }
 
-.shead:before{
-    left:2px;
-    border-radius:80% 20% 70% 30%;
-    transform:rotate(-14deg);
-}
-
-.shead:after{
-    right:2px;
-    border-radius:20% 80% 30% 70%;
-    transform:rotate(14deg);
-}
-
-.hwbox{
-    background:#ffe0ebbb;
-    border:1px solid #ff9dbe66;
-    border-radius:27px;
-    padding:17px;
-    box-shadow:0 10px 30px #de5a8220;
-}
-
-.boxtitle{
+.homeworkTitle{
     display:flex;
     justify-content:space-between;
-    margin-bottom:13px;
+    align-items:center;
+    margin-bottom:12px;
 }
 
-.boxtitle h2{
+.homeworkTitle h2{
     font-size:19px;
+}
+
+.addHomework{
+    border:0;
+    background:var(--main);
+    color:white;
+    padding:8px 12px;
+    border-radius:11px;
+    font-size:11px;
 }
 
 .tabs{
     display:flex;
-    background:#fff;
-    border-radius:18px;
+    background:white;
+    border-radius:17px;
     padding:4px;
     margin-bottom:12px;
 }
 
 .tab{
-    width:50%;
-    padding:9px;
+    flex:1;
     border:0;
     background:transparent;
-    border-radius:14px;
-    color:#806c75;
-    font-size:12px;
+    padding:9px;
+    border-radius:13px;
+    color:#8a737d;
+    font-size:11px;
 }
 
 .tab.active{
-    background:#ff82ac;
-    color:#fff;
+    background:var(--main);
+    color:white;
     font-weight:bold;
 }
 
-.alert{
-    background:#fff;
-    border-radius:14px;
-    padding:11px;
-    margin-bottom:11px;
-    color:#dc557e;
-    font-size:12px;
-}
-
-.list{
+.homeworkList{
     display:flex;
     flex-direction:column;
+    gap:8px;
+}
+
+.homeworkItem{
+    background:white;
+    border-radius:16px;
+    padding:11px;
+    display:flex;
+    align-items:center;
     gap:9px;
+    box-shadow:0 4px 12px #b34b7112;
 }
 
-.card{
-    background:#fff;
-    border-radius:18px;
-    padding:12px;
+.homeworkIcon{
+    width:43px;
+    height:43px;
+    background:var(--light);
+    border-radius:13px;
     display:flex;
-    gap:10px;
-    align-items:center;
-    box-shadow:0 5px 15px #b4647d14;
-}
-
-.icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
-    background:#ffe2ed;
-    display:flex;
-    align-items:center;
     justify-content:center;
-    font-size:21px;
+    align-items:center;
+    font-size:20px;
+    flex:none;
 }
 
-.info{
+.homeworkInfo{
     flex:1;
     min-width:0;
 }
 
-.info h3{
-    font-size:13px;
+.homeworkInfo h3{
+    font-size:12px;
     margin-bottom:3px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-.sub{
-    font-size:10px;
-    color:#99838b;
-    margin-bottom:5px;
+.homeworkInfo p{
+    color:var(--sub);
+    font-size:9px;
+    margin-bottom:4px;
 }
 
 .deadline{
-    font-size:10px;
-    color:#dc4c78;
-    background:#ffe7ef;
-    padding:4px 6px;
-    border-radius:8px;
+    display:inline-block;
+    background:var(--light);
+    color:var(--main2);
+    padding:3px 6px;
+    border-radius:7px;
+    font-size:9px;
 }
 
-.donebtn{
+.hwButton{
     width:30px;
     height:30px;
     border:0;
-    border-radius:50%;
-    background:#ffe0eb;
-    color:#e65085;
+    border-radius:9px;
+    flex:none;
+}
+
+.completeButton{
+    background:#eaf8ed;
+    color:#4eaa65;
+}
+
+.deleteButton{
+    background:#ffe6ec;
+    color:#dc4e78;
 }
 
 .completed{
-    opacity:.6;
+    opacity:.58;
 }
 
 .completed h3{
     text-decoration:line-through;
 }
 
-.quick-title{
+.empty{
+    text-align:center;
+    padding:20px 5px;
+    color:var(--sub);
+    font-size:11px;
+}
+
+/* =========================
+   QUICK MENU
+========================= */
+
+.quickTitle{
     font-size:19px;
-    margin:21px 0 11px;
+    margin:20px 2px 10px;
 }
 
 .quick{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:8px;
+    gap:7px;
 }
 
-.q{
+.quick button{
+    min-height:86px;
     border:0;
     border-radius:18px;
-    padding:12px 4px;
-    min-height:88px;
-    background:linear-gradient(145deg,#ffd2e2,#fff0f6);
-    color:#bd466e;
-    box-shadow:0 7px 18px #be53781a;
+    background:linear-gradient(145deg,#ffd4e3,#fff0f6);
+    color:#c34b76;
+    box-shadow:0 6px 15px #c34f7417;
 }
 
-.q:nth-child(2){
-    background:linear-gradient(145deg,#ead3ff,#f9eefe);
-    color:#8151b9;
+.quick button:nth-child(2){
+    background:linear-gradient(145deg,#efd8ff,#faf0ff);
+    color:#8755b8;
 }
 
-.q:nth-child(3){
-    background:linear-gradient(145deg,#ffe1d8,#fff2ed);
-    color:#e36b5c;
+.quick button:nth-child(3){
+    background:linear-gradient(145deg,#ffe0d8,#fff2ed);
+    color:#db6656;
 }
 
-.q:nth-child(4){
-    background:linear-gradient(145deg,#efd2f5,#fbeafb);
-    color:#914eb1;
+.quick button:nth-child(4){
+    background:linear-gradient(145deg,#dff3ff,#effaff);
+    color:#4f88ae;
 }
 
-.qi{
+.quickIcon{
     display:block;
-    font-size:25px;
-    margin-bottom:5px;
+    font-size:26px;
+    margin-bottom:6px;
 }
 
-.q span:last-child{
+.quickText{
     font-size:10px;
     font-weight:bold;
 }
 
-.nav{
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottomNav{
     position:fixed;
+    width:390px;
+    max-width:100%;
     bottom:0;
     left:50%;
     transform:translateX(-50%);
-    width:390px;
-    max-width:100%;
-    background:#fffafbf2;
-    backdrop-filter:blur(15px);
-    border-top:1px solid #f5dce5;
+    background:#fffdfef5;
+    backdrop-filter:blur(12px);
+    border-top:1px solid #f1dce4;
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    padding:8px 7px 13px;
-    z-index:100;
+    padding:8px 5px 12px;
+    z-index:500;
 }
 
-.nav button{
+.bottomNav button{
     border:0;
-    background:none;
-    color:#77636c;
+    background:transparent;
+    color:#806d75;
     font-size:9px;
-    padding:5px 1px;
 }
 
-.nav button div{
+.bottomNav button div{
     font-size:20px;
     margin-bottom:3px;
 }
 
-.nav .active{
-    color:#e94d84;
+.bottomNav button.active{
+    color:var(--main2);
     font-weight:bold;
 }
 
-.nav .active div{
-    background:#ff83ac;
-    color:#fff;
-    width:48px;
-    margin:auto auto 3px;
-    border-radius:14px;
-    padding:4px;
-}
+/* =========================
+   MODAL
+========================= */
 
 .modal{
-    display:none;
     position:fixed;
     inset:0;
-    background:#46233059;
-    z-index:200;
-    align-items:center;
+    background:#47263366;
+    display:none;
     justify-content:center;
+    align-items:center;
     padding:20px;
+    z-index:1000;
 }
 
 .modal.show{
     display:flex;
 }
 
-.modalbox{
+.modalBox{
     width:390px;
     max-width:100%;
-    background:#fff;
-    border-radius:27px;
-    padding:22px;
-    box-shadow:0 20px 60px #0003;
+    background:white;
+    border-radius:25px;
+    padding:20px;
 }
 
-.modalbox h2{
-    color:#e64f83;
-    margin-bottom:16px;
+.modalBox h2{
+    color:var(--main2);
+    margin-bottom:15px;
 }
 
-.field{
+.input{
     width:100%;
     padding:12px;
-    border:1px solid #f0cbd8;
-    border-radius:13px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    outline:none;
     margin-bottom:9px;
-    outline:0;
 }
 
-.actions{
+.modalButtons{
     display:flex;
     gap:8px;
 }
 
-.actions button{
+.modalButtons button{
     flex:1;
-    padding:12px;
     border:0;
-    border-radius:13px;
+    padding:12px;
+    border-radius:12px;
 }
 
 .cancel{
-    background:#f5eef1;
+    background:#f3eef0;
     color:#806d75;
 }
 
 .save{
-    background:#f36b99;
-    color:#fff;
+    background:var(--main);
+    color:white;
 }
 
-/* ================= NOTES ================= */
+/* =========================
+   NOTE LIST
+========================= */
 
-.notePage{
-    display:none;
+.notesPage{
     position:fixed;
     inset:0;
-    z-index:5000;
-    background:linear-gradient(135deg,#ffe1ec,#fff7fa);
+    background:linear-gradient(135deg,var(--light),#fff7fa);
+    z-index:800;
+    display:none;
+    overflow:auto;
+}
+
+.notesHeader{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:#ffffffed;
+    backdrop-filter:blur(12px);
+    padding:12px 15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--border);
+}
+
+.notesHeader h2{
+    color:var(--main2);
+    font-size:19px;
+}
+
+.circleButton{
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:13px;
+    background:var(--light);
+    color:var(--main2);
+    font-size:20px;
+}
+
+.bigPlus{
+    width:58px;
+    height:58px;
+    background:var(--main);
+    color:white;
+    font-size:37px;
+    font-weight:bold;
+    box-shadow:0 6px 16px #d94c7933;
+}
+
+.noteGrid{
+    padding:18px;
+    max-width:900px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+    gap:13px;
+}
+
+.noteCard{
+    background:white;
+    border-radius:18px;
+    padding:15px;
+    box-shadow:0 7px 20px #9c506518;
+    border:1px solid var(--border);
+}
+
+.noteCard h3{
+    color:var(--main2);
+    font-size:16px;
+    margin-bottom:7px;
+}
+
+.notePreview{
+    color:var(--sub);
+    font-size:11px;
+    height:35px;
+    overflow:hidden;
+}
+
+.noteCard small{
+    display:block;
+    margin-top:8px;
+    color:#b09ba3;
+    font-size:9px;
+}
+
+.noteCardActions{
+    display:flex;
+    gap:6px;
+    margin-top:10px;
+}
+
+.noteCardActions button{
+    flex:1;
+    border:0;
+    padding:7px;
+    border-radius:8px;
+    font-size:10px;
+}
+
+.openNote{
+    background:var(--light);
+    color:var(--main2);
+}
+
+.deleteNote{
+    background:#fff0f3;
+    color:#d84d72;
+}
+
+/* =========================
+   NOTE EDITOR
+========================= */
+
+.notePage{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,var(--light),#fff7fa);
+    z-index:900;
+    display:none;
     overflow:auto;
 }
 
 .noteTop{
     position:sticky;
     top:0;
-    z-index:100;
-    min-height:68px;
-    background:#fffffff2;
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid #f3d5e0;
+    z-index:50;
+    min-height:65px;
+    background:#ffffffed;
+    backdrop-filter:blur(12px);
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    padding:10px 16px;
-    gap:8px;
-}
-
-.roundbtn{
-    width:42px;
-    height:42px;
-    border:0;
-    border-radius:14px;
-    background:#ffe1eb;
-    color:#d94b7c;
-    font-size:20px;
-}
-
-.saveNote{
-    background:#f36b99;
-    color:#fff;
+    gap:7px;
+    padding:9px 13px;
+    border-bottom:1px solid var(--border);
 }
 
 .noteTopTitle{
     flex:1;
     text-align:center;
-    font-size:16px;
     font-weight:bold;
-    color:#5b3c48;
+    color:var(--text);
+    font-size:15px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -455,163 +660,202 @@ button{
     width:94%;
     max-width:900px;
     min-height:720px;
-    margin:20px auto 50px;
-    background:#fff;
+    background:white;
+    margin:18px auto 40px;
+    padding:18px;
     border-radius:20px;
-    box-shadow:0 15px 45px #96466426;
-    padding:20px;
+    box-shadow:0 12px 35px #9e506a20;
 }
 
-.noteName{
+.noteTitle{
     width:100%;
     border:0;
-    border-bottom:2px solid #ffd3e1;
+    border-bottom:2px solid var(--border);
     outline:0;
-    padding:9px 5px;
-    font-size:24px;
+    padding:7px 3px;
+    color:var(--main2);
+    font-size:23px;
     font-weight:bold;
-    color:#db4e7d;
     margin-bottom:12px;
 }
 
-.noteName::placeholder{
-    color:#e7b5c6;
+.noteTitle::placeholder{
+    color:var(--border);
 }
+
+/* =========================
+   TOOLBAR
+========================= */
 
 .toolbar{
     display:flex;
-    gap:6px;
     flex-wrap:wrap;
-    padding:9px;
-    background:#fff0f5;
-    border-radius:14px;
-    margin-bottom:13px;
+    gap:5px;
+    padding:8px;
+    background:var(--light2);
+    border-radius:13px;
+    margin-bottom:9px;
 }
 
 .toolbar button{
-    min-width:36px;
-    height:36px;
-    padding:0 8px;
+    height:37px;
+    min-width:37px;
     border:0;
     border-radius:9px;
-    background:#fff;
-    color:#c94c77;
-    box-shadow:0 3px 8px #be50781a;
+    background:white;
+    color:var(--main2);
 }
 
-.toolbar button:hover{
-    background:#ff7fa8;
-    color:#fff;
+.toolbar button.active{
+    background:var(--main);
+    color:white;
 }
 
-.colorInput{
-    width:38px;
-    height:36px;
+.colorPicker{
+    width:37px;
+    height:37px;
     border:0;
     padding:2px;
-    background:#fff;
     border-radius:9px;
+}
+
+/* =========================
+   WRITING TOOLS
+========================= */
+
+.writeTools{
+    display:none;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:7px;
+    background:var(--light2);
+    border-radius:13px;
+    padding:8px;
+    margin-bottom:9px;
+}
+
+.writeTools.show{
+    display:flex;
+}
+
+.writeTools button{
+    border:0;
+    background:white;
+    color:var(--main2);
+    border-radius:9px;
+    padding:8px 11px;
+}
+
+.writeTools button.active{
+    background:var(--main);
+    color:white;
+}
+
+.penColor{
+    width:37px;
+    height:34px;
+    border:0;
+}
+
+.penSize{
+    width:85px;
+}
+
+/* =========================
+   EDITOR
+========================= */
+
+.editorWrap{
+    position:relative;
+    min-height:540px;
+    border-radius:9px;
+    overflow:hidden;
 }
 
 .editor{
-    min-height:420px;
+    min-height:540px;
+    padding:6px;
     outline:0;
-    padding:12px 8px;
+    position:relative;
+    z-index:1;
     font-size:16px;
-    line-height:2;
+    line-height:32px;
+
     background-image:
-        linear-gradient(#f3dce4 1px,transparent 1px);
+        linear-gradient(
+            var(--border) 1px,
+            transparent 1px
+        );
+
     background-size:100% 32px;
-    overflow:hidden;
+    overflow:auto;
 }
 
 .editor:empty:before{
     content:attr(data-placeholder);
-    color:#cdb4bd;
+    color:#cbb5bd;
 }
 
-/* รูปในโน้ต */
-
-.noteImage{
-    max-width:100%;
-    height:auto;
-    display:inline-block;
-    margin:8px;
-    border:2px solid transparent;
-    border-radius:10px;
-    cursor:pointer;
-    resize:both;
-    overflow:auto;
+#drawingCanvas{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index:10;
+    background:transparent;
+    pointer-events:none;
+    touch-action:none;
 }
 
-.noteImage.selected{
-    border:2px dashed #f36b99;
+.editorWrap.writing #drawingCanvas{
+    pointer-events:auto;
+    cursor:crosshair;
 }
 
-/* ตัวจัดการรูป */
-
-.imageTools{
-    display:none;
-    gap:7px;
-    align-items:center;
-    flex-wrap:wrap;
-    padding:8px;
-    background:#fff5f8;
-    border:1px solid #ffd4e1;
-    border-radius:12px;
-    margin-bottom:10px;
-    font-size:11px;
+.editorWrap.writing .editor{
+    pointer-events:none;
 }
 
-.imageTools.show{
-    display:flex;
-}
+/* =========================
+   FILES
+========================= */
 
-.imageTools button{
-    border:0;
-    border-radius:8px;
-    padding:7px 10px;
-    background:#ffe0eb;
-    color:#c64b76;
-}
-
-.imageTools input{
-    width:80px;
-}
-
-.attachTitle{
-    margin-top:18px;
+.fileSection{
+    margin-top:20px;
+    border-top:1px solid var(--border);
     padding-top:15px;
-    border-top:1px solid #f2dce4;
-    font-weight:bold;
-    color:#704554;
 }
 
-.files{
+.fileSectionTitle{
+    font-size:13px;
+    font-weight:bold;
+}
+
+.fileList{
+    margin-top:8px;
     display:flex;
     flex-direction:column;
-    gap:8px;
-    margin-top:9px;
+    gap:7px;
 }
 
 .fileItem{
+    background:var(--light2);
+    border-radius:12px;
+    padding:9px;
     display:flex;
     align-items:center;
-    gap:10px;
-    padding:11px;
-    background:#fff1f6;
-    border-radius:13px;
+    gap:8px;
 }
 
 .fileIcon{
-    width:38px;
-    height:38px;
-    border-radius:10px;
-    background:#fff;
+    width:35px;
+    height:35px;
+    border-radius:9px;
+    background:white;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:19px;
 }
 
 .fileInfo{
@@ -620,7 +864,7 @@ button{
 }
 
 .fileName{
-    font-size:12px;
+    font-size:11px;
     font-weight:bold;
     white-space:nowrap;
     overflow:hidden;
@@ -628,384 +872,144 @@ button{
 }
 
 .fileSize{
-    font-size:10px;
-    color:#9d828c;
-    margin-top:2px;
+    color:#a38e96;
+    font-size:9px;
 }
 
-.fileActions{
+.fileButtons{
     display:flex;
-    gap:5px;
+    gap:4px;
 }
 
-.fileActions button{
+.fileButtons button{
+    width:28px;
+    height:28px;
     border:0;
-    background:#ffd9e5;
-    color:#d54d79;
-    width:30px;
-    height:30px;
-    border-radius:9px;
+    border-radius:7px;
+    background:var(--light);
 }
 
-.fileSizeControl{
-    width:65px;
-}
-
-.noFile{
+.noFiles{
     text-align:center;
     color:#b39da5;
-    font-size:12px;
-    padding:12px;
+    padding:10px;
+    font-size:10px;
 }
 
-/* ================= NOTES LIST ================= */
+/* =========================
+   SETTINGS
+========================= */
 
-.notesListPage{
-    display:none;
+.settingsPage{
     position:fixed;
     inset:0;
-    z-index:4500;
-    background:linear-gradient(135deg,#ffe1ec,#fff7fa);
+    background:linear-gradient(135deg,var(--light),#fff7fa);
+    z-index:850;
+    display:none;
     overflow:auto;
+    padding-bottom:100px;
 }
 
-.notesHeader{
+.settingsHeader{
     position:sticky;
     top:0;
     z-index:10;
+    background:#ffffffed;
+    backdrop-filter:blur(12px);
     padding:15px;
-    background:#ffffffee;
-    backdrop-filter:blur(15px);
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    gap:12px;
+    border-bottom:1px solid var(--border);
 }
 
-.notesHeader h2{
-    color:#db4e7d;
+.settingsHeader h2{
+    color:var(--main2);
+    font-size:20px;
 }
 
-.noteGrid{
-    max-width:900px;
-    margin:auto;
-    padding:18px;
+.settingsContent{
+    padding:20px;
+}
+
+.settingsTitle{
+    font-size:15px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.themeGrid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
-    gap:14px;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
 
-.noteCard{
-    background:#fff;
-    border-radius:18px;
-    padding:16px;
-    box-shadow:0 8px 25px #9d53651a;
-    cursor:pointer;
-    border:1px solid #f6dbe4;
+.themeCard{
+    border:3px solid transparent;
+    background:white;
+    border-radius:20px;
+    padding:18px 10px;
+    text-align:center;
+    box-shadow:0 6px 15px #9c506518;
+    transition:.2s;
 }
 
-.noteCard h3{
-    color:#d84e7b;
+.themeCard.selected{
+    border-color:var(--main);
+    transform:translateY(-2px);
+}
+
+.themeEmoji{
+    font-size:42px;
+    display:block;
     margin-bottom:8px;
 }
 
-.noteCard p{
+.themeName{
+    font-size:12px;
+    font-weight:bold;
+}
+
+.themeDesc{
+    font-size:9px;
+    color:var(--sub);
+    margin-top:4px;
+}
+
+.settingInfo{
+    background:white;
+    margin-top:20px;
+    padding:15px;
+    border-radius:17px;
     font-size:11px;
-    color:#99848c;
-    height:38px;
-    overflow:hidden;
+    line-height:1.8;
 }
 
-.noteCard small{
-    display:block;
-    margin-top:10px;
-    color:#c29ba9;
-}
+/* =========================
+   RESPONSIVE
+========================= */
 
-.deleteNote{
-    margin-top:10px;
-    border:0;
-    background:#ffe1ea;
-    color:#d24d78;
-    padding:7px 10px;
-    border-radius:8px;
-}
+@media(max-width:500px){
 
-/* ================= INTRO ================= */
-
-#intro{
-    position:fixed;
-    inset:0;
-    z-index:99999;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:
-        radial-gradient(circle,#ffd4e5,#ff76a8 40%,#d82d69 75%,#7c163d);
-    animation:introOut .65s ease forwards;
-    animation-delay:3.35s;
-}
-
-.bigweb{
-    position:absolute;
-    width:680px;
-    height:680px;
-    border:3px solid #ffffffcc;
-    border-radius:50%;
-    opacity:0;
-    animation:webIn .7s forwards,
-              webMove 2s ease-in-out infinite;
-}
-
-.bigweb:before,
-.bigweb:after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border:2px solid #ffffff99;
-    border-radius:50%;
-}
-
-.bigweb:before{
-    transform:scale(.7);
-}
-
-.bigweb:after{
-    transform:scale(.4);
-}
-
-.wl{
-    left:-420px;
-    top:-220px;
-}
-
-.wr{
-    right:-420px;
-    bottom:-230px;
-}
-
-.hero{
-    position:relative;
-    width:230px;
-    height:390px;
-    z-index:5;
-    transform:translate(-600px,500px) rotate(-25deg) scale(.6);
-    animation:
-        jump 1.45s cubic-bezier(.15,.8,.25,1) forwards,
-        float 1s ease-in-out 1.5s infinite;
-}
-
-.hhead{
-    position:absolute;
-    width:180px;
-    height:185px;
-    left:25px;
-    background:linear-gradient(145deg,#ff8bb5,#ed3e78 60%,#a91d4d);
-    border:5px solid #65152f;
-    border-radius:48%;
-    box-shadow:0 15px 35px #50001e66;
-}
-
-.heye{
-    position:absolute;
-    width:65px;
-    height:90px;
-    background:#fff;
-    border:5px solid #511326;
-}
-
-.el{
-    left:17px;
-    top:50px;
-    border-radius:80% 20% 70% 30%;
-    transform:rotate(-17deg);
-}
-
-.er{
-    right:17px;
-    top:50px;
-    border-radius:20% 80% 30% 70%;
-    transform:rotate(17deg);
-}
-
-.hbody{
-    position:absolute;
-    width:160px;
-    height:180px;
-    left:35px;
-    top:160px;
-    border-radius:35% 35% 45% 45%;
-    background:linear-gradient(145deg,#ff679c,#dc235f);
-    border:5px solid #65152f;
-    box-shadow:0 20px 35px #50001e59;
-}
-
-.logo{
-    position:absolute;
-    left:50%;
-    top:30px;
-    transform:translateX(-50%);
-    font-size:52px;
-}
-
-.arm{
-    position:absolute;
-    width:105px;
-    height:34px;
-    top:35px;
-    background:#dc235f;
-    border:5px solid #65152f;
-    border-radius:30px;
-}
-
-.al{
-    left:-80px;
-    transform:rotate(-35deg);
-}
-
-.ar{
-    right:-80px;
-    transform:rotate(35deg);
-}
-
-/* ใยจากมือ */
-
-.webShot{
-    position:absolute;
-    width:150px;
-    height:3px;
-    background:#fff;
-    box-shadow:0 0 8px #fff;
-    opacity:0;
-    z-index:20;
-    transform-origin:left center;
-}
-
-.webLeft{
-    left:-112px;
-    top:200px;
-    transform:rotate(-155deg);
-    animation:shootLeft .7s ease-out 1.15s forwards;
-}
-
-.webRight{
-    right:-112px;
-    top:200px;
-    transform-origin:right center;
-    transform:rotate(-25deg);
-    animation:shootRight .7s ease-out 1.15s forwards;
-}
-
-.introText{
-    position:absolute;
-    bottom:75px;
-    z-index:10;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    color:#fff;
-    opacity:0;
-    animation:introText .6s forwards .8s;
-    text-shadow:0 3px 12px #50001e66;
-}
-
-.introText b{
-    font-size:30px;
-}
-
-.introText span{
-    margin-top:7px;
-    font-size:14px;
-}
-
-@keyframes jump{
-    0%{
-        transform:translate(-600px,500px) rotate(-25deg) scale(.6);
-    }
-    45%{
-        transform:translate(-100px,-80px) rotate(-12deg) scale(1.08);
-    }
-    65%{
-        transform:translate(25px,20px) rotate(8deg) scale(1.03);
-    }
-    82%{
-        transform:translate(0,-18px) rotate(-4deg);
-    }
-    100%{
-        transform:translate(0) rotate(0) scale(1);
-    }
-}
-
-@keyframes float{
-    50%{
-        transform:translateY(-12px);
-    }
-}
-
-@keyframes webIn{
-    to{
-        opacity:.85;
-        transform:scale(1);
-    }
-}
-
-@keyframes webMove{
-    50%{
-        margin-left:30px;
-        margin-top:-20px;
-    }
-}
-
-@keyframes shootLeft{
-    0%{
-        width:0;
-        opacity:1;
-    }
-    100%{
-        width:150px;
-        opacity:1;
-    }
-}
-
-@keyframes shootRight{
-    0%{
-        width:0;
-        opacity:1;
-    }
-    100%{
-        width:150px;
-        opacity:1;
-    }
-}
-
-@keyframes introText{
-    to{
-        opacity:1;
-    }
-}
-
-@keyframes introOut{
-    0%,70%{
-        opacity:1;
-        visibility:visible;
-    }
-    100%{
-        opacity:0;
-        visibility:hidden;
-        pointer-events:none;
-    }
-}
-
-@media(min-width:600px){
-    .phone{
-        margin:25px auto;
-        border-radius:35px;
-        min-height:850px;
+    .app{
+        width:100%;
     }
 
-    .nav{
-        position:absolute;
-        border-radius:0 0 35px 35px;
+    .bottomNav{
+        width:100%;
+    }
+
+    .paper{
+        width:96%;
+        padding:13px;
+    }
+
+    .noteTitle{
+        font-size:20px;
+    }
+
+    .editor{
+        font-size:15px;
     }
 }
 </style>
@@ -1013,205 +1017,380 @@ button{
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-    <div class="bigweb wl"></div>
-    <div class="bigweb wr"></div>
+<!-- START SCREEN -->
 
-    <div class="hero">
+<div class="startScreen" id="startScreen">
 
-        <div class="hhead">
-            <div class="heye el"></div>
-            <div class="heye er"></div>
-        </div>
+    <div class="spiderWeb"></div>
 
-        <div class="hbody">
-            <div class="logo">🕷️</div>
-            <div class="arm al"></div>
-            <div class="arm ar"></div>
-        </div>
+    <div class="webLine"></div>
 
-        <div class="webShot webLeft"></div>
-        <div class="webShot webRight"></div>
+    <div class="spider">🕷️</div>
 
+    <div class="startText">
+        My Note
     </div>
 
-    <div class="introText">
-        <b>Homework 💗</b>
-        <span>พร้อมลุยการบ้านกันหรือยัง?</span>
+    <div class="startSub">
+        จดโน้ตและทำการบ้าน 💗
     </div>
+
 </div>
 
 
-<!-- HOME -->
-<div class="phone">
+<div class="app">
 
-    <div class="top">
-        <div class="time" id="time">10:10 น.</div>
-        <div class="question">✏️ ทำการบ้านรึยัง?</div>
+<!-- HOME -->
+
+<div class="home" id="homePage">
+
+    <div class="topbar">
+
+        <div class="time" id="time">
+            00:00 น.
+        </div>
+
+        <div class="question">
+            ทำการบ้านรึยังจ๊ะ 💗
+        </div>
+
     </div>
 
-    <main class="content">
 
-        <section class="profile">
-            <div class="hello">
-                <small>สวัสดีตอนเช้า ☀️</small>
-                <h1>สวัสดีค่ะ 💗</h1>
-                <p>ตั้งใจเรียนและทำงานนะคะ!</p>
+    <div class="content">
+
+        <div class="profile">
+
+            <div>
+
+                <small>
+                    สวัสดีค่ะ 👋
+                </small>
+
+                <h1>
+                    My Note
+                </h1>
+
+                <p>
+                    มาเขียนโน้ตและทำการบ้านกันนะ
+                </p>
+
             </div>
 
             <div class="avatar">
-                <div class="shead"></div>
-            </div>
-        </section>
 
-        <section class="hwbox">
+                <div
+                    class="avatarFace"
+                    id="avatarFace">
+                    🕷️
+                </div>
 
-            <div class="boxtitle">
-                <h2>📚 การบ้านของฉัน</h2>
-                <span>💗</span>
             </div>
+
+        </div>
+
+
+        <!-- การบ้าน -->
+
+        <div class="homeworkBox">
+
+            <div class="homeworkTitle">
+
+                <h2>
+                    📚 การบ้าน
+                </h2>
+
+                <button
+                    class="addHomework"
+                    onclick="openHomeworkModal()">
+
+                    ＋ เพิ่ม
+
+                </button>
+
+            </div>
+
 
             <div class="tabs">
-                <button class="tab active" id="pendingTab"
-                        onclick="showTab('pending')">
-                    ⏰ ยังไม่ทำ (<span id="pendingCount">0</span>)
+
+                <button
+                    id="pendingTab"
+                    class="tab active"
+                    onclick="showHomeworkTab('pending')">
+
+                    ยังไม่ทำ
+                    (<span id="pendingCount">0</span>)
+
                 </button>
 
-                <button class="tab" id="doneTab"
-                        onclick="showTab('done')">
-                    ✓ ทำแล้ว (<span id="doneCount">0</span>)
+
+                <button
+                    id="doneTab"
+                    class="tab"
+                    onclick="showHomeworkTab('done')">
+
+                    ทำแล้ว
+                    (<span id="doneCount">0</span>)
+
                 </button>
+
             </div>
 
-            <div class="alert">
-                💗 อย่าลืมทำการบ้านนะ
+
+            <div
+                class="homeworkList"
+                id="homeworkList">
             </div>
 
-            <div class="list" id="homeworkList"></div>
+        </div>
 
-        </section>
 
-        <h2 class="quick-title">เมนูลัด</h2>
+        <h2 class="quickTitle">
+            เมนูลัด
+        </h2>
+
 
         <div class="quick">
 
-            <button class="q" onclick="openNotesList()">
-                <span class="qi">📝</span>
-                <span>โน้ตทั้งหมด</span>
+            <button onclick="openNotesList()">
+
+                <span class="quickIcon">
+                    📝
+                </span>
+
+                <span class="quickText">
+                    โน้ตของฉัน
+                </span>
+
             </button>
 
-            <button class="q" onclick="openModal()">
-                <span class="qi">📖</span>
-                <span>เพิ่มการบ้าน</span>
+
+            <button onclick="createNote()">
+
+                <span class="quickIcon">
+                    ➕
+                </span>
+
+                <span class="quickText">
+                    เพิ่มโน้ต
+                </span>
+
             </button>
 
-            <button class="q" onclick="openReminder()">
-                <span class="qi">⏰</span>
-                <span>ตั้งเวลาเตือน</span>
+
+            <button onclick="showHelp()">
+
+                <span class="quickIcon">
+                    ❔
+                </span>
+
+                <span class="quickText">
+                    ช่วยเหลือ
+                </span>
+
             </button>
 
-            <button class="q" onclick="showHelp()">
-                <span class="qi">❔</span>
-                <span>ช่วยเหลือ</span>
+
+            <button
+                onclick="document.getElementById('globalFileInput').click()">
+
+                <span class="quickIcon">
+                    📎
+                </span>
+
+                <span class="quickText">
+                    ไฟล์
+                </span>
+
             </button>
 
         </div>
 
-    </main>
+    </div>
 
-    <nav class="nav">
 
-        <button class="active" onclick="navClick(this,'home')">
+    <!-- BOTTOM NAV -->
+
+    <nav class="bottomNav">
+
+        <button
+            id="navHome"
+            class="active"
+            onclick="goHome()">
+
             <div>⌂</div>
             หน้าแรก
+
         </button>
 
-        <button onclick="navClick(this,'pending')">
-            <div>📋</div>
-            การบ้านที่ต้องส่ง
-        </button>
 
-        <button onclick="navClick(this,'done')">
-            <div>✓</div>
-            การบ้านที่ทำแล้ว
-        </button>
+        <button
+            id="navNotes"
+            onclick="openNotesList()">
 
-        <button onclick="openNotesList()">
             <div>📝</div>
-            โน้ต
+            โน๊ตของฉัน
+
+        </button>
+
+
+        <button
+            id="navHomework"
+            onclick="showHomeworkTab('pending')">
+
+            <div>📋</div>
+            การบ้าน
+
+        </button>
+
+
+        <button
+            id="navSettings"
+            onclick="openSettings()">
+
+            <div>⚙️</div>
+            ตั้งค่า
+
         </button>
 
     </nav>
+
 </div>
 
 
 <!-- HOMEWORK MODAL -->
-<div class="modal" id="modal">
 
-    <div class="modalbox">
+<div class="modal" id="homeworkModal">
 
-        <h2>➕ เพิ่มการบ้าน</h2>
+    <div class="modalBox">
 
-        <input class="field" id="hwName"
-               placeholder="ชื่อการบ้าน">
+        <h2>
+            📚 เพิ่มการบ้าน
+        </h2>
 
-        <input class="field" id="hwSubject"
-               placeholder="วิชา">
+        <input
+            class="input"
+            id="homeworkName"
+            placeholder="ชื่อการบ้าน">
 
-        <input class="field" id="hwDate" type="date">
+        <input
+            class="input"
+            id="homeworkSubject"
+            placeholder="วิชา">
 
-        <input class="field" id="hwTime" type="time">
+        <input
+            class="input"
+            id="homeworkDate"
+            type="date">
 
-        <div class="actions">
-            <button class="cancel" onclick="closeModal()">ยกเลิก</button>
-            <button class="save" onclick="addHomework()">บันทึก</button>
+        <input
+            class="input"
+            id="homeworkTime"
+            type="time">
+
+        <div class="modalButtons">
+
+            <button
+                class="cancel"
+                onclick="closeHomeworkModal()">
+
+                ยกเลิก
+
+            </button>
+
+            <button
+                class="save"
+                onclick="addHomework()">
+
+                บันทึก
+
+            </button>
+
         </div>
 
     </div>
+
 </div>
 
 
 <!-- NOTES LIST -->
-<div class="notesListPage" id="notesListPage">
+
+<div class="notesPage" id="notesPage">
 
     <div class="notesHeader">
 
-        <button class="roundbtn" onclick="closeNotesList()">←</button>
+        <button
+            class="circleButton"
+            onclick="closeNotesList()">
 
-        <h2>📝 โน้ตของฉัน</h2>
+            ←
 
-        <button class="roundbtn saveNote"
-                onclick="createNote()">
+        </button>
+
+
+        <h2>
+            📝 My Note
+        </h2>
+
+
+        <button
+            class="circleButton bigPlus"
+            onclick="createNote()">
+
             ＋
+
         </button>
 
     </div>
 
-    <div class="noteGrid" id="noteGrid"></div>
+
+    <div
+        class="noteGrid"
+        id="noteGrid">
+    </div>
 
 </div>
 
 
-<!-- NOTE EDITOR -->
+<!-- NOTE PAGE -->
+
 <div class="notePage" id="notePage">
 
     <div class="noteTop">
 
-        <button class="roundbtn" onclick="closeNotePage()">←</button>
+        <button
+            class="circleButton"
+            onclick="closeNote()">
 
-        <div class="noteTopTitle" id="noteTitleDisplay">
-            โน้ตใหม่
-        </div>
+            ←
 
-        <button class="roundbtn"
-                onclick="downloadNote()">
-            ⬇️
         </button>
 
-        <button class="roundbtn saveNote"
-                onclick="saveCurrentNote()">
+
+        <div
+            class="noteTopTitle"
+            id="noteTopTitle">
+
+            My Note
+
+        </div>
+
+
+        <button
+            class="circleButton"
+            onclick="saveCurrentNote()">
+
             💾
+
+        </button>
+
+
+        <button
+            class="circleButton"
+            onclick="downloadNote()">
+
+            ⬇️
+
         </button>
 
     </div>
@@ -1219,358 +1398,807 @@ button{
 
     <div class="paper">
 
-        <input class="noteName"
-               id="noteTitle"
-               placeholder="ตั้งชื่อโน้ต..."
-               oninput="updateNoteTitle()">
+        <input
+            class="noteTitle"
+            id="noteTitle"
+            placeholder="ตั้งชื่อโน้ต..."
+            oninput="updateNoteTitle">
 
 
         <div class="toolbar">
 
-            <button onclick="formatText('bold')"><b>B</b></button>
+            <button onclick="formatText('bold')">
+                <b>B</b>
+            </button>
 
-            <button onclick="formatText('italic')"><i>I</i></button>
+            <button onclick="formatText('italic')">
+                <i>I</i>
+            </button>
 
-            <button onclick="formatText('underline')"><u>U</u></button>
+            <button onclick="formatText('underline')">
+                <u>U</u>
+            </button>
 
-            <button onclick="formatText('insertUnorderedList')">☷</button>
+            <button onclick="formatText('insertUnorderedList')">
+                ☷
+            </button>
 
-            <button onclick="formatText('justifyLeft')">≡</button>
+            <button onclick="formatText('justifyLeft')">
+                ≡
+            </button>
 
-            <button onclick="formatText('justifyCenter')">≣</button>
+            <button onclick="formatText('justifyCenter')">
+                ≣
+            </button>
 
-            <button onclick="formatText('justifyRight')">≡</button>
+            <button onclick="formatText('justifyRight')">
+                ≡
+            </button>
 
-            <button onclick="formatText('undo')">↶</button>
+            <button onclick="formatText('undo')">
+                ↶
+            </button>
 
-            <button onclick="formatText('redo')">↷</button>
+            <button onclick="formatText('redo')">
+                ↷
+            </button>
 
-            <button onclick="formatText('removeFormat')">✕</button>
+            <input
+                class="colorPicker"
+                type="color"
+                value="#d94b7c"
+                onchange="changeTextColor(this.value)">
 
-            <input class="colorInput"
-                   id="textColor"
-                   type="color"
-                   value="#d94b7c"
-                   onchange="changeTextColor(this.value)">
 
-            <button onclick="document.getElementById('imageInput').click()">
+            <button
+                id="writeButton"
+                onclick="toggleWriting()">
+
+                ✏️ เขียน
+
+            </button>
+
+
+            <button
+                onclick="document.getElementById('imageInput').click()">
+
                 🖼️ รูป
+
             </button>
 
-            <input id="imageInput"
-                   type="file"
-                   accept="image/*"
-                   multiple
-                   hidden
-                   onchange="insertImages(event)">
 
-            <button onclick="document.getElementById('fileInput').click()">
+            <button
+                onclick="document.getElementById('fileInput').click()">
+
                 📎 ไฟล์
-            </button>
 
-            <input id="fileInput"
-                   type="file"
-                   multiple
-                   hidden
-                   onchange="addFiles(event)">
-
-            <button onclick="startDrawing()">
-                ✏️ ขีดเขียน
             </button>
 
         </div>
 
 
-        <!-- IMAGE CONTROL -->
-        <div class="imageTools" id="imageTools">
+        <div
+            class="writeTools"
+            id="writeTools">
 
-            <span>ขนาดรูป:</span>
+            <input
+                class="penColor"
+                id="penColor"
+                type="color"
+                value="#e94f88"
+                title="สีปากกา">
 
-            <input type="range"
-                   id="imageScale"
-                   min="10"
-                   max="100"
-                   value="50"
-                   oninput="resizeSelectedImage(this.value)">
 
-            <span id="imageScaleText">50%</span>
+            <label style="font-size:10px;">
 
-            <button onclick="deleteSelectedImage()">
-                🗑️ ลบรูป
+                ขนาด
+
+                <input
+                    class="penSize"
+                    id="penSize"
+                    type="range"
+                    min="1"
+                    max="30"
+                    value="5">
+
+            </label>
+
+
+            <button
+                id="penButton"
+                class="active"
+                onclick="setDrawMode('pen')">
+
+                ✏️ ปากกา
+
+            </button>
+
+
+            <button
+                id="eraserButton"
+                onclick="setDrawMode('eraser')">
+
+                🧽 ยางลบ
+
+            </button>
+
+
+            <button onclick="clearDrawing()">
+
+                🗑️ ล้าง
+
+            </button>
+
+
+            <button onclick="finishWriting()">
+
+                ✓ เสร็จ
+
             </button>
 
         </div>
 
 
-        <!-- EDITOR -->
-        <div id="noteEditor"
-             class="editor"
-             contenteditable="true"
-             data-placeholder="เริ่มเขียนโน้ตของคุณที่นี่...">
-        </div>
+        <div
+            class="editorWrap"
+            id="editorWrap">
 
-
-        <!-- DRAWING -->
-        <div id="drawingBox"
-             style="display:none;margin-top:15px">
-
-            <div style="
-                display:flex;
-                gap:6px;
-                flex-wrap:wrap;
-                margin-bottom:8px;
-            ">
-
-                <input id="penColor"
-                       type="color"
-                       value="#e94f88">
-
-                <label style="font-size:12px">
-                    ขนาด
-                    <input id="penSize"
-                           type="range"
-                           min="1"
-                           max="30"
-                           value="5">
-                </label>
-
-                <button onclick="setEraser(false)"
-                        style="border:0;padding:7px;border-radius:8px">
-                    ✏️ ปากกา
-                </button>
-
-                <button onclick="setEraser(true)"
-                        style="border:0;padding:7px;border-radius:8px">
-                    🧽 ยางลบ
-                </button>
-
-                <button onclick="clearCanvas()"
-                        style="border:0;padding:7px;border-radius:8px">
-                    🗑️ ล้าง
-                </button>
-
-                <button onclick="closeDrawing()"
-                        style="border:0;padding:7px;border-radius:8px">
-                    ✓ เสร็จ
-                </button>
-
+            <div
+                class="editor"
+                id="noteEditor"
+                contenteditable="true"
+                data-placeholder="พิมพ์ข้อความลงบนบรรทัดได้เลย...">
             </div>
 
-            <canvas id="drawCanvas"
-                    style="
-                    width:100%;
-                    height:300px;
-                    background:#fffdfd;
-                    border:2px dashed #f3c7d5;
-                    border-radius:14px;
-                    touch-action:none;
-                    ">
+
+            <canvas
+                id="drawingCanvas">
             </canvas>
 
         </div>
 
 
-        <div class="attachTitle">
-            📎 ไฟล์ที่แนบ
-        </div>
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+            multiple
+            hidden
+            onchange="insertImages(event)">
 
-        <div class="files" id="fileList">
-            <div class="noFile">ยังไม่มีไฟล์ที่แนบ</div>
+
+        <input
+            type="file"
+            id="fileInput"
+            multiple
+            hidden
+            onchange="addFiles(event)">
+
+
+        <input
+            type="file"
+            id="globalFileInput"
+            multiple
+            hidden>
+
+
+        <div class="fileSection">
+
+            <div class="fileSectionTitle">
+                📎 ไฟล์ที่แนบ
+            </div>
+
+            <div
+                class="fileList"
+                id="fileList">
+            </div>
+
         </div>
 
     </div>
+
+</div>
+
+
+<!-- SETTINGS -->
+
+<div
+    class="settingsPage"
+    id="settingsPage">
+
+    <div class="settingsHeader">
+
+        <button
+            class="circleButton"
+            onclick="closeSettings()">
+
+            ←
+
+        </button>
+
+        <h2>
+            ⚙️ ตั้งค่า
+        </h2>
+
+    </div>
+
+
+    <div class="settingsContent">
+
+        <div class="settingsTitle">
+            🎨 เลือกธีมแอป
+        </div>
+
+
+        <div class="themeGrid">
+
+            <button
+                class="themeCard"
+                data-theme="spiderman"
+                onclick="changeTheme('spiderman')">
+
+                <span class="themeEmoji">
+                    🕷️
+                </span>
+
+                <div class="themeName">
+                    สไปเดอร์แมน
+                </div>
+
+                <div class="themeDesc">
+                    แดง - ชมพู
+                </div>
+
+            </button>
+
+
+            <button
+                class="themeCard"
+                data-theme="cat"
+                onclick="changeTheme('cat')">
+
+                <span class="themeEmoji">
+                    🐱
+                </span>
+
+                <div class="themeName">
+                    แมว
+                </div>
+
+                <div class="themeDesc">
+                    ครีม - น้ำตาลอ่อน
+                </div>
+
+            </button>
+
+
+            <button
+                class="themeCard"
+                data-theme="mermaid"
+                onclick="changeTheme('mermaid')">
+
+                <span class="themeEmoji">
+                    🧜‍♀️
+                </span>
+
+                <div class="themeName">
+                    นางเงือก
+                </div>
+
+                <div class="themeDesc">
+                    ฟ้า - มิ้นต์
+                </div>
+
+            </button>
+
+
+            <button
+                class="themeCard"
+                data-theme="bear"
+                onclick="changeTheme('bear')">
+
+                <span class="themeEmoji">
+                    🐻
+                </span>
+
+                <div class="themeName">
+                    หมี
+                </div>
+
+                <div class="themeDesc">
+                    น้ำตาล - ครีม
+                </div>
+
+            </button>
+
+
+            <button
+                class="themeCard"
+                data-theme="pig"
+                onclick="changeTheme('pig')">
+
+                <span class="themeEmoji">
+                    🐷
+                </span>
+
+                <div class="themeName">
+                    หมู
+                </div>
+
+                <div class="themeDesc">
+                    ชมพูเข้ม
+                </div>
+
+            </button>
+
+        </div>
+
+
+        <div class="settingInfo">
+
+            💗 <b>เกี่ยวกับ My Note</b>
+
+            <br>
+
+            แอปจดโน้ตและจัดการการบ้าน
+
+            <br>
+
+            ข้อมูลจะถูกบันทึกไว้ในเครื่องอัตโนมัติ
+
+            <br>
+
+            สามารถเปลี่ยนธีมได้ตลอดเวลา
+
+        </div>
+
+    </div>
+
+</div>
+
 </div>
 
 
 <script>
 
 /* =========================================================
-   GLOBAL
+   DATA
 ========================================================= */
 
 let homework =
-JSON.parse(localStorage.getItem('homeworkData') || 'null') || [];
+    JSON.parse(
+        localStorage.getItem("myHomework") || "[]"
+    );
 
 let notes =
-JSON.parse(localStorage.getItem('allNotes') || 'null') || [];
+    JSON.parse(
+        localStorage.getItem("myNotes") || "[]"
+    );
 
-let currentTab = 'pending';
+let currentHomeworkTab = "pending";
 let currentNoteId = null;
 let attachedFiles = [];
-let selectedImage = null;
+let writing = false;
+let drawMode = "pen";
+let canvas = null;
+let ctx = null;
+let drawing = false;
+let lastPoint = null;
+
+
+/* =========================================================
+   ลบข้อมูลการบ้านเดิมที่มีชื่อเกี่ยวกับจุมาพร
+========================================================= */
+
+homework = homework.filter(item => {
+
+    const text = (
+        (item.name || "") +
+        " " +
+        (item.subject || "")
+    ).toLowerCase();
+
+    return !text.includes("จุมาพร");
+
+});
+
+saveHomework();
+
+
+/* =========================================================
+   THEME SYSTEM
+========================================================= */
+
+const themes = {
+
+    /* สไปเดอร์แมน - แบบเดิม */
+    spiderman:{
+        main:"#f06496",
+        main2:"#e74e84",
+        light:"#ffe5ef",
+        light2:"#fff0f5",
+        border:"#ffc4d8",
+        text:"#543d47",
+        sub:"#9b858d",
+        avatar:"🕷️",
+        body1:"#ffdce9",
+        body2:"#fff7fa"
+    },
+
+    /* แมว - สีครีม */
+    cat:{
+        main:"#c59a6c",
+        main2:"#9b7047",
+        light:"#f7ead8",
+        light2:"#fff8ed",
+        border:"#e5ceb0",
+        text:"#57483b",
+        sub:"#9b8a79",
+        avatar:"🐱",
+        body1:"#f4e5cf",
+        body2:"#fffaf2"
+    },
+
+    /* นางเงือก */
+    mermaid:{
+        main:"#35bfc4",
+        main2:"#168f9a",
+        light:"#dff8f7",
+        light2:"#effffd",
+        border:"#b8e5e2",
+        text:"#3c5657",
+        sub:"#81999a",
+        avatar:"🧜‍♀️",
+        body1:"#d9f6f5",
+        body2:"#f5ffff"
+    },
+
+    /* หมี - น้ำตาล */
+    bear:{
+        main:"#a96f45",
+        main2:"#7c4d2f",
+        light:"#f1dfcc",
+        light2:"#fff4e8",
+        border:"#dcbda4",
+        text:"#554238",
+        sub:"#927e70",
+        avatar:"🐻",
+        body1:"#ead4bd",
+        body2:"#fff7ed"
+    },
+
+    /* หมู - ชมพูเข้ม */
+    pig:{
+        main:"#d83d70",
+        main2:"#b52658",
+        light:"#ffd6e3",
+        light2:"#ffe9f0",
+        border:"#f0a8bd",
+        text:"#542d3a",
+        sub:"#906878",
+        avatar:"🐷",
+        body1:"#f7b0c5",
+        body2:"#fff0f5"
+    }
+
+};
+
+
+function changeTheme(themeName){
+
+    const theme = themes[themeName];
+
+    if(!theme)
+        return;
+
+    const root =
+        document.documentElement;
+
+    root.style.setProperty("--main",theme.main);
+    root.style.setProperty("--main2",theme.main2);
+    root.style.setProperty("--light",theme.light);
+    root.style.setProperty("--light2",theme.light2);
+    root.style.setProperty("--border",theme.border);
+    root.style.setProperty("--text",theme.text);
+    root.style.setProperty("--sub",theme.sub);
+
+    document.body.style.background =
+        `linear-gradient(135deg,${theme.body1},${theme.body2})`;
+
+    document.getElementById(
+        "avatarFace"
+    ).textContent = theme.avatar;
+
+    localStorage.setItem(
+        "myTheme",
+        themeName
+    );
+
+    document.querySelectorAll(
+        ".themeCard"
+    ).forEach(card => {
+
+        card.classList.toggle(
+            "selected",
+            card.dataset.theme === themeName
+        );
+
+    });
+
+}
+
+
+function loadTheme(){
+
+    const savedTheme =
+        localStorage.getItem("myTheme") ||
+        "spiderman";
+
+    changeTheme(savedTheme);
+
+}
+
+
+/* =========================================================
+   TIME
+========================================================= */
+
+function updateTime(){
+
+    const now = new Date();
+
+    const h =
+        String(now.getHours()).padStart(2,"0");
+
+    const m =
+        String(now.getMinutes()).padStart(2,"0");
+
+    document.getElementById(
+        "time"
+    ).textContent =
+        h + ":" + m + " น.";
+
+}
+
+updateTime();
+
+setInterval(updateTime,1000);
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+function saveHomework(){
+
+    localStorage.setItem(
+        "myHomework",
+        JSON.stringify(homework)
+    );
+
+}
+
+
+function saveNotes(){
+
+    localStorage.setItem(
+        "myNotes",
+        JSON.stringify(notes)
+    );
+
+}
+
+
+/* =========================================================
+   SAFE TEXT
+========================================================= */
+
+function escapeHTML(text){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text || "";
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function goHome(){
+
+    document.getElementById("notesPage").style.display="none";
+    document.getElementById("notePage").style.display="none";
+    document.getElementById("settingsPage").style.display="none";
+
+    document.getElementById("navHome").classList.add("active");
+    document.getElementById("navNotes").classList.remove("active");
+    document.getElementById("navHomework").classList.remove("active");
+    document.getElementById("navSettings").classList.remove("active");
+
+}
 
 
 /* =========================================================
    HOMEWORK
 ========================================================= */
 
-function today(){
-
-    return new Date()
-        .toISOString()
-        .split('T')[0];
-
-}
-
-function saveHW(){
-
-    localStorage.setItem(
-        'homeworkData',
-        JSON.stringify(homework)
-    );
-
-}
-
-function fmt(d){
-
-    const x = new Date(d + 'T00:00:00');
-
-    return `${x.getDate()}/${x.getMonth()+1}/${x.getFullYear()+543}`;
-
-}
-
-function esc(s){
-
-    const d = document.createElement('div');
-
-    d.textContent = s || '';
-
-    return d.innerHTML;
-
-}
-
-function updateTime(){
-
-    const d = new Date();
-
-    document.getElementById('time').textContent =
-        `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')} น.`;
-
-}
-
-setInterval(updateTime,1000);
-updateTime();
-
-
 function renderHomework(){
 
-    const pending = homework.filter(x => !x.done);
-    const done = homework.filter(x => x.done);
+    const list =
+        document.getElementById("homeworkList");
 
-    document.getElementById('pendingCount').textContent =
-        pending.length;
-
-    document.getElementById('doneCount').textContent =
-        done.length;
+    list.innerHTML = "";
 
     const data =
-        currentTab === 'pending'
-        ? pending
-        : done;
+        homework.filter(
+            item =>
+                currentHomeworkTab === "done"
+                ? item.done
+                : !item.done
+        );
 
-    const list =
-        document.getElementById('homeworkList');
+    document.getElementById("pendingCount").textContent =
+        homework.filter(x => !x.done).length;
 
-    list.innerHTML = '';
+    document.getElementById("doneCount").textContent =
+        homework.filter(x => x.done).length;
 
-    if(!data.length){
+    document.getElementById("pendingTab").classList.toggle(
+        "active",
+        currentHomeworkTab === "pending"
+    );
 
-        list.innerHTML =
-            '<div class="noFile">🎉 ไม่มีรายการค่ะ 💗</div>';
+    document.getElementById("doneTab").classList.toggle(
+        "active",
+        currentHomeworkTab === "done"
+    );
+
+    if(data.length === 0){
+
+        list.innerHTML = `
+            <div class="empty">
+                ${
+                    currentHomeworkTab === "done"
+                    ? "ยังไม่มีการบ้านที่ทำแล้วค่ะ 💗"
+                    : "ยังไม่มีการบ้านค่ะ 🎉"
+                }
+            </div>
+        `;
 
         return;
     }
 
-    data.forEach(x => {
+    data.forEach(item => {
 
-        const el = document.createElement('div');
+        const div =
+            document.createElement("div");
 
-        el.className =
-            'card ' + (x.done ? 'completed' : '');
+        div.className =
+            "homeworkItem " +
+            (item.done ? "completed" : "");
 
-        el.innerHTML = `
+        div.innerHTML = `
 
-            <div class="icon">📚</div>
+            <div class="homeworkIcon">
+                📚
+            </div>
 
-            <div class="info">
+            <div class="homeworkInfo">
 
-                <h3>${esc(x.name)}</h3>
+                <h3>
+                    ${escapeHTML(item.name)}
+                </h3>
 
-                <div class="sub">${esc(x.subject)}</div>
+                <p>
+                    ${escapeHTML(
+                        item.subject ||
+                        "ไม่ระบุวิชา"
+                    )}
+                </p>
 
                 <span class="deadline">
+
                     ${
-                        x.done
-                        ? '✓ ทำเสร็จแล้ว'
-                        : 'ต้องส่ง ' + fmt(x.date) +
-                          ' ' + x.time + ' น.'
+                        item.done
+                        ? "✓ ทำเสร็จแล้ว"
+                        : "ส่ง " +
+                          formatThaiDate(item.date) +
+                          (
+                              item.time
+                              ? " " +
+                                item.time +
+                                " น."
+                              : ""
+                          )
                     }
+
                 </span>
 
             </div>
 
-            <button class="donebtn"
-                    onclick="toggleDone(${x.id})">
-                ${x.done ? '↩' : '✓'}
+            <button
+                class="hwButton completeButton"
+                onclick="toggleHomework(${item.id})">
+
+                ${item.done ? "↩" : "✓"}
+
             </button>
+
+            <button
+                class="hwButton deleteButton"
+                onclick="deleteHomework(${item.id})">
+
+                🗑️
+
+            </button>
+
         `;
 
-        list.appendChild(el);
+        list.appendChild(div);
 
     });
 
 }
 
 
-function showTab(t){
+function formatThaiDate(date){
 
-    currentTab = t;
+    if(!date)
+        return "ไม่ระบุวันที่";
 
-    document.getElementById('pendingTab')
-        .classList.toggle('active',t === 'pending');
+    const d =
+        new Date(date + "T00:00:00");
 
-    document.getElementById('doneTab')
-        .classList.toggle('active',t === 'done');
+    return (
+        d.getDate() +
+        "/" +
+        (d.getMonth()+1) +
+        "/" +
+        (d.getFullYear()+543)
+    );
+
+}
+
+
+function showHomeworkTab(tab){
+
+    currentHomeworkTab = tab;
 
     renderHomework();
 
-}
+    document.getElementById("notesPage").style.display="none";
+    document.getElementById("settingsPage").style.display="none";
 
+    document.getElementById("navHome").classList.remove("active");
+    document.getElementById("navNotes").classList.remove("active");
+    document.getElementById("navHomework").classList.add("active");
+    document.getElementById("navSettings").classList.remove("active");
 
-function toggleDone(id){
-
-    homework = homework.map(x => {
-
-        if(x.id === id){
-
-            return {
-                ...x,
-                done:!x.done
-            };
-
-        }
-
-        return x;
-
-    });
-
-    saveHW();
-    renderHomework();
+    window.scrollTo(0,0);
 
 }
 
 
-function openModal(){
+function openHomeworkModal(){
 
-    document.getElementById('modal')
-        .classList.add('show');
+    document.getElementById(
+        "homeworkModal"
+    ).classList.add("show");
 
 }
 
-function closeModal(){
 
-    document.getElementById('modal')
-        .classList.remove('show');
+function closeHomeworkModal(){
+
+    document.getElementById(
+        "homeworkModal"
+    ).classList.remove("show");
 
 }
 
@@ -1578,116 +2206,103 @@ function closeModal(){
 function addHomework(){
 
     const name =
-        document.getElementById('hwName').value.trim();
+        document.getElementById(
+            "homeworkName"
+        ).value.trim();
 
-    const subject =
-        document.getElementById('hwSubject').value.trim();
+    if(!name){
 
-    const date =
-        document.getElementById('hwDate').value;
-
-    const time =
-        document.getElementById('hwTime').value;
-
-    if(!name || !subject || !date || !time){
-
-        alert('กรุณากรอกข้อมูลให้ครบค่ะ');
+        alert("กรุณาใส่ชื่อการบ้านค่ะ");
 
         return;
-
     }
 
     homework.unshift({
 
         id:Date.now(),
-        name,
-        subject,
-        date,
-        time,
+
+        name:name,
+
+        subject:
+            document.getElementById(
+                "homeworkSubject"
+            ).value.trim(),
+
+        date:
+            document.getElementById(
+                "homeworkDate"
+            ).value,
+
+        time:
+            document.getElementById(
+                "homeworkTime"
+            ).value,
+
         done:false
 
     });
 
-    saveHW();
+    saveHomework();
 
-    ['hwName','hwSubject','hwDate','hwTime']
-        .forEach(id => {
-            document.getElementById(id).value = '';
-        });
+    renderHomework();
 
-    closeModal();
+    closeHomeworkModal();
 
-    showTab('pending');
+    document.getElementById("homeworkName").value="";
+    document.getElementById("homeworkSubject").value="";
+    document.getElementById("homeworkDate").value="";
+    document.getElementById("homeworkTime").value="";
 
 }
 
 
-function openReminder(){
+function toggleHomework(id){
 
-    const p = homework.filter(x => !x.done);
+    const item =
+        homework.find(x => x.id === id);
 
-    if(!p.length){
-
-        alert('ไม่มีการบ้านที่ต้องเตือนค่ะ 💗');
-
+    if(!item)
         return;
 
-    }
+    item.done = !item.done;
 
-    alert(
-        '🔔 การบ้านที่ต้องส่ง\n\n' +
-        p.map(x =>
-            '• ' + x.name +
-            ' — ' + fmt(x.date) +
-            ' ' + x.time + ' น.'
-        ).join('\n')
-    );
+    saveHomework();
+
+    renderHomework();
 
 }
 
 
-function navClick(btn,page){
+function deleteHomework(id){
 
-    document.querySelectorAll('.nav button')
-        .forEach(b => b.classList.remove('active'));
+    const item =
+        homework.find(x => x.id === id);
 
-    btn.classList.add('active');
+    if(!item)
+        return;
 
-    if(page === 'pending') showTab('pending');
-    if(page === 'done') showTab('done');
-    if(page === 'home') showTab('pending');
+    if(
+        !confirm(
+            "ต้องการลบการบ้าน\n\n" +
+            item.name +
+            "\n\nใช่ไหมคะ?"
+        )
+    )
+        return;
 
-}
+    homework =
+        homework.filter(x => x.id !== id);
 
+    saveHomework();
 
-function showHelp(){
-
-    alert(
-        '💗 วิธีใช้งาน\n\n' +
-        '📝 โน้ตทั้งหมด = สร้างและจัดการหลายโน้ต\n' +
-        '🖼️ รูป = เพิ่มรูปลงในโน้ต\n' +
-        '✏️ ขีดเขียน = วาดด้วยนิ้วหรือเมาส์\n' +
-        '📎 ไฟล์ = แนบ PDF / Word / Excel ฯลฯ\n' +
-        '💾 = บันทึกโน้ต\n' +
-        '⬇️ = ดาวน์โหลดโน้ต'
-    );
+    renderHomework();
 
 }
 
 
 /* =========================================================
-   NOTES DATABASE
+   NOTES
 ========================================================= */
-
-function saveNotesDB(){
-
-    localStorage.setItem(
-        'allNotes',
-        JSON.stringify(notes)
-    );
-
-}
-
 
 function createNote(){
 
@@ -1695,19 +2310,22 @@ function createNote(){
 
         id:Date.now(),
 
-        title:'โน้ตใหม่',
+        title:"My Note",
 
-        content:'',
+        content:"",
+
+        drawing:"",
 
         files:[],
 
-        created:new Date().toLocaleString('th-TH')
+        created:
+            new Date().toLocaleString("th-TH")
 
     };
 
     notes.unshift(note);
 
-    saveNotesDB();
+    saveNotes();
 
     openNote(note.id);
 
@@ -1716,71 +2334,113 @@ function createNote(){
 
 function openNotesList(){
 
-    renderNotesList();
+    document.getElementById("notesPage").style.display="block";
+    document.getElementById("notePage").style.display="none";
+    document.getElementById("settingsPage").style.display="none";
 
-    document.getElementById('notesListPage')
-        .style.display = 'block';
+    renderNotes();
+
+    document.getElementById("navHome").classList.remove("active");
+    document.getElementById("navNotes").classList.add("active");
+    document.getElementById("navHomework").classList.remove("active");
+    document.getElementById("navSettings").classList.remove("active");
 
 }
 
 
 function closeNotesList(){
 
-    document.getElementById('notesListPage')
-        .style.display = 'none';
+    document.getElementById(
+        "notesPage"
+    ).style.display="none";
+
+    goHome();
 
 }
 
 
-function renderNotesList(){
+function renderNotes(){
 
     const grid =
-        document.getElementById('noteGrid');
+        document.getElementById("noteGrid");
 
-    grid.innerHTML = '';
+    grid.innerHTML="";
 
-    if(!notes.length){
+    if(notes.length === 0){
 
         grid.innerHTML = `
-            <div class="noFile" style="grid-column:1/-1">
-                📝 ยังไม่มีโน้ต<br><br>
-                กด ＋ เพื่อสร้างโน้ตใหม่
+
+            <div
+                class="empty"
+                style="grid-column:1/-1">
+
+                📝 ยังไม่มีโน้ตค่ะ
+
+                <br><br>
+
+                กดปุ่ม ＋ เพื่อเพิ่มโน้ต
+
             </div>
+
         `;
 
         return;
-
     }
 
     notes.forEach(note => {
 
-        const card = document.createElement('div');
+        const card =
+            document.createElement("div");
 
-        card.className = 'noteCard';
+        card.className="noteCard";
 
         const temp =
-            document.createElement('div');
+            document.createElement("div");
 
-        temp.innerHTML = note.content || '';
+        temp.innerHTML =
+            note.content || "";
+
+        const preview =
+            temp.textContent ||
+            "ยังไม่มีข้อความ";
 
         card.innerHTML = `
-            <h3>${esc(note.title || 'โน้ตไม่มีชื่อ')}</h3>
 
-            <p>
-                ${esc(temp.textContent || 'ยังไม่มีข้อความ')}
-            </p>
+            <h3>
+                ${escapeHTML(
+                    note.title || "My Note"
+                )}
+            </h3>
+
+            <div class="notePreview">
+                ${escapeHTML(preview)}
+            </div>
 
             <small>
-                ${note.files?.length || 0} ไฟล์แนบ
+                📎 ${note.files?.length || 0} ไฟล์
             </small>
 
-            <button class="deleteNote"
-                    onclick="event.stopPropagation();deleteNote(${note.id})">
-                🗑️ ลบโน้ต
-            </button>
-        `;
+            <div class="noteCardActions">
 
-        card.onclick = () => openNote(note.id);
+                <button
+                    class="openNote"
+                    onclick="openNote(${note.id})">
+
+                    เปิดโน้ต
+
+                </button>
+
+                <button
+                    class="deleteNote"
+                    onclick="deleteNote(${note.id})">
+
+                    🗑️ ลบ
+
+                </button>
+
+            </div>
+
+        `;
 
         grid.appendChild(card);
 
@@ -1791,13 +2451,27 @@ function renderNotesList(){
 
 function deleteNote(id){
 
-    if(!confirm('ต้องการลบโน้ตนี้ใช่ไหมคะ?')) return;
+    const note =
+        notes.find(x => x.id === id);
 
-    notes = notes.filter(n => n.id !== id);
+    if(!note)
+        return;
 
-    saveNotesDB();
+    if(
+        !confirm(
+            'ต้องการลบโน้ต "' +
+            note.title +
+            '" ใช่ไหมคะ?'
+        )
+    )
+        return;
 
-    renderNotesList();
+    notes =
+        notes.filter(x => x.id !== id);
+
+    saveNotes();
+
+    renderNotes();
 
 }
 
@@ -1808,99 +2482,167 @@ function deleteNote(id){
 
 function openNote(id){
 
-    currentNoteId = id;
-
     const note =
-        notes.find(n => n.id === id);
+        notes.find(x => x.id === id);
 
-    if(!note) return;
+    if(!note)
+        return;
 
-    document.getElementById('notesListPage')
-        .style.display = 'none';
+    currentNoteId=id;
 
-    document.getElementById('notePage')
-        .style.display = 'block';
+    document.getElementById("notesPage").style.display="none";
+    document.getElementById("notePage").style.display="block";
+    document.getElementById("settingsPage").style.display="none";
 
-    document.getElementById('noteTitle').value =
-        note.title || '';
+    document.getElementById("noteTitle").value =
+        note.title || "My Note";
 
-    document.getElementById('noteEditor').innerHTML =
-        note.content || '';
+    document.getElementById("noteEditor").innerHTML =
+        note.content || "";
 
     attachedFiles =
-        note.files || [];
+        Array.isArray(note.files)
+        ? note.files
+        : [];
 
     updateNoteTitle();
 
     renderFiles();
 
-    selectedImage = null;
+    setupCanvas();
 
-    document.getElementById('imageTools')
-        .classList.remove('show');
+    if(note.drawing){
 
-}
+        const img =
+            new Image();
 
+        img.onload=function(){
 
-function closeNotePage(){
+            resizeCanvas();
 
-    saveCurrentNote();
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                canvas.clientWidth,
+                canvas.clientHeight
+            );
 
-    document.getElementById('notePage')
-        .style.display = 'none';
+        };
 
-    renderNotesList();
+        img.src=note.drawing;
 
-}
+    }
 
+    writing=false;
 
-function updateNoteTitle(){
-
-    const title =
-        document.getElementById('noteTitle')
-            .value.trim();
-
-    document.getElementById('noteTitleDisplay')
-        .textContent =
-        title || 'โน้ตใหม่';
-
-}
-
-
-function saveCurrentNote(){
-
-    if(!currentNoteId) return;
-
-    const note =
-        notes.find(n => n.id === currentNoteId);
-
-    if(!note) return;
-
-    note.title =
-        document.getElementById('noteTitle')
-            .value.trim() || 'โน้ตใหม่';
-
-    note.content =
-        document.getElementById('noteEditor')
-            .innerHTML;
-
-    note.files =
-        attachedFiles;
-
-    saveNotesDB();
+    finishWriting();
 
 }
 
 
 /* =========================================================
-   TEXT EDITOR
+   CLOSE NOTE
+========================================================= */
+
+function closeNote(){
+
+    saveCurrentNote();
+
+    finishWriting();
+
+    document.getElementById(
+        "notePage"
+    ).style.display="none";
+
+    currentNoteId=null;
+
+    renderNotes();
+
+    openNotesList();
+
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+function updateNoteTitle(){
+
+    const title =
+        document.getElementById(
+            "noteTitle"
+        ).value.trim();
+
+    document.getElementById(
+        "noteTopTitle"
+    ).textContent =
+        title || "My Note";
+
+}
+
+
+/* =========================================================
+   SAVE NOTE
+========================================================= */
+
+function saveCurrentNote(){
+
+    if(!currentNoteId)
+        return;
+
+    const note =
+        notes.find(
+            x => x.id === currentNoteId
+        );
+
+    if(!note)
+        return;
+
+    note.title =
+        document.getElementById(
+            "noteTitle"
+        ).value.trim() ||
+        "My Note";
+
+    note.content =
+        document.getElementById(
+            "noteEditor"
+        ).innerHTML;
+
+    note.files =
+        attachedFiles;
+
+    if(canvas){
+
+        note.drawing =
+            canvas.toDataURL("image/png");
+
+    }
+
+    saveNotes();
+
+    updateNoteTitle();
+
+}
+
+
+/* =========================================================
+   TEXT EDITING
 ========================================================= */
 
 function formatText(command){
 
-    document.execCommand(command,false,null);
+    document.execCommand(
+        command,
+        false,
+        null
+    );
 
-    document.getElementById('noteEditor').focus();
+    document.getElementById(
+        "noteEditor"
+    ).focus();
 
     saveCurrentNote();
 
@@ -1910,12 +2652,14 @@ function formatText(command){
 function changeTextColor(color){
 
     document.execCommand(
-        'foreColor',
+        "foreColor",
         false,
         color
     );
 
-    document.getElementById('noteEditor').focus();
+    document.getElementById(
+        "noteEditor"
+    ).focus();
 
     saveCurrentNote();
 
@@ -1923,48 +2667,355 @@ function changeTextColor(color){
 
 
 /* =========================================================
-   INSERT IMAGES
+   WRITING
 ========================================================= */
 
-function insertImages(e){
+function toggleWriting(){
+
+    if(writing){
+
+        finishWriting();
+
+        return;
+    }
+
+    writing=true;
+
+    const wrap =
+        document.getElementById("editorWrap");
+
+    const tools =
+        document.getElementById("writeTools");
+
+    const button =
+        document.getElementById("writeButton");
+
+    wrap.classList.add("writing");
+    tools.classList.add("show");
+    button.classList.add("active");
+
+    button.innerHTML =
+        "✏️ กำลังเขียน";
+
+    resizeCanvas();
+
+}
+
+
+function setDrawMode(mode){
+
+    drawMode=mode;
+
+    document.getElementById(
+        "penButton"
+    ).classList.toggle(
+        "active",
+        mode==="pen"
+    );
+
+    document.getElementById(
+        "eraserButton"
+    ).classList.toggle(
+        "active",
+        mode==="eraser"
+    );
+
+}
+
+
+/* =========================================================
+   CANVAS
+========================================================= */
+
+function setupCanvas(){
+
+    canvas =
+        document.getElementById(
+            "drawingCanvas"
+        );
+
+    ctx =
+        canvas.getContext("2d");
+
+    canvas.onpointerdown=startDrawing;
+    canvas.onpointermove=drawLine;
+    canvas.onpointerup=stopDrawing;
+    canvas.onpointercancel=stopDrawing;
+    canvas.onpointerleave=stopDrawing;
+
+    resizeCanvas();
+
+}
+
+
+function resizeCanvas(){
+
+    if(!canvas)
+        return;
+
+    const rect =
+        canvas.parentElement
+            .getBoundingClientRect();
+
+    const oldImage =
+        canvas.width > 0
+        ? canvas.toDataURL()
+        : null;
+
+    const ratio =
+        window.devicePixelRatio || 1;
+
+    canvas.width =
+        Math.round(rect.width * ratio);
+
+    canvas.height =
+        Math.round(rect.height * ratio);
+
+    canvas.style.width =
+        rect.width + "px";
+
+    canvas.style.height =
+        rect.height + "px";
+
+    ctx =
+        canvas.getContext("2d");
+
+    ctx.setTransform(
+        ratio,
+        0,
+        0,
+        ratio,
+        0,
+        0
+    );
+
+    ctx.lineCap="round";
+    ctx.lineJoin="round";
+
+    if(oldImage){
+
+        const image =
+            new Image();
+
+        image.onload=function(){
+
+            ctx.drawImage(
+                image,
+                0,
+                0,
+                rect.width,
+                rect.height
+            );
+
+        };
+
+        image.src=oldImage;
+
+    }
+
+}
+
+
+function getPointerPosition(e){
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+    return {
+
+        x:e.clientX-rect.left,
+
+        y:e.clientY-rect.top
+
+    };
+
+}
+
+
+function startDrawing(e){
+
+    if(!writing)
+        return;
+
+    e.preventDefault();
+
+    drawing=true;
+
+    try{
+        canvas.setPointerCapture(e.pointerId);
+    }catch(error){}
+
+    const point =
+        getPointerPosition(e);
+
+    lastPoint=point;
+
+}
+
+
+function drawLine(e){
+
+    if(!drawing)
+        return;
+
+    e.preventDefault();
+
+    const point =
+        getPointerPosition(e);
+
+    const size =
+        Number(
+            document.getElementById(
+                "penSize"
+            ).value
+        );
+
+    ctx.lineWidth=size;
+
+    if(drawMode==="eraser"){
+
+        ctx.globalCompositeOperation =
+            "destination-out";
+
+    }else{
+
+        ctx.globalCompositeOperation =
+            "source-over";
+
+        ctx.strokeStyle =
+            document.getElementById(
+                "penColor"
+            ).value;
+
+    }
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        lastPoint.x,
+        lastPoint.y
+    );
+
+    ctx.lineTo(
+        point.x,
+        point.y
+    );
+
+    ctx.stroke();
+
+    lastPoint=point;
+
+}
+
+
+function stopDrawing(e){
+
+    if(!drawing)
+        return;
+
+    drawing=false;
+
+    try{
+        canvas.releasePointerCapture(e.pointerId);
+    }catch(error){}
+
+    lastPoint=null;
+
+    ctx.globalCompositeOperation =
+        "source-over";
+
+    saveCurrentNote();
+
+}
+
+
+function clearDrawing(){
+
+    if(!canvas || !ctx)
+        return;
+
+    if(
+        !confirm(
+            "ต้องการลบลายมือทั้งหมดใช่ไหมคะ?"
+        )
+    )
+        return;
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    saveCurrentNote();
+
+}
+
+
+function finishWriting(){
+
+    writing=false;
+
+    const wrap =
+        document.getElementById("editorWrap");
+
+    const tools =
+        document.getElementById("writeTools");
+
+    const button =
+        document.getElementById("writeButton");
+
+    if(!wrap)
+        return;
+
+    wrap.classList.remove("writing");
+    tools.classList.remove("show");
+    button.classList.remove("active");
+
+    button.innerHTML =
+        "✏️ เขียน";
+
+    saveCurrentNote();
+
+}
+
+
+/* =========================================================
+   IMAGES
+========================================================= */
+
+function insertImages(event){
 
     const files =
-        Array.from(e.target.files);
-
-    if(!files.length) return;
+        Array.from(event.target.files);
 
     files.forEach(file => {
 
-        if(!file.type.startsWith('image/')) return;
+        const reader =
+            new FileReader();
 
-        const reader = new FileReader();
+        reader.onload=function(e){
 
-        reader.onload = function(ev){
+            const image =
+                document.createElement("img");
 
-            const img =
-                document.createElement('img');
+            image.src=e.target.result;
 
-            img.src = ev.target.result;
-
-            img.className = 'noteImage';
-
-            img.style.width = '300px';
-
-            img.addEventListener(
-                'click',
-                function(){
-
-                    selectImage(img);
-
-                }
-            );
+            image.style.maxWidth="100%";
+            image.style.display="block";
+            image.style.margin="8px 0";
+            image.style.borderRadius="10px";
 
             const editor =
-                document.getElementById('noteEditor');
+                document.getElementById(
+                    "noteEditor"
+                );
 
-            editor.appendChild(img);
+            editor.appendChild(image);
+
             editor.appendChild(
-                document.createElement('br')
+                document.createElement("br")
             );
 
             saveCurrentNote();
@@ -1975,122 +3026,39 @@ function insertImages(e){
 
     });
 
-    e.target.value = '';
-
-}
-
-
-function selectImage(img){
-
-    document.querySelectorAll('.noteImage')
-        .forEach(x =>
-            x.classList.remove('selected')
-        );
-
-    selectedImage = img;
-
-    img.classList.add('selected');
-
-    document.getElementById('imageTools')
-        .classList.add('show');
-
-    const width =
-        parseInt(img.style.width) || 300;
-
-    const percent =
-        Math.min(
-            100,
-            Math.max(
-                10,
-                Math.round(width / 6)
-            )
-        );
-
-    document.getElementById('imageScale')
-        .value = percent;
-
-    document.getElementById('imageScaleText')
-        .textContent = percent + '%';
-
-}
-
-
-function resizeSelectedImage(value){
-
-    if(!selectedImage) return;
-
-    selectedImage.style.width =
-        value * 6 + 'px';
-
-    document.getElementById('imageScaleText')
-        .textContent = value + '%';
-
-    saveCurrentNote();
-
-}
-
-
-function deleteSelectedImage(){
-
-    if(!selectedImage) return;
-
-    selectedImage.remove();
-
-    selectedImage = null;
-
-    document.getElementById('imageTools')
-        .classList.remove('show');
-
-    saveCurrentNote();
+    event.target.value="";
 
 }
 
 
 /* =========================================================
-   FILE ATTACHMENTS
+   FILES
 ========================================================= */
 
-function addFiles(e){
+function addFiles(event){
 
     const files =
-        Array.from(e.target.files);
-
-    if(!files.length) return;
-
-    let completed = 0;
+        Array.from(event.target.files);
 
     files.forEach(file => {
 
         const reader =
             new FileReader();
 
-        reader.onload = function(ev){
+        reader.onload=function(e){
 
             attachedFiles.push({
 
-                id:Date.now() + Math.random(),
-
                 name:file.name,
-
                 size:file.size,
-
                 type:file.type,
-
-                data:ev.target.result,
-
-                width:100
+                data:e.target.result
 
             });
 
-            completed++;
-
             renderFiles();
 
-            if(completed === files.length){
-
-                saveCurrentNote();
-
-            }
+            saveCurrentNote();
 
         };
 
@@ -2098,7 +3066,7 @@ function addFiles(e){
 
     });
 
-    e.target.value = '';
+    event.target.value="";
 
 }
 
@@ -2106,90 +3074,83 @@ function addFiles(e){
 function renderFiles(){
 
     const list =
-        document.getElementById('fileList');
+        document.getElementById("fileList");
 
-    list.innerHTML = '';
+    list.innerHTML="";
 
-    if(!attachedFiles.length){
+    if(attachedFiles.length===0){
 
-        list.innerHTML =
-            '<div class="noFile">ยังไม่มีไฟล์ที่แนบ</div>';
-
-        return;
-
-    }
-
-    attachedFiles.forEach((f,i) => {
-
-        const el =
-            document.createElement('div');
-
-        el.className = 'fileItem';
-
-        el.style.fontSize =
-            Math.max(
-                10,
-                Math.min(
-                    20,
-                    f.width / 7
-                )
-            ) + 'px';
-
-        el.innerHTML = `
-
-            <div class="fileIcon">
-                ${fileIcon(f.name)}
-            </div>
-
-            <div class="fileInfo">
-
-                <div class="fileName">
-                    ${esc(f.name)}
-                </div>
-
-                <div class="fileSize">
-                    ${size(f.size)}
-                </div>
-
-                <input
-                    class="fileSizeControl"
-                    type="range"
-                    min="60"
-                    max="180"
-                    value="${f.width || 100}"
-                    onchange="resizeFile(${i},this.value)"
-                    title="ปรับขนาดไฟล์">
-
-            </div>
-
-            <div class="fileActions">
-
-                <button onclick="openFile(${i})">
-                    👁️
-                </button>
-
-                <button onclick="downloadFile(${i})">
-                    ⬇️
-                </button>
-
-                <button onclick="deleteFile(${i})">
-                    🗑️
-                </button>
-
+        list.innerHTML=`
+            <div class="noFiles">
+                ยังไม่มีไฟล์ที่แนบ
             </div>
         `;
 
-        list.appendChild(el);
+        return;
+    }
 
-    });
+    attachedFiles.forEach(
+        (file,index) => {
+
+            const item =
+                document.createElement("div");
+
+            item.className="fileItem";
+
+            item.innerHTML=`
+
+                <div class="fileIcon">
+                    ${getFileIcon(file.name)}
+                </div>
+
+                <div class="fileInfo">
+
+                    <div class="fileName">
+                        ${escapeHTML(file.name)}
+                    </div>
+
+                    <div class="fileSize">
+                        ${formatFileSize(file.size)}
+                    </div>
+
+                </div>
+
+                <div class="fileButtons">
+
+                    <button onclick="openFile(${index})">
+                        👁️
+                    </button>
+
+                    <button onclick="downloadFile(${index})">
+                        ⬇️
+                    </button>
+
+                    <button onclick="deleteFile(${index})">
+                        🗑️
+                    </button>
+
+                </div>
+
+            `;
+
+            list.appendChild(item);
+
+        }
+    );
 
 }
 
 
-function resizeFile(i,value){
+function deleteFile(index){
 
-    attachedFiles[i].width =
-        Number(value);
+    if(
+        !confirm(
+            "ต้องการลบไฟล์นี้ใช่ไหมคะ?"
+        )
+    )
+        return;
+
+    attachedFiles.splice(index,1);
 
     renderFiles();
 
@@ -2198,282 +3159,128 @@ function resizeFile(i,value){
 }
 
 
-function openFile(i){
+function openFile(index){
 
-    const f =
-        attachedFiles[i];
+    const file =
+        attachedFiles[index];
 
-    if(!f || !f.data) return;
+    if(!file)
+        return;
 
-    const win =
+    const newWindow =
         window.open();
 
-    if(!win){
+    if(!newWindow){
 
-        alert('เบราว์เซอร์บล็อกหน้าต่างใหม่ค่ะ');
+        alert(
+            "กรุณาอนุญาตให้เปิดหน้าต่างใหม่ค่ะ"
+        );
 
         return;
 
     }
 
-    if(f.type.startsWith('image/')){
+    if(
+        file.type &&
+        file.type.startsWith("image/")
+    ){
 
-        win.document.write(
-            `<img src="${f.data}"
-                   style="max-width:${f.width || 100}%">`
+        newWindow.document.write(
+            `
+            <img
+                src="${file.data}"
+                style="max-width:100%;">
+            `
         );
 
     }else{
 
-        win.document.write(`
-            <iframe
-                src="${f.data}"
-                style="width:100%;height:100vh;border:0">
-            </iframe>
-        `);
+        newWindow.location.href =
+            file.data;
 
     }
 
 }
 
 
-function downloadFile(i){
+function downloadFile(index){
 
-    const f =
-        attachedFiles[i];
+    const file =
+        attachedFiles[index];
 
-    if(!f || !f.data) return;
+    if(!file)
+        return;
 
-    const a =
-        document.createElement('a');
+    const link =
+        document.createElement("a");
 
-    a.href = f.data;
+    link.href=file.data;
+    link.download=file.name;
 
-    a.download = f.name;
+    document.body.appendChild(link);
 
-    a.click();
+    link.click();
 
-}
-
-
-function deleteFile(i){
-
-    attachedFiles.splice(i,1);
-
-    renderFiles();
-
-    saveCurrentNote();
+    link.remove();
 
 }
 
 
-function fileIcon(name){
+function getFileIcon(name){
 
-    const e =
-        name.split('.').pop().toLowerCase();
+    const ext =
+        name
+            .split(".")
+            .pop()
+            .toLowerCase();
 
-    if(['jpg','jpeg','png','gif','webp','svg']
-        .includes(e)) return '🖼️';
+    if(
+        [
+            "jpg",
+            "jpeg",
+            "png",
+            "gif",
+            "webp"
+        ].includes(ext)
+    )
+        return "🖼️";
 
-    if(e === 'pdf') return '📕';
+    if(ext==="pdf")
+        return "📕";
 
-    if(['doc','docx'].includes(e)) return '📘';
+    if(["doc","docx"].includes(ext))
+        return "📘";
 
-    if(['xls','xlsx'].includes(e)) return '📗';
+    if(["xls","xlsx"].includes(ext))
+        return "📗";
 
-    if(['ppt','pptx'].includes(e)) return '📙';
+    if(["ppt","pptx"].includes(ext))
+        return "📙";
 
-    if(['zip','rar','7z'].includes(e)) return '🗜️';
-
-    if(['mp3','wav'].includes(e)) return '🎵';
-
-    if(['mp4','mov'].includes(e)) return '🎬';
-
-    return '📄';
-
-}
-
-
-function size(b){
-
-    if(!b) return '';
-
-    if(b < 1024)
-        return b + ' B';
-
-    if(b < 1048576)
-        return (b / 1024).toFixed(1) + ' KB';
-
-    return (b / 1048576).toFixed(1) + ' MB';
+    return "📄";
 
 }
 
 
-/* =========================================================
-   DRAWING PAD
-========================================================= */
+function formatFileSize(size){
 
-let canvas;
-let ctx;
-let drawing = false;
-let eraser = false;
+    if(!size)
+        return "0 KB";
 
+    if(size<1024)
+        return size+" B";
 
-function startDrawing(){
+    if(size<1024*1024){
 
-    const box =
-        document.getElementById('drawingBox');
+        return (
+            size/1024
+        ).toFixed(1)+" KB";
 
-    box.style.display = 'block';
+    }
 
-    canvas =
-        document.getElementById('drawCanvas');
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-    const ratio =
-        window.devicePixelRatio || 1;
-
-    canvas.width =
-        rect.width * ratio;
-
-    canvas.height =
-        rect.height * ratio;
-
-    ctx =
-        canvas.getContext('2d');
-
-    ctx.scale(ratio,ratio);
-
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    canvas.onpointerdown = startDraw;
-    canvas.onpointermove = draw;
-    canvas.onpointerup = stopDraw;
-    canvas.onpointerleave = stopDraw;
-
-}
-
-
-function position(e){
-
-    const r =
-        canvas.getBoundingClientRect();
-
-    return {
-
-        x:e.clientX - r.left,
-
-        y:e.clientY - r.top
-
-    };
-
-}
-
-
-function startDraw(e){
-
-    drawing = true;
-
-    const p = position(e);
-
-    ctx.beginPath();
-
-    ctx.moveTo(p.x,p.y);
-
-}
-
-
-function draw(e){
-
-    if(!drawing) return;
-
-    const p =
-        position(e);
-
-    ctx.lineWidth =
-        Number(
-            document.getElementById('penSize').value
-        );
-
-    ctx.strokeStyle =
-        eraser
-        ? '#fffdfd'
-        : document.getElementById('penColor').value;
-
-    ctx.lineTo(p.x,p.y);
-
-    ctx.stroke();
-
-}
-
-
-function stopDraw(){
-
-    if(!drawing) return;
-
-    drawing = false;
-
-    saveDrawing();
-
-}
-
-
-function setEraser(v){
-
-    eraser = v;
-
-}
-
-
-function clearCanvas(){
-
-    if(!ctx) return;
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-}
-
-
-function saveDrawing(){
-
-    if(!canvas) return;
-
-    const img =
-        document.createElement('img');
-
-    img.src =
-        canvas.toDataURL('image/png');
-
-    img.className =
-        'noteImage';
-
-    img.style.width = '100%';
-
-    img.addEventListener(
-        'click',
-        () => selectImage(img)
-    );
-
-    document.getElementById('noteEditor')
-        .appendChild(img);
-
-    saveCurrentNote();
-
-}
-
-
-function closeDrawing(){
-
-    document.getElementById('drawingBox')
-        .style.display = 'none';
+    return (
+        size/(1024*1024)
+    ).toFixed(1)+" MB";
 
 }
 
@@ -2485,58 +3292,115 @@ function closeDrawing(){
 function downloadNote(){
 
     const title =
-        document.getElementById('noteTitle')
-            .value.trim() || 'โน้ต';
+        document.getElementById(
+            "noteTitle"
+        ).value.trim() ||
+        "My Note";
 
     const content =
-        document.getElementById('noteEditor')
-            .innerHTML;
+        document.getElementById(
+            "noteEditor"
+        ).innerHTML;
 
-    const html = `
+    let drawing="";
+
+    if(canvas){
+
+        drawing=`
+            <div>
+                <img
+                    src="${canvas.toDataURL("image/png")}"
+                    style="max-width:100%;">
+            </div>
+        `;
+
+    }
+
+    const html=`
+
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
 <meta charset="UTF-8">
-<title>${esc(title)}</title>
+
+<title>
+${escapeHTML(title)}
+</title>
+
 <style>
+
 body{
-    font-family:Tahoma,Arial,sans-serif;
-    max-width:900px;
-    margin:40px auto;
-    padding:20px;
-    line-height:2;
+
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    max-width:
+        900px;
+
+    margin:
+        30px auto;
+
+    padding:
+        20px;
+
+    line-height:
+        2;
+
 }
+
 img{
     max-width:100%;
 }
+
 </style>
+
 </head>
+
 <body>
-<h1>${esc(title)}</h1>
+
+<h1>
+${escapeHTML(title)}
+</h1>
+
 ${content}
+
+${drawing}
+
 </body>
+
 </html>
+
 `;
 
     const blob =
         new Blob(
             [html],
-            {type:'text/html'}
+            {type:"text/html"}
         );
 
     const url =
         URL.createObjectURL(blob);
 
-    const a =
-        document.createElement('a');
+    const link =
+        document.createElement("a");
 
-    a.href = url;
+    link.href=url;
 
-    a.download =
-        title.replace(/[\\/:*?"<>|]/g,'_') +
-        '.html';
+    link.download =
+        title.replace(
+            /[\\/:*?"<>|]/g,
+            "_"
+        )+".html";
 
-    a.click();
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
 
     URL.revokeObjectURL(url);
 
@@ -2544,12 +3408,219 @@ ${content}
 
 
 /* =========================================================
-   START
+   HELP
 ========================================================= */
 
+function showHelp(){
+
+    alert(
+
+        "💗 วิธีใช้ My Note\n\n" +
+
+        "📝 โน้ตของฉัน\n" +
+        "ดูโน้ตทั้งหมดที่บันทึกไว้\n\n" +
+
+        "➕ เพิ่มโน้ต\n" +
+        "สร้างโน้ตใหม่\n\n" +
+
+        "✏️ เขียน\n" +
+        "กดแล้วเขียนลงบนหน้าโน้ตเดิมได้ทันที\n\n" +
+
+        "🧽 ยางลบ\n" +
+        "ลบเส้นที่เขียนได้จริง\n\n" +
+
+        "🗑️ การบ้าน\n" +
+        "สามารถลบการบ้านได้ทุกรายการ\n\n" +
+
+        "⚙️ ตั้งค่า\n" +
+        "เปลี่ยนธีมแอปได้ 5 แบบ\n\n" +
+
+        "💾 ระบบจะบันทึกข้อมูลไว้ในเครื่องอัตโนมัติ"
+
+    );
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function openSettings(){
+
+    document.getElementById(
+        "settingsPage"
+    ).style.display="block";
+
+    document.getElementById(
+        "notesPage"
+    ).style.display="none";
+
+    document.getElementById(
+        "notePage"
+    ).style.display="none";
+
+    document.getElementById("navHome")
+        .classList.remove("active");
+
+    document.getElementById("navNotes")
+        .classList.remove("active");
+
+    document.getElementById("navHomework")
+        .classList.remove("active");
+
+    document.getElementById("navSettings")
+        .classList.add("active");
+
+    loadTheme();
+
+}
+
+
+function closeSettings(){
+
+    document.getElementById(
+        "settingsPage"
+    ).style.display="none";
+
+    goHome();
+
+}
+
+
+/* =========================================================
+   AUTO SAVE
+========================================================= */
+
+document.addEventListener(
+    "input",
+    function(event){
+
+        if(
+            event.target.id ===
+            "noteEditor"
+        ){
+            saveCurrentNote();
+        }
+
+        if(
+            event.target.id ===
+            "noteTitle"
+        ){
+            updateNoteTitle();
+            saveCurrentNote();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   RESIZE CANVAS
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    function(){
+
+        if(
+            document.getElementById(
+                "notePage"
+            ).style.display === "block"
+        ){
+
+            if(canvas){
+
+                const data =
+                    canvas.toDataURL();
+
+                const image =
+                    new Image();
+
+                image.onload=function(){
+
+                    const rect =
+                        canvas.parentElement
+                            .getBoundingClientRect();
+
+                    const ratio =
+                        window.devicePixelRatio || 1;
+
+                    canvas.width =
+                        rect.width * ratio;
+
+                    canvas.height =
+                        rect.height * ratio;
+
+                    canvas.style.width =
+                        rect.width+"px";
+
+                    canvas.style.height =
+                        rect.height+"px";
+
+                    ctx =
+                        canvas.getContext("2d");
+
+                    ctx.setTransform(
+                        ratio,
+                        0,
+                        0,
+                        ratio,
+                        0,
+                        0
+                    );
+
+                    ctx.lineCap="round";
+                    ctx.lineJoin="round";
+
+                    ctx.drawImage(
+                        image,
+                        0,
+                        0,
+                        rect.width,
+                        rect.height
+                    );
+
+                };
+
+                image.src=data;
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   START APP
+========================================================= */
+
+loadTheme();
+
 renderHomework();
+
+setTimeout(
+    function(){
+
+        const start =
+            document.getElementById(
+                "startScreen"
+            );
+
+        if(start){
+
+            start.style.display="none";
+
+        }
+
+    },
+    4000
+);
 
 </script>
 
 </body>
 </html>
+```
