@@ -373,6 +373,16 @@ body.admin-mode #shopScreen,
 body.admin-mode #ordersScreen{display:none !important}
 body.admin-mode #adminScreen{display:block !important}
 
+/* เปิดแอปทันทีโดยไม่ต้องผ่านหน้าเข้าสู่ระบบ */
+#loginModal{display:none !important}
+
+.admin-back-home{position:fixed;left:22px;bottom:22px;z-index:9998;border:0;border-radius:16px;background:#ff5c91;color:#fff;padding:12px 18px;font-weight:800;box-shadow:0 8px 22px rgba(255,92,145,.3);cursor:pointer}
+.cart-fly-spidey{position:fixed;z-index:10050;width:48px;height:48px;pointer-events:none;display:grid;place-items:center;font-size:34px;filter:drop-shadow(0 5px 5px rgba(0,0,0,.2));animation:cartFly 900ms cubic-bezier(.2,.85,.3,1) forwards}
+.cart-fly-spidey .fly-mask{position:absolute;left:7px;top:0;width:34px;height:30px;border-radius:48%;background:#df2946;border:2px solid #ff8793}.cart-fly-spidey .fly-mask i{position:absolute;top:10px;width:11px;height:8px;background:#fff;border:1.5px solid #111}.cart-fly-spidey .fly-mask i:first-child{left:5px;transform:skew(-15deg)}.cart-fly-spidey .fly-mask i:last-child{right:5px;transform:skew(15deg)}.cart-fly-spidey .fly-body{position:absolute;left:9px;top:27px;width:30px;height:19px;border-radius:12px 12px 7px 7px;background:linear-gradient(#df2946 0 45%,#28579d 45%);border:2px solid #741c2c}
+@keyframes cartFly{0%{transform:translate(0,0) scale(1) rotate(-12deg);opacity:1}35%{transform:translate(var(--dx1),-55px) scale(1.15) rotate(12deg);opacity:1}70%{transform:translate(var(--dx2),-25px) scale(.95) rotate(-8deg);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.35) rotate(20deg);opacity:0}}
+.cart-spidey-pop{animation:cartPop .38s ease-out}
+@keyframes cartPop{0%{transform:scale(1)}45%{transform:scale(1.3)}100%{transform:scale(1)}}
+
 .image-tools{
 display:flex;
 gap:6px;
@@ -553,9 +563,11 @@ font-size:11px
 
 .adminstats{
 display:grid;
-grid-template-columns:1fr 1fr;
+grid-template-columns:repeat(5,minmax(0,1fr));
 gap:9px
 }
+@media(max-width:900px){.adminstats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:620px){.adminstats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 .stat{
 background:#fff0f6;
@@ -617,208 +629,15 @@ opacity:1;
 transform:translate(-50%,0)
 }
 
-/* INTRO */
+/* INTRO — SPIDER-MAN READING A BOOK */
+#intro{position:fixed;inset:0;background:radial-gradient(circle at 50% 42%,#5a2544,#13090f 72%);z-index:500;color:#fff;display:grid;place-items:center;overflow:hidden}
+.introtext{text-align:center;font-weight:800;font-size:21px;position:relative;z-index:20}.introtext small{display:block;font-size:12px;margin-top:5px}.intro-scene{position:relative;width:min(390px,94vw);height:270px;margin:auto auto 12px}
+.intro-spidey{position:absolute;left:50%;top:32px;width:105px;height:190px;transform:translateX(-50%);z-index:8;animation:introReader 2.2s ease-in-out both}.intro-spidey .mask{position:absolute;top:0;left:15px;width:75px;height:75px;border-radius:48%;background:radial-gradient(circle at 35% 30%,#f15a6b,#d52243 65%);border:4px solid #ff8793;z-index:5}.intro-spidey .eye{position:absolute;top:27px;width:26px;height:18px;background:#fff;border:3px solid #111}.intro-spidey .e1{left:34px;transform:skew(-18deg)}.intro-spidey .e2{right:34px;transform:skew(18deg)}.intro-spidey .body{position:absolute;top:71px;left:3px;width:99px;height:86px;border-radius:38px 38px 18px 18px;background:linear-gradient(#d72d45 0 43%,#28579d 43%);border:4px solid #741c2c;z-index:4}
+.intro-book{position:absolute;left:50%;top:128px;width:108px;height:58px;transform:translateX(-50%) rotate(-3deg);z-index:10;filter:drop-shadow(0 5px 5px rgba(0,0,0,.25))}.intro-book:before,.intro-book:after{content:"";position:absolute;top:0;width:53px;height:58px;background:#fff;border:3px solid #333;box-sizing:border-box}.intro-book:before{left:0;border-radius:5px 2px 2px 8px;transform:skewY(4deg)}.intro-book:after{right:0;border-radius:2px 5px 8px 2px;transform:skewY(-4deg)}.intro-book span{position:absolute;left:50%;top:3px;bottom:3px;width:4px;background:#7b3650;transform:translateX(-50%);z-index:2;border-radius:4px}.intro-book i{position:absolute;left:11px;right:11px;top:14px;height:2px;background:#bbb;z-index:3;box-shadow:0 13px 0 #bbb,0 13px 0 #bbb,0 26px 0 #bbb}
+@keyframes introReader{0%{opacity:0;transform:translateX(-50%) translateY(18px) scale(.78)}35%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}55%{transform:translateX(-50%) translateY(-3px) scale(1.02)}75%{transform:translateX(-50%) translateY(0) scale(1)}100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+#intro.hide{animation:fade .45s forwards}@keyframes fade{to{opacity:0;visibility:hidden}}
 
-#intro{
-position:fixed;
-inset:0;
-background:radial-gradient(circle at 50% 42%,#5a2544,#13090f 72%);
-z-index:500;
-color:#fff;
-display:grid;
-place-items:center;
-overflow:hidden
-}
-
-.introtext{
-text-align:center;
-font-weight:800;
-font-size:21px;
-position:relative;
-z-index:20
-}
-
-.introtext small{
-display:block;
-font-size:12px;
-margin-top:5px
-}
-
-.intro-scene{
-position:relative;
-width:min(390px,94vw);
-height:270px;
-margin:auto auto 12px
-}
-
-/* Spider-Man คนเดียว ยิงใยแมงมุมพุ่งออกมา */
-.intro-spidey{
-position:absolute;
-left:50%;
-top:48px;
-width:105px;
-height:165px;
-transform:translateX(-50%);
-z-index:8;
-animation:introSpidey .65s ease-out both
-}
-
-.intro-spidey .mask{
-position:absolute;
-top:0;
-left:15px;
-width:75px;
-height:75px;
-border-radius:48%;
-background:radial-gradient(circle at 35% 30%,#f15a6b,#d52243 65%);
-border:4px solid #ff8793;
-z-index:5
-}
-
-.intro-spidey .eye{
-position:absolute;
-top:27px;
-width:26px;
-height:18px;
-background:#fff;
-border:3px solid #111
-}
-
-.intro-spidey .e1{left:34px;transform:skew(-18deg)}
-.intro-spidey .e2{right:34px;transform:skew(18deg)}
-
-.intro-spidey .body{
-position:absolute;
-top:71px;
-left:3px;
-width:99px;
-height:86px;
-border-radius:38px 38px 18px 18px;
-background:linear-gradient(#d72d45 0 43%,#28579d 43%);
-border:4px solid #741c2c;
-z-index:4
-}
-
-.web-origin{
-position:absolute;
-left:50%;
-top:91px;
-width:10px;
-height:10px;
-transform:translateX(-50%);
-border-radius:50%;
-background:#fff;
-z-index:9;
-box-shadow:0 0 12px #fff;
-}
-
-.web-line{
-position:absolute;
-left:50%;
-top:96px;
-width:3px;
-height:0;
-background:linear-gradient(#fff,#d9f7ff);
-transform-origin:top center;
-z-index:7;
-opacity:0;
-border-radius:99px;
-}
-
-.web-line.l1{transform:rotate(-62deg);animation:webShoot 1.1s .55s both}
-.web-line.l2{transform:rotate(-31deg);animation:webShoot 1.15s .65s both}
-.web-line.l3{transform:rotate(0deg);animation:webShoot 1.2s .75s both}
-.web-line.l4{transform:rotate(31deg);animation:webShoot 1.15s .65s both}
-.web-line.l5{transform:rotate(62deg);animation:webShoot 1.1s .55s both}
-
-.web-ring{
-position:absolute;
-left:50%;
-top:92px;
-width:18px;
-height:18px;
-transform:translateX(-50%) scale(.1);
-border:2px solid rgba(255,255,255,.95);
-border-radius:50%;
-opacity:0;
-z-index:6;
-animation:webRing 1.8s .8s ease-out both
-}
-
-.web-ring.r2{animation-delay:1.05s}
-.web-ring.r3{animation-delay:1.3s}
-
-.web-spiderweb{
-position:absolute;
-left:50%;
-top:100px;
-width:235px;
-height:155px;
-transform:translateX(-50%) scale(.08);
-opacity:0;
-z-index:3;
-animation:fullWeb 2.2s .8s ease-out both
-}
-
-.web-spiderweb::before,
-.web-spiderweb::after{
-content:"";
-position:absolute;
-inset:0;
-border:2px solid rgba(255,255,255,.92);
-border-radius:50%;
-}
-
-.web-spiderweb::after{
-transform:scale(.72,.78)
-}
-
-.web-spiderweb .ray{
-position:absolute;
-left:50%;
-top:50%;
-width:50%;
-height:2px;
-background:rgba(255,255,255,.92);
-transform-origin:left center;
-}
-
-.web-spiderweb .ray:nth-child(1){transform:rotate(0deg)}
-.web-spiderweb .ray:nth-child(2){transform:rotate(45deg)}
-.web-spiderweb .ray:nth-child(3){transform:rotate(90deg)}
-.web-spiderweb .ray:nth-child(4){transform:rotate(135deg)}
-.web-spiderweb .ray:nth-child(5){transform:rotate(180deg)}
-.web-spiderweb .ray:nth-child(6){transform:rotate(225deg)}
-.web-spiderweb .ray:nth-child(7){transform:rotate(270deg)}
-.web-spiderweb .ray:nth-child(8){transform:rotate(315deg)}
-
-@keyframes introSpidey{
-from{opacity:0;transform:translateX(-50%) translateY(18px) scale(.72)}
-to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
-}
-
-@keyframes webShoot{
-0%{opacity:0;height:0}
-15%{opacity:1}
-100%{opacity:1;height:120px}
-}
-
-@keyframes webRing{
-0%{opacity:0;transform:translateX(-50%) scale(.1)}
-20%{opacity:1}
-100%{opacity:0;transform:translateX(-50%) scale(7)}
-}
-
-@keyframes fullWeb{
-0%{opacity:0;transform:translateX(-50%) scale(.08)}
-20%{opacity:1}
-100%{opacity:.95;transform:translateX(-50%) scale(1)}
-}
-
-#intro.hide{animation:fade .45s forwards}
-
-@keyframes fade{to{opacity:0;visibility:hidden}}
-
+.quick-admin-btn{position:absolute;top:18px;right:18px;z-index:50;border:0;background:rgba(255,255,255,.95);color:#7b214d;padding:10px 14px;border-radius:14px;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer}.admin-top-btn{border:0;background:#fff;color:#7b214d;padding:9px 12px;border-radius:12px;font-weight:800;cursor:pointer}.payment-choice{display:flex;gap:10px;flex-wrap:wrap}.payment-choice label{flex:1;min-width:145px;border:1px solid #ffd0df;border-radius:12px;padding:11px;cursor:pointer;background:#fff}.payment-choice input{margin-right:7px}.bank-link-box{margin-top:10px;padding:12px;border:1px dashed #ff77a7;border-radius:12px;background:#fff7fa}.bank-link-box button{margin-top:8px}
 /* LOGIN BACKGROUND — อยู่แทนพื้นหลังแอปจนกว่าจะเข้าสู่ระบบ */
 #loginModal{
 background:radial-gradient(circle at 50% 38%,#5b2546 0,#25111d 52%,#0d070b 100%);
@@ -998,6 +817,44 @@ overflow:hidden
 }
 }
 
+/* PHONE / iPHONE / iPAD FRIENDLY */
+html{
+-webkit-text-size-adjust:100%;
+text-size-adjust:100%;
+}
+body{
+min-height:100dvh;
+-webkit-tap-highlight-color:transparent;
+}
+button,input,textarea,select{
+-webkit-appearance:none;
+appearance:none;
+}
+input,textarea,select{
+font-size:16px;
+}
+@supports(padding:max(0px)){
+.bottom{
+height:calc(70px + env(safe-area-inset-bottom));
+padding-bottom:env(safe-area-inset-bottom);
+}
+.app{
+padding-bottom:calc(76px + env(safe-area-inset-bottom));
+}
+}
+@media (min-width:600px) and (max-width:1100px){
+body{padding:0;background:#fff;}
+.app{max-width:none;min-height:100dvh;border-radius:0;}
+}
+@media(max-width:599px){
+.app{width:100%;max-width:100%;}
+main{padding:12px;}
+.sheet{max-height:94dvh;}
+}
+@media(min-width:600px) and (max-width:1100px) and (orientation:landscape){
+main{padding-left:clamp(16px,4vw,48px);padding-right:clamp(16px,4vw,48px);}
+}
+
 
 
 /* ================= ADMIN CHAT RIGHT PANEL ================= */
@@ -1063,11 +920,108 @@ overflow:hidden
 .admin-order-click{cursor:pointer}
 .admin-order-click:hover{background:#fff4f8}
 @media print{
+  @page{size:A4 portrait;margin:0}
+  html,body{margin:0 !important;padding:0 !important;background:#fff !important}
   body *{visibility:hidden !important}
-  #printArea,#printArea *{visibility:visible !important}
-  #printArea{position:absolute;left:0;top:0;width:100%;padding:20px;background:#fff}
+  #addressPrintSheet,#addressPrintSheet *{visibility:visible !important}
+  #addressPrintSheet{
+    display:block !important;
+    position:absolute !important;
+    left:8mm !important;
+    top:8mm !important;
+    width:100mm !important;
+    min-height:150mm !important;
+    padding:8mm !important;
+    background:#fff !important;
+    color:#111 !important;
+    box-sizing:border-box !important;
+    border:1.5px solid #111 !important;
+    border-radius:0 !important;
+    font-family:Arial,Tahoma,sans-serif !important;
+    overflow:hidden !important;
+  }
+  #addressPrintSheet .shipping-label-head{font-size:18px;font-weight:900;text-align:center;border-bottom:2px solid #111;padding-bottom:5mm;margin-bottom:5mm}
+  #addressPrintSheet .shipping-order-id{font-size:10px;text-align:center;margin-bottom:4mm}
+  #addressPrintSheet .shipping-section-label{font-size:10px;font-weight:800;margin:3mm 0 1.5mm;text-transform:uppercase}
+  #addressPrintSheet .shipping-recipient{font-size:20px;font-weight:900;line-height:1.25;margin-bottom:2mm;word-break:break-word}
+  #addressPrintSheet .shipping-phone{font-size:15px;font-weight:800;margin-bottom:3mm}
+  #addressPrintSheet .shipping-address{border:2px solid #111;padding:4mm;font-size:17px;font-weight:800;line-height:1.55;min-height:38mm;white-space:pre-wrap;word-break:break-word}
+  #addressPrintSheet .shipping-divider{border-top:1px dashed #555;margin:5mm 0}
+  #addressPrintSheet .shipping-items{font-size:11px;line-height:1.5}
+  #addressPrintSheet .shipping-item{display:flex;justify-content:space-between;gap:4mm;padding:1.5mm 0;border-bottom:1px solid #ddd}
+  #addressPrintSheet .shipping-total{text-align:right;font-size:15px;font-weight:900;margin-top:3mm}
+  #addressPrintSheet .shipping-cod{margin-top:4mm;text-align:center;border:1.5px solid #111;padding:2.5mm;font-size:13px;font-weight:900}
 }
 
+.address-print-sheet{display:none;}
+
+
+.admin-products-button{border:0;text-align:left;cursor:pointer;width:100%;font:inherit;display:flex;flex-direction:column;gap:4px}
+.admin-products-button small{font-size:11px;color:#999;font-weight:400}
+.admin-product-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f2e1e7}
+.admin-product-row img,.admin-product-row .emoji{width:54px;height:54px;border-radius:10px;object-fit:contain;background:#fff0f6;display:grid;place-items:center;font-size:28px;flex:none}
+.admin-product-row .grow{min-width:0}
+.admin-product-row button{margin-left:auto;white-space:nowrap}
+.chat-badge{display:inline-grid;place-items:center;min-width:21px;height:21px;padding:0 6px;border-radius:99px;background:#e51e45;color:#fff;font-size:11px;font-weight:800}
+.bottom .nav{position:relative}
+.nav-label-wrap{position:relative;display:inline-block;line-height:1.1;padding-top:1px}
+.bottom .nav .chat-badge{position:absolute;left:calc(100% + 5px);top:-13px;transform:none;z-index:3;box-shadow:0 2px 6px rgba(0,0,0,.2);margin:0;border:2px solid #fff;min-width:20px;height:20px;padding:0 5px;font-size:10px}
+.bottom .nav small{position:relative;display:block;padding-top:0}
+#nContact small{font-size:10px;font-weight:400}
+#nContact .nav-label-wrap{font-size:10px;font-weight:400;line-height:1.1}
+#nContact .chat-badge{font-size:10px;font-weight:800}
+.admin-chat-open-btn{position:fixed;right:20px;bottom:25px;z-index:9997;border:0;border-radius:50px;background:#ff5c91;color:#fff;padding:12px 22px 12px 18px;box-shadow:0 8px 22px rgba(255,92,145,.35);cursor:pointer;font-weight:700}
+.admin-chat-open-btn .chat-badge{position:absolute;right:-5px;top:-9px;min-width:22px;height:22px;padding:0 6px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.cart-head-wrap{position:relative;display:inline-block}
+.cart-count-badge{position:absolute;right:-10px;top:-10px;min-width:22px;height:22px;padding:0 5px;border-radius:999px;background:#e51e45;color:#fff;font-size:11px;font-weight:900;display:grid;place-items:center;box-shadow:0 2px 5px rgba(0,0,0,.18);border:2px solid #fff}
+.shipping-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.shipping-col{border:1px solid #ffd0df;border-radius:15px;padding:10px;background:#fff9fb;min-width:0}
+.shipping-col h4{margin:0 0 7px;font-size:13px;color:#b92c6a}
+.shipping-col .ship-count{font-size:18px;font-weight:900;color:#cb2a6d}
+.shipping-col .ship-items{font-size:11px;color:#8a747e;margin-bottom:7px}
+.shipping-col .admin-shipping-row{background:#fff;border:1px solid #f2e1e7;border-radius:11px;padding:9px;margin-bottom:7px}
+.shipping-col .admin-shipping-row:last-child{margin-bottom:0}
+@media(max-width:700px){.shipping-columns{grid-template-columns:1fr}}
+.admin-chat-top-popup{position:fixed;left:50%;top:12px;transform:translate(-50%,-150%);z-index:13000;width:min(92vw,500px);background:#fff;border:2px solid #ff5c91;border-radius:18px;padding:11px 14px;box-shadow:0 10px 30px rgba(0,0,0,.18);display:flex;align-items:center;gap:10px;transition:.25s;cursor:pointer}
+.admin-chat-top-popup.show{transform:translate(-50%,0)}
+.admin-chat-top-popup .chat-popup-icon{font-size:27px}
+.admin-chat-top-popup b{color:#c51f5d}.admin-chat-top-popup small{display:block;color:#77666e;margin-top:2px}
+#homeworkReminder{position:fixed;left:50%;top:15px;transform:translate(-50%,-120%);z-index:12000;width:min(92vw,520px);background:linear-gradient(135deg,#fff,#ffe6ef);border:3px solid #ff5c91;border-radius:24px;padding:14px 18px;display:flex;align-items:center;gap:18px;box-shadow:0 12px 35px rgba(0,0,0,.2);transition:.3s}
+#homeworkReminder.show{transform:translate(-50%,0)}
+.hw-spidey-big{position:relative;width:72px;height:92px;animation:hwJump .45s ease-in-out infinite alternate;flex:none}
+.hw-mask{position:absolute;left:13px;top:0;width:46px;height:46px;border-radius:48%;background:#d52243;border:3px solid #741c2c}.hw-mask i{position:absolute;top:16px;width:14px;height:10px;background:#fff;border:2px solid #111}.hw-mask i:first-child{left:6px;transform:skew(-15deg)}.hw-mask i:last-child{right:6px;transform:skew(15deg)}
+.hw-body{position:absolute;left:4px;top:42px;width:64px;height:48px;border-radius:24px 24px 12px 12px;background:linear-gradient(#d72d45 0 44%,#28579d 44%);border:3px solid #1d416f}
+.hw-text{font-size:20px;font-weight:900;color:#c51f5d}.hw-text small{font-size:12px;font-weight:600;color:#7b6770}
+.purchase-celebrate{position:fixed;inset:0;background:rgba(255,255,255,.94);z-index:12001;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;text-align:center;animation:purchaseIn .2s ease-out}
+.purchase-web{position:absolute;inset:0;opacity:.55;background:radial-gradient(circle at center,transparent 0 15%,rgba(255,255,255,0) 15.5%,rgba(255,92,145,.35) 16%,transparent 16.7%),repeating-conic-gradient(from 0deg,transparent 0 10deg,rgba(255,92,145,.35) 10.5deg 11deg,transparent 11.5deg 20deg);mask-image:radial-gradient(circle,black 0 65%,transparent 95%);animation:webPulse .7s ease-in-out infinite alternate}
+.purchase-spidey{position:relative;width:180px;height:230px;z-index:2;animation:celebrateJump .55s ease-in-out infinite alternate}.purchase-spidey .mask{position:absolute;left:35px;top:0;width:110px;height:110px;border-radius:48%;background:#d52243;border:6px solid #741c2c}.purchase-spidey .mask i{position:absolute;top:39px;width:33px;height:23px;background:#fff;border:4px solid #111}.purchase-spidey .mask i:first-child{left:15px;transform:skew(-15deg)}.purchase-spidey .mask i:last-child{right:15px;transform:skew(15deg)}.purchase-spidey .body{position:absolute;left:8px;top:102px;width:164px;height:120px;border-radius:60px 60px 25px 25px;background:linear-gradient(#d72d45 0 45%,#28579d 45%);border:6px solid #1d416f}
+.purchase-text{position:relative;z-index:2;font-size:28px;font-weight:900;color:#d21e63}
+
+/* การบ้านครบกำหนดวันนี้ — สไปเดอร์แมนหันหลังส่ายก้นอยู่ในการ์ดจนกว่าจะติ๊กเสร็จ */
+.task.today-due{border:2px solid #ff5c91;background:linear-gradient(135deg,#fff8fb,#fff0f6);position:relative;overflow:hidden}
+.task-today-badge{display:inline-block;background:#ff5c91;color:#fff;border-radius:999px;padding:3px 8px;font-size:10px;font-weight:800;margin-bottom:5px}
+.task-spidey-dance{position:relative;width:58px;height:72px;flex:none;margin-top:2px;animation:taskButtSway .42s ease-in-out infinite alternate}
+.task-spidey-dance .head{position:absolute;left:10px;top:0;width:38px;height:38px;border-radius:50%;background:#d52243;border:3px solid #741c2c}
+.task-spidey-dance .torso{position:absolute;left:4px;top:33px;width:50px;height:32px;border-radius:22px 22px 12px 12px;background:linear-gradient(#d72d45 0 44%,#28579d 44%);border:3px solid #1d416f}
+.task-spidey-dance .web-symbol{position:absolute;left:50%;top:37px;transform:translateX(-50%);color:#fff;font-size:15px;font-weight:900}
+.task-spidey-dance .leg{position:absolute;top:57px;width:18px;height:28px;background:#28579d;border:3px solid #1d416f;border-radius:9px 9px 8px 8px}
+.task-spidey-dance .leg.l{left:7px;transform:rotate(12deg)}
+.task-spidey-dance .leg.r{right:7px;transform:rotate(-12deg)}
+@keyframes taskButtSway{from{transform:translateX(-3px) rotate(-5deg) scaleX(.96)}to{transform:translateX(3px) rotate(5deg) scaleX(1.05)}}
+.chat-top-popup{position:fixed;left:50%;top:12px;transform:translate(-50%,-140%);z-index:12050;width:min(92vw,500px);background:#fff;border:2px solid #ff5c91;border-radius:18px;padding:11px 14px;box-shadow:0 10px 30px rgba(0,0,0,.18);display:flex;align-items:center;gap:10px;transition:.3s;cursor:pointer}
+.chat-top-popup.show{transform:translate(-50%,0)}
+.chat-top-popup .chat-popup-icon{font-size:27px}
+.chat-top-popup b{color:#c51f5d}.chat-top-popup small{display:block;color:#77666e;margin-top:2px}
+.account-login-note{background:#fff5f8;border:1px dashed #ff9abd;border-radius:12px;padding:10px;font-size:12px;line-height:1.5;margin-top:10px}
+@keyframes hwJump{to{transform:translateY(-10px) rotate(-3deg)}}@keyframes purchaseIn{from{opacity:0}to{opacity:1}}@keyframes webPulse{to{transform:scale(1.08);opacity:.8}}@keyframes celebrateJump{to{transform:translateY(-18px) rotate(3deg)}}
+
+.admin-detail-card{scroll-margin-top:90px}
+.admin-detail-card .admin-row{padding:10px 0;border-bottom:1px solid #f0e1e7;font-size:13px}
+.admin-detail-card .admin-row:last-child{border-bottom:0}
+.admin-sale-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #f0e1e7}
+.admin-sale-row:last-child{border-bottom:0}
+.admin-shipping-row{padding:11px 0;border-bottom:1px solid #f0e1e7}
+.admin-shipping-row:last-child{border-bottom:0}
 </style>
 </head>
 
@@ -1086,19 +1040,7 @@ overflow:hidden
 <div class="body"></div>
 </div>
 
-<div class="web-origin"></div>
-<div class="web-line l1"></div>
-<div class="web-line l2"></div>
-<div class="web-line l3"></div>
-<div class="web-line l4"></div>
-<div class="web-line l5"></div>
-<div class="web-ring r1"></div>
-<div class="web-ring r2"></div>
-<div class="web-ring r3"></div>
-<div class="web-spiderweb">
-<div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div>
-<div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div>
-</div>
+<div class="intro-book"><span></span><i></i></div>
 
 </div>
 
@@ -1135,7 +1077,7 @@ StudyNote
 
 </div>
 
-<button id="profileHeaderBtn" class="iconbtn" onclick="openProfile()">👤</button>
+<div style="display:flex;gap:8px;align-items:center"><button class="admin-top-btn" onclick="openAdminDirect()">🏠 หลังบ้าน</button><button id="profileHeaderBtn" class="iconbtn" onclick="openProfile()">👤</button></div>
 
 </div>
 
@@ -1261,17 +1203,18 @@ class="screen">
 </h2>
 
 <button
-class="primary"
+class="primary cart-head-wrap"
 onclick="openCart()">
 
 🛒 ตะกร้า
+<span id="shopCartBadge" class="cart-count-badge" style="display:none">0</span>
 
 </button>
 
 </div>
 
 
-<div class="lock">
+<div id="shopTrialBanner" class="lock">
 
 ทดลองใช้โน้ตฟรี
 <b>1 เดือน</b>
@@ -1336,6 +1279,8 @@ class="screen">
 id="adminScreen"
 class="screen">
 
+<button class="admin-back-home" type="button" onclick="backToHomeFromAdmin()">🏠 กลับหน้าหลัก</button>
+
 <div class="toprow">
 
 <h2>
@@ -1352,90 +1297,83 @@ class="screen">
 
 <div class="adminstats">
 
-<div class="stat">
-
+<button class="stat admin-orders-button" type="button" onclick="openAdminUsersPanel()">
 👥 ผู้ใช้
-
-<b id="sUsers">
-0
-</b>
-
-</div>
-
-
-<button class="stat admin-orders-button" type="button" onclick="openAdminOrdersPanel()">
-
-📦 คำสั่งซื้อ
-
-<b id="sOrders">
-0
-</b>
-
-<small>กดเพื่อดูออเดอร์และที่อยู่</small>
-
+<b id="sUsers">0</b>
+<small>กดเพื่อดูข้อมูลผู้ใช้</small>
 </button>
 
-
-<div class="stat">
-
-💰 ยอดขาย
-
-<b id="sRevenue">
-฿0
-</b>
-
-</div>
-
-
-<div class="stat">
-
-📝 กิจกรรม
-
-<b id="sNotes">
-0
-</b>
-
-</div>
-
-</div>
-
-
-<div
-class="order"
-style="margin-top:10px">
-
-<b>
-🔔 กิจกรรมล่าสุด
-</b>
-
-<div id="adminActivities"></div>
-
-</div>
-
-
-<div id="adminOrdersCard" class="order">
-
-<b>
+<button class="stat admin-orders-button" type="button" onclick="openAdminOrdersPanel()">
 📦 คำสั่งซื้อ
-</b>
+<b id="sOrders">0</b>
+<small>กดเพื่อดูออเดอร์และที่อยู่</small>
+</button>
 
-<div id="adminOrders"></div>
+<button class="stat admin-orders-button" type="button" onclick="openAdminSalesPanel()">
+💰 ยอดขาย
+<b id="sRevenue">฿0</b>
+<small id="sSalesQty">ขายได้ 0 ชิ้น</small>
+</button>
+
+<button class="stat admin-orders-button" type="button" onclick="openAdminShippingPanel()">
+🚚 ขนส่ง
+<b id="sShipping">0</b>
+<small>จำนวนชิ้นสินค้าที่อยู่ในระบบขนส่ง</small>
+</button>
+
+<button class="stat admin-orders-button" type="button" onclick="openAdminProductsPanel()">
+🛍️ สินค้า
+<b id="sProducts">0</b>
+<small>แก้ชื่อ รูป ราคา และสต็อก</small>
+</button>
 
 </div>
 
+<div id="adminUsersCard" class="order admin-detail-card" style="display:none;margin-top:10px">
+<b>👥 ผู้ใช้</b>
+<div id="adminUsers"></div>
+</div>
 
-<div class="order">
+<div id="adminProductsCard" class="order admin-detail-card" style="display:none;margin-top:10px">
+<b>🛍️ จัดการสินค้า</b>
+<div id="adminProducts"></div>
+</div>
 
-<b>
-💬 ข้อความลูกค้า
-</b>
+<div id="adminOrdersCard" class="order admin-detail-card" style="display:none">
+<b>📦 คำสั่งซื้อ</b>
+<div id="adminOrders"></div>
+</div>
 
+<div id="adminSalesCard" class="order admin-detail-card" style="display:none;margin-top:10px">
+<b>💰 รายการสินค้าที่ขายได้</b>
+<div id="adminSales"></div>
+</div>
+
+<div id="adminShippingCard" class="order admin-detail-card" style="display:none;margin-top:10px">
+<b>🚚 ขนส่ง / สถานะการจัดส่ง</b>
+<div id="adminShipping"></div>
+</div>
+
+<div id="adminChatsCard" class="order admin-detail-card" style="display:none;margin-top:10px">
+<b>💬 ข้อความลูกค้า</b>
 <div id="adminChats"></div>
+</div>
 
+<div id="productEditModal" class="modal">
+  <div class="sheet">
+    <h2>🛍️ แก้ไขสินค้า</h2>
+    <input type="hidden" id="editProductId">
+    <div class="field"><label>ชื่อสินค้า</label><input id="editProductName"></div>
+    <div class="field"><label>ราคา</label><input id="editProductPrice" type="number" min="0"></div>
+    <div class="field"><label>สต็อก</label><input id="editProductStock" type="number" min="0"></div>
+    <div class="field"><label>รูปสินค้า</label><input id="editProductImage" type="file" accept="image/*" onchange="previewProductImage(this)"></div>
+    <img id="editProductPreview" style="display:none;width:130px;height:130px;object-fit:contain;border-radius:14px;border:1px solid #ffd0df;margin:8px auto">
+    <div class="row"><button class="secondary" onclick="closeModal('productEditModal')">ยกเลิก</button><button class="primary" onclick="saveProductEdit()">บันทึก</button></div>
+  </div>
 </div>
 
 <!-- แชทหลังบ้านแยกอยู่มุมขวา -->
-<button id="adminChatOpenBtn" class="admin-chat-open-btn" onclick="toggleAdminChatPanel(true)">💬 แชทลูกค้า</button>
+<button id="adminChatOpenBtn" class="admin-chat-open-btn" onclick="toggleAdminChatPanel(true)">💬 แชทลูกค้า <span id="adminChatBadge" class="chat-badge" style="display:none">0</span></button>
 <div id="adminChatPanel" class="admin-chat-panel">
   <div class="admin-chat-head">
     <b>💬 แชทลูกค้า</b>
@@ -1473,9 +1411,7 @@ onclick="switchScreen('contact')">
 💬
 </span>
 
-<small>
-ติดต่อแอดมิน
-</small>
+<small><span class="nav-label-wrap">ติดต่อแอดมิน<span id="customerChatBadge" class="chat-badge" style="display:none">0</span></span></small>
 
 </button>
 
@@ -1539,6 +1475,7 @@ id="loginModal"
 class="modal show">
 
 <div class="login-stage">
+<button class="quick-admin-btn" onclick="openAdminDirect()">🏠 หลังบ้าน</button>
 <div class="stars"></div>
 <div class="login-spidey">
 <div class="spidey-face front-face">
@@ -1559,7 +1496,7 @@ class="modal show">
 </h2>
 
 <p class="small">
-ทุกครั้งที่เปิดแอป กรุณาใส่ชื่อและรหัสของคุณ
+กรอกชื่อของคุณเพื่อเข้าสู่ StudyNote
 </p>
 
 
@@ -1572,21 +1509,6 @@ class="modal show">
 <input
 id="loginName"
 placeholder="กรอกชื่อของคุณ">
-
-</div>
-
-
-<div class="field">
-
-<label>
-รหัส
-</label>
-
-<input
-id="loginPin"
-type="password"
-inputmode="numeric"
-placeholder="กรอกรหัส">
 
 </div>
 
@@ -1780,7 +1702,12 @@ id="taskDetail">
 
 <input
 id="taskDue"
-type="date">
+type="text"
+inputmode="text"
+autocomplete="off"
+enterkeyhint="done"
+placeholder="พิมพ์ตัวเลข เช่น 30/09/2569 18:00"
+oninput="this.value=this.value.replace(/[^0-9\/ :]/g,'')">
 
 </div>
 
@@ -1842,11 +1769,27 @@ class="modal">
 
 <div class="row">
 <button class="secondary" onclick="closeModal('profileModal')">ปิด</button>
-<button class="primary" onclick="saveProfile()">บันทึก</button>
+<button class="primary" onclick="saveProfile()">บันทึกบัญชี</button>
+</div>
+
+<div class="account-login-note">
+<b>เข้าสู่ระบบบัญชีเดิม</b><br>
+กรอกชื่อและอีเมลที่เคยบันทึกไว้ เพื่อกลับเข้าโน้ต การบ้าน แชท และข้อมูลของบัญชีเดิม
+</div>
+<div class="field">
+<label>ชื่อบัญชีเดิม</label>
+<input id="loginAccountName" placeholder="ชื่อที่เคยบันทึก">
+</div>
+<div class="field">
+<label>อีเมลบัญชีเดิม</label>
+<input id="loginAccountEmail" type="email" placeholder="อีเมลที่เคยบันทึก">
+</div>
+<div class="row">
+<button class="primary" style="width:100%" onclick="loginExistingAccount()">🔐 เข้าสู่ระบบ</button>
 </div>
 
 <div class="row" style="margin-top:8px">
-<button class="danger" style="width:100%" onclick="logout()">🚪 ออกจากระบบ</button>
+<button class="danger" style="width:100%" onclick="logout()">🚪 ออกจากบัญชี</button>
 </div>
 
 </div>
@@ -1955,25 +1898,9 @@ placeholder="บ้านเลขที่ หมู่ ถนน ตำบล 
 
 
 <div class="field">
-
-<label>
-วิธีชำระเงิน
-</label>
-
-<input
-value="เก็บเงินปลายทาง (COD)"
-disabled>
-
-</div>
-
-
-<div class="lock">
-
-💵 ชำระเงินแบบ
-<b>
-เก็บเงินปลายทางเท่านั้น
-</b>
-
+<label>วิธีชำระเงิน</label>
+<div class="payment-choice"><label><input type="radio" name="paymentMethod" value="ตัดผ่านบัญชีธนาคาร" checked onchange="toggleBankPayment()">🏦 ตัดผ่านบัญชีธนาคาร</label><label><input type="radio" name="paymentMethod" value="เก็บเงินปลายทาง (COD)" onchange="toggleBankPayment()">💵 เก็บเงินปลายทาง</label></div>
+<div id="bankPaymentBox" class="bank-link-box"><b>🏦 บัญชีธนาคารของลูกค้า</b><div id="linkedBankText" style="margin-top:5px;color:#666">ยังไม่ได้เชื่อมบัญชีธนาคาร</div><button type="button" class="secondary" onclick="openBankLink()">🔗 เชื่อมธนาคาร</button></div>
 </div>
 
 
@@ -2003,6 +1930,9 @@ onclick="placeOrder()">
 </div>
 
 
+<!-- BANK LINK -->
+<div id="bankModal" class="modal"><div class="sheet"><div class="toprow"><h2>🏦 เชื่อมบัญชีธนาคาร</h2><button class="secondary" onclick="closeModal('bankModal')">✕</button></div><p class="small">ระบบต้นแบบนี้ไม่ขอรหัสผ่านหรือ PIN ธนาคาร</p><div class="field"><label>เลือกธนาคาร</label><select id="bankName"><option>กสิกรไทย</option><option>กรุงไทย</option><option>ไทยพาณิชย์</option><option>กรุงเทพ</option><option>กรุงศรีอยุธยา</option><option>ออมสิน</option></select></div><div class="field"><label>ชื่อบัญชี</label><input id="bankAccountName" placeholder="ชื่อเจ้าของบัญชี"></div><div class="field"><label>เลขบัญชี 4 ตัวท้าย</label><input id="bankLast4" inputmode="numeric" maxlength="4" placeholder="เช่น 1234"></div><button class="primary" style="width:100%" onclick="linkBankAccount()">เชื่อมบัญชี</button></div></div>
+
 <!-- ORDER DETAIL / PRINT -->
 <div id="orderDetailModal" class="modal">
   <div class="sheet order-detail-sheet">
@@ -2013,9 +1943,20 @@ onclick="placeOrder()">
     <div id="orderDetailContent"></div>
     <div class="row" style="margin-top:14px">
       <button class="secondary" onclick="closeModal('orderDetailModal')">ปิด</button>
-      <button id="adminPrintOrderBtn" class="primary" onclick="printCurrentOrder()">🖨️ พิมพ์คำสั่งซื้อ / ที่อยู่</button>
+      <button id="adminPrintOrderBtn" class="primary" onclick="printCurrentOrder()">🖨️ พิมพ์ใบแปะพัสดุ</button>
     </div>
   </div>
+</div>
+
+<div id="addressPrintSheet" class="address-print-sheet" aria-hidden="true"></div>
+
+<div id="chatTopPopup" class="chat-top-popup" onclick="openChatFromPopup()">
+  <div class="chat-popup-icon">💬</div>
+  <div><b id="chatTopPopupTitle">แอดมินตอบกลับแล้ว</b><small id="chatTopPopupText">มีข้อความใหม่</small></div>
+</div>
+<div id="adminChatTopPopup" class="admin-chat-top-popup" onclick="openAdminChatFromPopup()">
+  <div class="chat-popup-icon">💬</div>
+  <div><b id="adminChatTopPopupTitle">ลูกค้าทักมาแล้ว</b><small id="adminChatTopPopupText">มีข้อความใหม่จากลูกค้า</small></div>
 </div>
 
 <div
@@ -2051,81 +1992,26 @@ const ADMIN_PIN =
    PRODUCTS
 ========================================== */
 
-const PRODUCTS = [
-
-{
-id:"P001",
-name:"ปากกาไอแพด",
-price:299,
-stock:30,
-emoji:"🖊️"
-},
-
-{
-id:"P002",
-name:"ปากกา",
-price:20,
-stock:100,
-emoji:"🖋️"
-},
-
-{
-id:"P003",
-name:"ดินสอ",
-price:10,
-stock:100,
-emoji:"✏️"
-},
-
-{
-id:"P004",
-name:"สีไม้",
-price:79,
-stock:50,
-emoji:"🖍️"
-},
-
-{
-id:"P005",
-name:"สีน้ำ",
-price:89,
-stock:40,
-emoji:"🎨"
-},
-
-{
-id:"P006",
-name:"ยางลบ",
-price:10,
-stock:100,
-emoji:"⬜"
-},
-
-{
-id:"P007",
-name:"กบเหลา",
-price:15,
-stock:70,
-emoji:"🔺"
-},
-
-{
-id:"P008",
-name:"กระเป๋าสะพาย",
-price:399,
-stock:20,
-emoji:"🎒"
-},
-
-{
-id:"P009",
-name:"กระเป๋าดินสอ",
-price:99,
-stock:40,
-emoji:"👝"
-}
-
+const DEFAULT_PRODUCTS = [
+{id:"P001",name:"ปากกาไอแพด (Apple Pencil USB-C)",price:2990,stock:30,emoji:"✏️",image:""},
+{id:"P002",name:"กระเป๋าดินสอสีพาสเทล",price:50,stock:50,emoji:"🩷",image:""},
+{id:"P003",name:"ปากกาแพ็ค",price:50,stock:100,emoji:"🖊️",image:""},
+{id:"P004",name:"สมุดจดโน๊ต",price:30,stock:100,emoji:"📓",image:""},
+{id:"P005",name:"เซทวงเวียน",price:50,stock:40,emoji:"📐",image:""},
+{id:"P006",name:"สีไม้กล่องละ",price:60,stock:50,emoji:"🖍️",image:""},
+{id:"P007",name:"สีน้ำแพ็คละ",price:119,stock:40,emoji:"🎨",image:""},
+{id:"P008",name:"สีเทียน",price:50,stock:50,emoji:"🖌️",image:""},
+{id:"P009",name:"ดินสอแพ็คละ",price:30,stock:100,emoji:"✏️",image:""},
+{id:"P010",name:"เซทอุปกรณ์การเรียน",price:199,stock:30,emoji:"🎒",image:""},
+{id:"P011",name:"ปากกาลูกลื่น 3 สี",price:35,stock:80,emoji:"🖊️",image:""},
+{id:"P012",name:"ไฮไลท์พาสเทล 6 สี",price:69,stock:60,emoji:"🖍️",image:""},
+{id:"P013",name:"ไม้บรรทัด 30 ซม.",price:25,stock:70,emoji:"📏",image:""},
+{id:"P014",name:"กาวแท่ง",price:25,stock:70,emoji:"🧴",image:""},
+{id:"P015",name:"ยางลบแพ็ค 3 ก้อน",price:29,stock:80,emoji:"◻️",image:""},
+{id:"P016",name:"ปากกามาร์กเกอร์",price:39,stock:60,emoji:"🖍️",image:""}
 ];
+
+let PRODUCTS = JSON.parse(localStorage.getItem("sn_products") || "null") || DEFAULT_PRODUCTS;
 
 
 /* ==========================================
@@ -2137,35 +2023,98 @@ JSON.parse(
 localStorage.getItem("sn_user") || "null"
 );
 
-let notes =
-JSON.parse(
-localStorage.getItem("sn_notes") || "[]"
-);
+/* เปิดแอปใหม่ = ผู้ใช้ใหม่เสมอ / บัญชีเดิมเข้าได้จากปุ่ม 👤 */
+function newGuestUser(){
+  const deviceId = localStorage.getItem("sn_device_id") || id("DEVICE");
+  localStorage.setItem("sn_device_id", deviceId);
+  return {
+    id: "GUEST-" + id("USER"),
+    name: "ผู้ใช้ใหม่",
+    role: "customer",
+    email: "",
+    profileImage: "",
+    createdAt: new Date().toISOString(),
+    trialEnd: new Date(Date.now()+30*86400000).toISOString(),
+    noteUnlocked: false,
+    deviceId,
+    accountLoggedIn: false
+  };
+}
+function startFreshGuestSession(){
+  // เปิดลิงก์/หน้าเว็บใหม่ = เริ่มเป็นผู้ใช้ใหม่ทันที
+  user = newGuestUser();
+  notes=[];
+  tasks=[];
+  cart=[];
+  activities=[];
+  messages=[];
+  orders=[];
 
-let tasks =
-JSON.parse(
-localStorage.getItem("sn_tasks") || "[]"
-);
+  localStorage.setItem("sn_user",JSON.stringify(user));
+  localStorage.setItem("sn_notes","[]");
+  localStorage.setItem("sn_tasks","[]");
+  localStorage.setItem("sn_cart","[]");
+  localStorage.setItem("sn_activities","[]");
+  localStorage.setItem("sn_messages","[]");
+  localStorage.setItem("sn_orders","[]");
+  localStorage.setItem("sn_all_orders","[]");
+  localStorage.removeItem("sn_customer_before_admin");
+  window.__snCustomerBeforeAdmin=null;
+  window.__snSessionStarted=true;
+  return user;
+}
+function ensureGuestUser(){
+  if(!user || user.role!=="customer") return startFreshGuestSession();
+  return user;
+}
 
-let cart =
-JSON.parse(
-localStorage.getItem("sn_cart") || "[]"
-);
+function rememberCustomerBeforeAdmin(){
+  if(!user || user.role!=="customer") return;
+  // เก็บไว้ในหน้านี้เท่านั้น เพื่อให้กลับจากหลังบ้านแล้วเป็นคนเดิม
+  window.__snCustomerBeforeAdmin=JSON.parse(JSON.stringify({user,notes,tasks,cart,activities,messages,orders}));
+}
 
-let orders =
-JSON.parse(
-localStorage.getItem("sn_orders") || "[]"
-);
+function restoreCustomerAfterAdmin(){
+  const d=window.__snCustomerBeforeAdmin;
+  if(d && d.user && d.user.role==="customer"){
+    user=d.user;
+    notes=Array.isArray(d.notes)?d.notes:[];
+    tasks=Array.isArray(d.tasks)?d.tasks:[];
+    cart=Array.isArray(d.cart)?d.cart:[];
+    activities=Array.isArray(d.activities)?d.activities:[];
+    messages=Array.isArray(d.messages)?d.messages:[];
+    orders=Array.isArray(d.orders)?d.orders:[];
+    save();
+    return true;
+  }
+  startFreshGuestSession();
+  return false;
+}
 
-let activities =
-JSON.parse(
-localStorage.getItem("sn_activities") || "[]"
-);
+function accountHash(name,email){
+  const str=(String(name||"").trim().toLowerCase()+"|"+String(email||"").trim().toLowerCase());
+  let h=2166136261;
+  for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}
+  return (h>>>0).toString(36);
+}
+function getAccounts(){
+  try{return JSON.parse(localStorage.getItem("sn_accounts")||"[]");}catch(e){return [];}
+}
+function saveAccountSnapshot(){
+  if(!user || user.role!=="customer" || !user.accountLoggedIn || !user.email) return;
+  const key=accountHash(user.name,user.email);
+  user.accountId=key;
+  const accounts=getAccounts().filter(a=>a.id!==key);
+  accounts.push({id:key,name:user.name,email:user.email,user:{...user},notes,tasks,cart,messages,orders});
+  localStorage.setItem("sn_accounts",JSON.stringify(accounts));
+}
 
-let messages =
-JSON.parse(
-localStorage.getItem("sn_messages") || "[]"
-);
+let notes = [];
+let tasks = [];
+let cart = [];
+let orders = [];
+let activities = [];
+let messages = [];
 
 let attachments = [];
 let selectedImage = null;
@@ -2205,6 +2154,9 @@ localStorage.setItem(
 JSON.stringify(orders)
 );
 
+if(user?.role === "admin") localStorage.setItem("sn_all_orders", JSON.stringify(orders));
+else if(user?.role === "customer" && user?.accountLoggedIn) saveAccountSnapshot();
+
 localStorage.setItem(
 "sn_activities",
 JSON.stringify(activities)
@@ -2213,6 +2165,11 @@ JSON.stringify(activities)
 localStorage.setItem(
 "sn_messages",
 JSON.stringify(messages)
+);
+
+localStorage.setItem(
+"sn_products",
+JSON.stringify(PRODUCTS)
 );
 
 }
@@ -2397,165 +2354,43 @@ action:"event",
    LOGIN
 ========================================== */
 
+function getDeviceId(){let d=localStorage.getItem("sn_device_id");if(!d){d=id("DEVICE");localStorage.setItem("sn_device_id",d)}return d;}
 function login(){
-
-let name =
-document
-.getElementById("loginName")
-.value
-.trim();
-
-let pin =
-document
-.getElementById("loginPin")
-.value
-.trim();
-
-
-if(!name || !pin){
-
-toast(
-"กรอกชื่อและรหัสให้ครบค่ะ"
-);
-
-return;
-
+  ensureGuestUser();
+  const n=document.getElementById("loginName")?.value.trim();
+  if(n) user.name=n;
+  save();
+  closeModal("loginModal");
+  renderAll();
+}
+function openAdminDirect(){
+  if(user?.role !== "admin") rememberCustomerBeforeAdmin();
+  const customerOrders=Array.isArray(orders)?JSON.parse(JSON.stringify(orders)):[];
+  const customerMessages=Array.isArray(messages)?JSON.parse(JSON.stringify(messages)):[];
+  user={id:"ADMIN",name:ADMIN_NAME,role:"admin",email:"",profileImage:""};
+  orders=customerOrders;
+  messages=customerMessages;
+  localStorage.setItem("sn_all_orders",JSON.stringify(orders));
+  closeModal("loginModal");
+  document.body.classList.add("admin-mode");
+  openAdmin();
+  pollMessages();
 }
 
-
-/* ADMIN */
-
-if(
-name === ADMIN_NAME &&
-pin === ADMIN_PIN
-){
-
-user = {
-
-id:"ADMIN",
-
-name:ADMIN_NAME,
-
-role:"admin",
-
-email:"",
-
-profileImage:""
-
-};
-
-save();
-
-closeModal("loginModal");
-
-openAdmin();
-
-return;
-
+function backToHomeFromAdmin(){
+  const restored=restoreCustomerAfterAdmin();
+  document.body.classList.remove("admin-mode");
+  document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+  const home = document.getElementById("notesScreen");
+  if(home) home.classList.add("active");
+  document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
+  const n = document.getElementById("nNotes");
+  if(n) n.classList.add("active");
+  renderAll();
+  if(restored) syncCustomerMessagesNow(true);
+  pollMessages();
+  toast(restored ? "กลับบัญชีเดิมแล้วค่ะ" : "กลับหน้าหลักแล้วค่ะ");
 }
-
-
-/* CUSTOMER */
-
-let key =
-"sn_customer_" + name;
-
-let old =
-JSON.parse(
-localStorage.getItem(key) || "null"
-);
-
-
-if(
-old &&
-old.pin !== pin
-){
-
-toast(
-"ชื่อหรือรหัสไม่ถูกต้องค่ะ"
-);
-
-return;
-
-}
-
-
-/* NEW CUSTOMER */
-
-if(!old){
-
-old = {
-
-id:id("USER"),
-
-name:name,
-
-pin:pin,
-
-role:"customer",
-
-email:"",
-
-profileImage:"",
-
-createdAt:
-new Date().toISOString(),
-
-trialEnd:
-new Date(
-Date.now() +
-30 * 86400000
-).toISOString(),
-
-noteUnlocked:false
-
-};
-
-
-localStorage.setItem(
-key,
-JSON.stringify(old)
-);
-
-
-send({
-
-action:"register",
-
-user:old
-
-});
-
-}
-
-
-user = old;
-
-save();
-
-
-closeModal("loginModal");
-
-
-log(
-"เข้าสู่ระบบ",
-"ผู้ใช้",
-name,
-{
-role:user.role
-}
-);
-
-
-renderAll();
-
-
-toast(
-"เข้าสู่ระบบแล้วค่ะ 💗"
-);
-
-}
-
 
 /* ==========================================
    ACCESS
@@ -2604,24 +2439,13 @@ return;
 
 
 if(user.noteUnlocked){
-
-b.innerHTML = `
-
-<div class="lock">
-
-✨ คุณสั่งซื้อสินค้าแล้ว
-
-<b>
-ปลดล็อกโน้ตฟรีถาวร
-</b>
-
-</div>
-
-`;
-
-return;
-
+  b.innerHTML = "";
+  const trial=document.getElementById("shopTrialBanner");
+  if(trial) trial.style.display="none";
+  return;
 }
+const trial=document.getElementById("shopTrialBanner");
+if(trial) trial.style.display="block";
 
 
 let days =
@@ -2734,44 +2558,49 @@ r.readAsDataURL(file);
 }
 
 function saveProfile(){
-
-let oldName = user.name;
-user.name = document.getElementById("profileName").value.trim() || user.name;
-user.email = document.getElementById("profileEmail").value.trim();
-
-save();
-
-if(user.role !== "admin"){
-localStorage.setItem("sn_customer_" + user.name, JSON.stringify(user));
-if(oldName !== user.name){
-localStorage.removeItem("sn_customer_" + oldName);
+  let oldName = user.name;
+  const name = document.getElementById("profileName").value.trim() || user.name;
+  const email = document.getElementById("profileEmail").value.trim();
+  if(!email){ toast("กรอกอีเมลเพื่อบันทึกบัญชีเดิมค่ะ"); return; }
+  user.name = name;
+  user.email = email;
+  user.accountLoggedIn = true;
+  user.accountId = accountHash(name,email);
+  save();
+  saveAccountSnapshot();
+  send({action:"register",user});
+  log("บันทึกบัญชี","ผู้ใช้","บันทึกบัญชี",{email:user.email});
+  closeModal("profileModal");
+  renderProfileHeader();
+  toast("บันทึกบัญชีแล้วค่ะ ครั้งหน้าสามารถเข้าสู่ระบบบัญชีเดิมได้");
 }
-send({action:"register",user});
-}
 
-log("แก้ไขโปรไฟล์","ผู้ใช้","แก้ไขโปรไฟล์",{email:user.email});
-closeModal("profileModal");
-renderProfileHeader();
-toast("บันทึกโปรไฟล์แล้วค่ะ");
+function loginExistingAccount(){
+  const name=document.getElementById("loginAccountName")?.value.trim();
+  const email=document.getElementById("loginAccountEmail")?.value.trim();
+  if(!name || !email){toast("กรอกชื่อและอีเมลให้ครบค่ะ");return;}
+  const key=accountHash(name,email);
+  const acc=getAccounts().find(a=>a.id===key && a.name===name && a.email===email);
+  if(!acc){toast("ไม่พบบัญชีเดิมค่ะ กรุณาตรวจชื่อและอีเมล");return;}
+  user={...acc.user,accountLoggedIn:true};
+  notes=acc.notes||[]; tasks=acc.tasks||[]; cart=acc.cart||[]; messages=acc.messages||[];
+  orders=acc.orders||[];
+  localStorage.setItem("sn_user",JSON.stringify(user));
+  save();
+  closeModal("profileModal");
+  document.getElementById("loginAccountName").value="";
+  document.getElementById("loginAccountEmail").value="";
+  renderAll();
+  toast("เข้าสู่บัญชีเดิมแล้วค่ะ");
 }
 
 function logout(){
-if(user){
-log("ออกจากระบบ","ระบบ","ผู้ใช้กดออกจากระบบ",{});
-}
-user = null;
-localStorage.removeItem("sn_user");
-document.body.classList.remove("admin-mode");
-closeModal("profileModal");
-closeModal("loginModal");
-
-["contact","notes","shop","orders","admin"].forEach(s=>{
-let el=document.getElementById(s+"Screen");
-if(el) el.classList.remove("active");
-});
-document.getElementById("loginModal").classList.add("show");
-
-toast("ออกจากระบบแล้วค่ะ");
+  if(user?.role === "customer" && user.accountLoggedIn) saveAccountSnapshot();
+  document.body.classList.remove("admin-mode");
+  closeModal("profileModal");
+  startFreshGuestSession();
+  renderAll();
+  toast("เปิดเป็นผู้ใช้ใหม่แล้วค่ะ");
 }
 
 /* ==========================================
@@ -3272,128 +3101,122 @@ document
 }
 
 
+function formatDue(value){
+  if(!value) return "";
+  const m = String(value).trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2}))?$/);
+  if(m){ return `${m[1].padStart(2,"0")}/${m[2].padStart(2,"0")}/${m[3]}${m[4] ? ` ${m[4].padStart(2,"0")}:${m[5]}` : ""}`; }
+  return value;
+}
+
+function dueDateOnly(value){
+  const m=String(value||"").trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  if(!m) return null;
+  let y=Number(m[3]); if(y>2400) y-=543;
+  return new Date(y,Number(m[2])-1,Number(m[1]));
+}
+
+function checkHomeworkAlerts(){
+  if(!user || user.role!=="customer") return;
+  const today=new Date(); today.setHours(0,0,0,0);
+  tasks.filter(t=>!t.done && t.due).forEach(t=>{
+    const d=dueDateOnly(t.due); if(!d) return; d.setHours(0,0,0,0);
+    if(d.getTime()!==today.getTime()) return;
+    const key=`sn_hw_alert_${user.id}_${t.id}_${today.getTime()}`;
+    if(localStorage.getItem(key)) return;
+    localStorage.setItem(key,"1");
+    showHomeworkReminder(t.title);
+  });
+}
+
+function showHomeworkReminder(title,immediate=false){
+  const old=document.getElementById("homeworkReminder");
+  if(old) old.remove();
+
+  const el=document.createElement("div");
+  el.id="homeworkReminder";
+  el.innerHTML=`
+    <div class="hw-spidey-big">
+      <span class="hw-mask"><i></i><i></i></span>
+      <span class="hw-body"></span>
+    </div>
+    <div class="hw-text">
+      อย่าลืมทำการบ้านนะคะ<br>
+      <small>${esc(title)}</small>
+    </div>`;
+
+  document.body.appendChild(el);
+
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      el.classList.add("show");
+    });
+  });
+
+  setTimeout(()=>{
+    if(el.parentNode) el.remove();
+  }, immediate ? 4200 : 2500);
+}
+
 function saveTask(){
 
-let tid =
-document
-.getElementById("taskId")
-.value;
+  const tid=document.getElementById("taskId").value;
+  const title=document.getElementById("taskTitle").value.trim();
+  const detail=document.getElementById("taskDetail").value;
+  const due=document.getElementById("taskDue").value.trim();
 
+  if(!title){
+    toast("กรอกชื่อการบ้านค่ะ");
+    return;
+  }
 
-let title =
-document
-.getElementById("taskTitle")
-.value
-.trim();
+  const now=new Date().toISOString();
+  let savedTask=null;
 
+  if(tid){
+    const t=tasks.find(x=>x.id===tid);
+    if(!t) return;
 
-let detail =
-document
-.getElementById("taskDetail")
-.value;
+    Object.assign(t,{
+      title,
+      detail,
+      due,
+      updatedAt:now
+    });
+    savedTask=t;
 
+    log("แก้ไขการบ้าน","การบ้าน",title,{taskId:tid});
+  }else{
+    const t={
+      id:id("TASK"),
+      title,
+      detail,
+      due,
+      done:false,
+      createdAt:now,
+      updatedAt:now
+    };
+    tasks.unshift(t);
+    savedTask=t;
 
-let due =
-document
-.getElementById("taskDue")
-.value;
+    log("เพิ่มการบ้าน","การบ้าน",title,{task:t});
+  }
 
+  save();
+  closeModal("taskModal");
+  renderTasks();
 
-if(!title){
+  // ถ้ากำหนดส่งเป็น "วันนี้" ให้เด้งทันทีหลังบันทึก ไม่ต้องรอรอบเช็ก 30 วินาที
+  if(savedTask && !savedTask.done && isDueToday(savedTask)){
+    const today=new Date();
+    today.setHours(0,0,0,0);
+    localStorage.setItem(
+      `sn_hw_alert_${user.id}_${savedTask.id}_${today.getTime()}`,
+      "1"
+    );
+    showHomeworkReminder(savedTask.title,true);
+  }
 
-toast(
-"กรอกชื่อการบ้านค่ะ"
-);
-
-return;
-
-}
-
-
-let now =
-new Date().toISOString();
-
-
-if(tid){
-
-let t =
-tasks.find(
-x => x.id === tid
-);
-
-
-Object.assign(
-t,
-{
-title,
-detail,
-due,
-updatedAt:now
-}
-);
-
-
-log(
-"แก้ไขการบ้าน",
-"การบ้าน",
-title,
-{
-taskId:tid
-}
-);
-
-
-}else{
-
-let t = {
-
-id:id("TASK"),
-
-title,
-
-detail,
-
-due,
-
-done:false,
-
-createdAt:now,
-
-updatedAt:now
-
-};
-
-
-tasks.unshift(t);
-
-
-log(
-"เพิ่มการบ้าน",
-"การบ้าน",
-title,
-{
-task:t
-}
-);
-
-}
-
-
-save();
-
-
-closeModal(
-"taskModal"
-);
-
-
-renderTasks();
-
-
-toast(
-"บันทึกการบ้านแล้ว"
-);
-
+  toast("บันทึกการบ้านแล้ว");
 }
 
 
@@ -3445,152 +3268,52 @@ renderTasks();
 
 
 function deleteTask(tid){
-
-if(
-!confirm(
-"ลบการบ้านนี้ใช่ไหมคะ"
-)
-){
-
-return;
-
+  const taskId=String(tid||"");
+  const index=tasks.findIndex(x=>String(x.id)===taskId);
+  if(index<0){
+    toast("ไม่พบการบ้านที่ต้องการลบค่ะ");
+    return;
+  }
+  const removed=tasks[index];
+  tasks.splice(index,1);
+  save();
+  log("ลบการบ้าน","การบ้าน",removed.title||"",{taskId:removed.id});
+  renderTasks();
+  toast("ลบการบ้านแล้วค่ะ");
 }
 
-
-let t =
-tasks.find(
-x => x.id === tid
-);
-
-
-tasks =
-tasks.filter(
-x => x.id !== tid
-);
-
-
-save();
-
-
-log(
-"ลบการบ้าน",
-"การบ้าน",
-t?.title || "",
-{
-taskId:tid
+function isDueToday(t){
+  if(!t || t.done || !t.due) return false;
+  const d=dueDateOnly(t.due); if(!d) return false;
+  const now=new Date(); now.setHours(0,0,0,0); d.setHours(0,0,0,0);
+  return d.getTime()===now.getTime();
 }
-);
-
-
-renderTasks();
-
-}
-
 
 function renderTasks(){
-
-let box =
-document.getElementById(
-"tasksList"
-);
-
-
-if(!unlocked()){
-
-box.innerHTML = `
-
-<div class="empty">
-
-ปลดล็อกการจดการบ้าน
-หลังสั่งซื้อค่ะ
-
-</div>
-
-`;
-
-return;
-
+  const box=document.getElementById("tasksList");
+  if(!unlocked()){
+    box.innerHTML=`<div class="empty">ปลดล็อกการจดการบ้านหลังสั่งซื้อค่ะ</div>`;
+    return;
+  }
+  box.innerHTML=tasks.length ? tasks.map(t=>{
+    const today=isDueToday(t);
+    return `<div class="task ${t.done?"done":""} ${today?"today-due":""}">
+      ${today?`<div class="task-spidey-dance" aria-label="อย่าลืมทำการบ้านนะคะ"><span class="head"></span><span class="torso"></span><span class="web-symbol">✦</span><span class="leg l"></span><span class="leg r"></span></div>`:""}
+      <input type="checkbox" ${t.done?"checked":""} onchange="toggleTask('${t.id}')">
+      <div class="grow">
+        ${today?`<span class="task-today-badge">📢 ส่งวันนี้</span>`:""}
+        <h3>${esc(t.title)}</h3>
+        <p>${esc(t.detail)}</p>
+        <p>กำหนดส่ง: ${formatDue(t.due)||"ไม่ระบุ"}</p>
+        ${today?`<p style="font-weight:800;color:#c51f5d">อย่าลืมทำการบ้านนะคะ</p>`:""}
+        <div class="actions">
+          <button class="mini" onclick="openTask('${t.id}')">แก้ไข</button>
+          <button type="button" class="mini danger" onclick="event.stopPropagation();deleteTask('${t.id}')">ลบ</button>
+        </div>
+      </div>
+    </div>`;
+  }).join("") : `<div class="empty">ยังไม่มีการบ้าน</div>`;
 }
-
-
-box.innerHTML =
-tasks.length
-
-?
-
-tasks.map(
-t => `
-
-<div
-class="task
-${t.done ? "done" : ""}">
-
-<input
-type="checkbox"
-${t.done ? "checked" : ""}
-onchange="toggleTask('${t.id}')">
-
-
-<div class="grow">
-
-<h3>
-${esc(t.title)}
-</h3>
-
-<p>
-${esc(t.detail)}
-</p>
-
-<p>
-กำหนดส่ง:
-${
-t.due
-?
-new Date(t.due)
-.toLocaleDateString("th-TH")
-:
-"ไม่ระบุ"
-}
-</p>
-
-
-<div class="actions">
-
-<button
-class="mini"
-onclick="openTask('${t.id}')">
-
-แก้ไข
-
-</button>
-
-
-<button
-class="mini danger"
-onclick="deleteTask('${t.id}')">
-
-ลบ
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`
-)
-.join("")
-
-:
-
-`<div class="empty">
-ยังไม่มีการบ้าน
-</div>`;
-
-}
-
 
 /* ==========================================
    PRODUCTS
@@ -3608,7 +3331,7 @@ p => `
 <div class="product">
 
 <div class="pic">
-${p.emoji}
+${p.image ? `<img src="${p.image}" alt="${esc(p.name)}" style="width:100%;height:100%;object-fit:contain;border-radius:12px">` : p.emoji}
 </div>
 
 <h3>
@@ -3626,7 +3349,7 @@ ${money(p.price)}
 <button
 class="buy"
 ${p.stock < 1 ? "disabled" : ""}
-onclick="addCart('${p.id}')">
+onclick="addCart('${p.id}', this)">
 
 ${p.stock < 1 ? "หมด" : "เพิ่มลงตะกร้า"}
 
@@ -3660,11 +3383,12 @@ document
 .getElementById("cartCount")
 .textContent =
 `🛒 ${c} ชิ้น`;
+updateCartBadge();
 
 }
 
 
-function addCart(pid){
+function addCart(pid, buttonEl){
 
 let p =
 PRODUCTS.find(
@@ -3717,13 +3441,45 @@ productId:pid
 );
 
 
+animateSpiderToCart(buttonEl);
+
 renderProducts();
 
+const cartButton = document.querySelector('#shopScreen .toprow button[onclick="openCart()"]');
+if(cartButton){
+  cartButton.classList.remove("cart-spidey-pop");
+  void cartButton.offsetWidth;
+  cartButton.classList.add("cart-spidey-pop");
+  setTimeout(()=>cartButton.classList.remove("cart-spidey-pop"),450);
+}
 
 toast(
 "เพิ่มลงตะกร้าแล้ว"
 );
 
+}
+
+function animateSpiderToCart(buttonEl){
+  if(!buttonEl) return;
+  const cartButton = document.querySelector('#shopScreen .toprow button[onclick="openCart()"]');
+  if(!cartButton) return;
+  const a = buttonEl.getBoundingClientRect();
+  const b = cartButton.getBoundingClientRect();
+  const x = a.left + a.width/2 - 24;
+  const y = a.top + a.height/2 - 24;
+  const dx = (b.left+b.width/2) - (a.left+a.width/2);
+  const dy = (b.top+b.height/2) - (a.top+a.height/2);
+  const el = document.createElement("div");
+  el.className = "cart-fly-spidey";
+  el.innerHTML = '<span class="fly-mask"><i></i><i></i></span><span class="fly-body"></span>';
+  el.style.left = x + "px";
+  el.style.top = y + "px";
+  el.style.setProperty("--dx", dx + "px");
+  el.style.setProperty("--dy", dy + "px");
+  el.style.setProperty("--dx1", (dx*0.25) + "px");
+  el.style.setProperty("--dx2", (dx*0.68) + "px");
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),950);
 }
 
 
@@ -3741,6 +3497,14 @@ document
 
 }
 
+
+function updateCartBadge(){
+  const count=(cart||[]).reduce((a,b)=>a+Number(b.qty||0),0);
+  const b=document.getElementById("shopCartBadge");
+  if(b){b.textContent=count;b.style.display=count?"grid":"none";}
+  const c=document.getElementById("cartCount");
+  if(c) c.textContent=`🛒 ${count} ชิ้น`;
+}
 
 function renderCart(){
 
@@ -3763,7 +3527,7 @@ document
 .getElementById("cartTotal")
 .textContent =
 "รวม ฿0";
-
+updateCartBadge();
 return;
 
 }
@@ -3850,6 +3614,7 @@ document
 .textContent =
 "รวม " +
 money(total);
+updateCartBadge();
 
 }
 
@@ -3949,8 +3714,14 @@ document
 .getElementById("checkoutModal")
 .classList.add("show");
 
+refreshLinkedBank();
 }
 
+
+function toggleBankPayment(){const selected=document.querySelector('input[name="paymentMethod"]:checked')?.value;const box=document.getElementById("bankPaymentBox");if(box)box.style.display=selected==="ตัดผ่านบัญชีธนาคาร"?"block":"none";}
+function openBankLink(){document.getElementById("bankModal").classList.add("show");}
+function linkBankAccount(){const bank=document.getElementById("bankName").value,name=document.getElementById("bankAccountName").value.trim(),last4=document.getElementById("bankLast4").value.trim();if(!name||!/^[0-9]{4}$/.test(last4)){toast("กรุณากรอกชื่อบัญชีและเลข 4 ตัวท้ายให้ครบค่ะ");return;}user.bankAccount={bank,name,last4};save();document.getElementById("linkedBankText").textContent=`เชื่อมแล้ว: ${bank} • ${name} • ****${last4}`;closeModal("bankModal");toast("เชื่อมบัญชีธนาคารแล้วค่ะ");}
+function refreshLinkedBank(){const t=document.getElementById("linkedBankText");if(t&&user?.bankAccount)t.textContent=`เชื่อมแล้ว: ${user.bankAccount.bank} • ${user.bankAccount.name} • ****${user.bankAccount.last4}`;toggleBankPayment();}
 
 function placeOrder(){
 
@@ -4016,15 +3787,9 @@ qty:i.qty
 );
 
 
-let total =
-items.reduce(
-(s,i) =>
-s +
-i.price *
-i.qty,
-0
-);
-
+let total=items.reduce((s,i)=>s+i.price*i.qty,0);
+let paymentMethod=document.querySelector('input[name="paymentMethod"]:checked')?.value || "ตัดผ่านบัญชีธนาคาร";
+if(paymentMethod === "ตัดผ่านบัญชีธนาคาร" && !user.bankAccount){toast("กรุณาเชื่อมบัญชีธนาคารก่อนค่ะ");return;}
 
 let order = {
 
@@ -4038,8 +3803,8 @@ items,
 
 total,
 
-payment:
-"เก็บเงินปลายทาง (COD)",
+payment:paymentMethod,
+bankAccount:user.bankAccount || null,
 
 shipping:{
 
@@ -4063,7 +3828,9 @@ new Date().toISOString()
 /* ซื้อสำเร็จ */
 
 orders.unshift(order);
-
+let allOrders = JSON.parse(localStorage.getItem("sn_all_orders") || "[]");
+allOrders.unshift(order);
+localStorage.setItem("sn_all_orders", JSON.stringify(allOrders));
 
 /* ปลดล็อกโน้ต */
 
@@ -4110,12 +3877,18 @@ closeModal(
 renderAll();
 
 
-toast(
-"สั่งซื้อสำเร็จ 🎉 ปลดล็อกโน้ตฟรีแล้ว"
-);
+showPurchaseCelebration();
 
 }
 
+
+function showPurchaseCelebration(){
+  const old=document.getElementById("purchaseCelebration"); if(old) old.remove();
+  const el=document.createElement("div"); el.id="purchaseCelebration"; el.className="purchase-celebrate";
+  el.innerHTML=`<div class="purchase-web"></div><div class="purchase-spidey"><span class="mask"><i></i><i></i></span><span class="body"></span></div><div class="purchase-text">ขอบคุณค่ะ<br>คุณได้ปลดล็อคใช้โน๊ตฟรี</div>`;
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),2500);
+}
 
 /* ==========================================
    ORDERS
@@ -4164,71 +3937,177 @@ function getOrderForViewer(orderId){
   return o;
 }
 
+function hideAdminDetailCards(){
+  ["adminUsersCard","adminProductsCard","adminOrdersCard","adminSalesCard","adminShippingCard","adminChatsCard"].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.style.display="none";
+  });
+}
+function showAdminDetailCard(id){
+  hideAdminDetailCards();
+  const card=document.getElementById(id);
+  if(card){ card.style.display="block"; card.scrollIntoView({behavior:"smooth",block:"start"}); }
+}
+function openAdminUsersPanel(){
+  if(user?.role!=="admin") return;
+  showAdminDetailCard("adminUsersCard");
+  const box=document.getElementById("adminUsers");
+  const users=new Map();
+  (orders||[]).forEach(o=>{ if(o.userId) users.set(o.userId,{id:o.userId,name:o.userName||"ลูกค้า",orders:(users.get(o.userId)?.orders||0)+1}); });
+  (messages||[]).forEach(m=>{ if(m.userId && !users.has(m.userId)) users.set(m.userId,{id:m.userId,name:m.userName||"ลูกค้า",orders:0}); });
+  box.innerHTML=users.size?[...users.values()].map(u=>`<div class="admin-row"><b>👤 ${esc(u.name)}</b><br><small>ID: ${esc(u.id)} · คำสั่งซื้อ ${u.orders}</small></div>`).join(""):'<div class="empty">ยังไม่มีข้อมูลผู้ใช้</div>';
+}
 function openAdminOrdersPanel(){
-  if(user?.role !== "admin"){
-    toast("เฉพาะแอดมินจุมาพรเท่านั้นค่ะ");
+  if(user?.role!=="admin") return;
+  showAdminDetailCard("adminOrdersCard");
+
+  const box=document.getElementById("adminOrders");
+  if(!box) return;
+
+  const list=Array.isArray(orders)?orders:[];
+  if(!list.length){
+    box.innerHTML='<div class="empty">ยังไม่มีคำสั่งซื้อ</div>';
     return;
   }
-  const card = document.getElementById("adminOrdersCard");
-  if(card){
-    card.scrollIntoView({behavior:"smooth", block:"start"});
-  }
-  renderAdminOrders();
+
+  box.innerHTML=list.map(o=>{
+    const oid=o.id||o.orderId||"";
+    const st=o.status||"รอจัดส่ง";
+    const items=(o.items||[]).map(i=>`${esc(i.name||"สินค้า")} × ${Number(i.qty||0)}`).join("<br>");
+    return `
+      <div class="activity admin-order-click">
+        <b>📦 ${esc(o.userName||o.shipping?.name||"ลูกค้า")}</b> — ${esc(oid)}<br>
+        ${items || "ไม่มีรายการสินค้า"}<br>
+        <b>${money(Number(o.total||0))}</b><br>
+        <span class="status">${esc(st)}</span><br>
+        <button class="mini" type="button" onclick="currentOrderId='${esc(oid)}';openOrderDetail('${esc(oid)}')">🔎 ดูออเดอร์ / พิมพ์ที่อยู่</button>
+      </div>`;
+  }).join("");
+}
+function openAdminSalesPanel(){
+  if(user?.role!=="admin") return;
+  showAdminDetailCard("adminSalesCard");
+  const totals={};
+  (orders||[]).forEach(o=>(o.items||[]).forEach(i=>{
+    const k=i.id||i.name;
+    if(!totals[k]) totals[k]={name:i.name||"สินค้า",qty:0,total:0};
+    totals[k].qty+=Number(i.qty||0);
+    totals[k].total+=Number(i.price||0)*Number(i.qty||0);
+  }));
+  const box=document.getElementById("adminSales");
+  const arr=Object.values(totals);
+  const soldQty=arr.reduce((s,x)=>s+x.qty,0);
+  const soldRevenue=arr.reduce((s,x)=>s+x.total,0);
+  box.innerHTML=`<div style="margin-bottom:10px;padding:10px;border-radius:12px;background:#fff8fb;border:1px solid #ffd0df"><b>รวมขายได้ ${soldQty} ชิ้น</b><span style="float:right;font-weight:800;color:#cb2a6d">${money(soldRevenue)}</span></div><div style="margin-bottom:10px"><button class="primary" type="button" onclick="openAdminProductsPanel()">🛍️ จัดการสินค้า</button></div>` + (arr.length?arr.map(x=>`<div class="admin-sale-row"><span>🛍️ <b>${esc(x.name)}</b><br><small>ขายได้ ${x.qty} ชิ้น</small></span><b>${money(x.total)}</b></div>`).join(""):'<div class="empty">ยังไม่มีสินค้าที่ขาย</div>');
+}
+function openAdminShippingPanel(){
+  if(user?.role!=="admin") return;
+  showAdminDetailCard("adminShippingCard");
+  const box=document.getElementById("adminShipping");
+  const all=Array.isArray(orders)?orders:[];
+  const groups=[
+    ["รอจัดส่ง","รอจัดส่ง"],
+    ["กำลังจัดส่ง","อยู่ระหว่างขนส่ง"],
+    ["จัดส่งสำเร็จ","จัดส่งสำเร็จ"]
+  ];
+  const make=(status,title)=>{
+    const arr=all.filter(o=>(o.status||"รอจัดส่ง")===status);
+    const qty=arr.reduce((sum,o)=>sum+(o.items||[]).reduce((n,i)=>n+Number(i.qty||0),0),0);
+    return `<div class="shipping-col"><h4>${title} <span class="ship-count">${arr.length}</span></h4><div class="ship-items">รวมสินค้า ${qty} ชิ้น</div>${arr.length?arr.map(o=>`<div class="admin-shipping-row"><b>📦 ${esc(o.userName||"ลูกค้า")}</b><br><small>${esc(o.id)}<br>${esc(o.shipping?.name||o.userName||"")} · ${esc(o.shipping?.phone||"")}<br>${esc(o.shipping?.address||"")}</small><div style="margin-top:7px"><select onchange="adminStatus('${esc(o.id)}',this.value);openAdminShippingPanel()"><option ${o.status==="รอจัดส่ง"?"selected":""}>รอจัดส่ง</option><option ${o.status==="กำลังจัดส่ง"?"selected":""}>กำลังจัดส่ง</option><option ${o.status==="จัดส่งสำเร็จ"?"selected":""}>จัดส่งสำเร็จ</option><option ${o.status==="ยกเลิก"?"selected":""}>ยกเลิก</option></select></div></div>`).join(""):'<div class="empty" style="padding:20px 5px">ยังไม่มีออเดอร์</div>'}</div>`;
+  };
+  box.innerHTML=`<div class="shipping-columns">${groups.map(g=>make(g[0],g[1])).join("")}</div>`;
 }
 
 function openOrderDetail(orderId){
-  const o = getOrderForViewer(orderId);
-  if(!o){
-    toast("ไม่สามารถดูคำสั่งซื้อของผู้อื่นได้ค่ะ");
-    return;
-  }
-  currentOrderId = orderId;
-  const printBtn = document.getElementById("adminPrintOrderBtn");
-  if(printBtn) printBtn.style.display = user?.role === "admin" ? "inline-flex" : "none";
-  const box = document.getElementById("orderDetailContent");
+  const o=getOrderForViewer(orderId);
+  if(!o){ toast("ไม่พบคำสั่งซื้อนี้ค่ะ"); return; }
+  currentOrderId=o.id;
+  const box=document.getElementById("orderDetailContent");
   if(!box) return;
-  box.innerHTML = `
+  const ship=o.shipping||{};
+  const items=(o.items||[]).map(i=>`<div class="order-detail-item"><span>${esc(i.name||"สินค้า")} × ${Number(i.qty||0)}</span><b>${money(Number(i.price||0)*Number(i.qty||0))}</b></div>`).join("");
+  box.innerHTML=`
     <div id="printArea" class="order-detail-card">
-      <h3>📦 ใบรายละเอียดคำสั่งซื้อ</h3>
-      <b>เลขที่คำสั่งซื้อ:</b> ${esc(o.id)}<br>
-      <b>วันที่:</b> ${date(o.createdAt)}<br>
-      <b>สถานะ:</b> ${user?.role === "admin" ? `<select onchange="adminStatus('${esc(o.id)}',this.value); openOrderDetail('${esc(o.id)}')"><option ${o.status==="รอจัดส่ง"?"selected":""}>รอจัดส่ง</option><option ${o.status==="กำลังจัดส่ง"?"selected":""}>กำลังจัดส่ง</option><option ${o.status==="จัดส่งสำเร็จ"?"selected":""}>จัดส่งสำเร็จ</option><option ${o.status==="ยกเลิก"?"selected":""}>ยกเลิก</option></select>` : `<span class="status">${esc(o.status || "รอจัดส่ง")}</span>`}
-      <hr style="border:0;border-top:1px solid #f0dce5;margin:12px 0">
-      <b>ผู้รับ:</b> ${esc(o.shipping?.name || o.userName || "")}<br>
-      <b>โทร:</b> ${esc(o.shipping?.phone || "")}<br>
-      <b>ที่อยู่:</b> ${esc(o.shipping?.address || "")}
-      <h4 style="margin-top:14px">รายการสินค้า</h4>
-      ${(o.items || []).map(i => `<div class="order-detail-item"><span>${esc(i.name)} × ${i.qty}</span><b>${money((i.price||0)*i.qty)}</b></div>`).join("")}
-      <div style="text-align:right;margin-top:12px;font-size:18px"><b>รวม ${money(o.total)}</b></div>
-      <div style="margin-top:8px">ชำระเงิน: ${esc(o.payment || "เก็บเงินปลายทาง (COD)")}</div>
-    </div>
-  `;
-  document.getElementById("orderDetailModal").classList.add("show");
+      <h3>📦 ${esc(o.id)}</h3>
+      <div class="order-detail-item"><span>วันที่สั่งซื้อ</span><b>${date(o.createdAt)}</b></div>
+      <div class="order-detail-item"><span>ผู้สั่งซื้อ</span><b>${esc(o.userName||ship.name||"ลูกค้า")}</b></div>
+      <div class="order-detail-item"><span>ชื่อผู้รับ</span><b>${esc(ship.name||"")}</b></div>
+      <div class="order-detail-item"><span>เบอร์โทร</span><b>${esc(ship.phone||"")}</b></div>
+      <div class="order-detail-item"><span>ที่อยู่</span><b style="text-align:right;max-width:62%">${esc(ship.address||"")}</b></div>
+      <div class="order-detail-item"><span>สถานะ</span><b>${esc(o.status||"รอจัดส่ง")}</b></div>
+      <h3 style="margin-top:12px">🛍️ รายการสินค้า</h3>
+      ${items || '<div class="empty" style="padding:15px">ไม่มีรายการสินค้า</div>'}
+      <div class="total">รวม ${money(Number(o.total||0))}</div>
+      <div class="small">ชำระเงิน: ${esc(o.payment||"")}</div>
+    </div>`;
+  const printBtn=document.getElementById("adminPrintOrderBtn");
+  if(printBtn){ printBtn.style.display=user?.role==="admin"?"block":"none"; }
+  document.getElementById("orderDetailModal")?.classList.add("show");
 }
+
+window.addEventListener("afterprint",()=>{
+  const sheet=document.getElementById("addressPrintSheet");
+  if(sheet){
+    sheet.innerHTML="";
+    sheet.setAttribute("aria-hidden","true");
+  }
+});
 
 function printCurrentOrder(){
   if(user?.role !== "admin"){
-    toast("เฉพาะหลังบ้านเท่านั้นที่สามารถพิมพ์คำสั่งซื้อและที่อยู่ได้ค่ะ");
+    toast("เฉพาะหลังบ้านเท่านั้นที่สามารถพิมพ์ใบแปะพัสดุได้ค่ะ");
     return;
   }
-  const o = getOrderForViewer(currentOrderId);
-  if(!o){
-    toast("ไม่สามารถพิมพ์คำสั่งซื้อของผู้อื่นได้ค่ะ");
-    return;
-  }
-  const print = document.getElementById("printArea");
-  if(!print) return;
-  const w = window.open("", "_blank", "width=800,height=900");
-  if(!w){
-    toast("กรุณาอนุญาตหน้าต่างป๊อปอัปเพื่อพิมพ์ค่ะ");
-    return;
-  }
-  w.document.write(`<!doctype html><html lang="th"><head><meta charset="UTF-8"><title>Order ${esc(o.id)}</title><style>body{font-family:Arial,Tahoma,sans-serif;padding:30px;color:#222}h2{margin-top:0}.line{border-bottom:1px solid #ddd;padding:8px 0}.total{font-size:20px;font-weight:700;text-align:right;margin-top:18px}</style></head><body><h2>📦 StudyNote - ใบคำสั่งซื้อ</h2>${print.innerHTML}</body></html>`);
-  w.document.close();
-  w.focus();
-  setTimeout(()=>{w.print();},300);
-}
 
+  const o=getOrderForViewer(currentOrderId);
+  if(!o){
+    toast("ไม่พบคำสั่งซื้อค่ะ");
+    return;
+  }
+
+  const sheet=document.getElementById("addressPrintSheet");
+  if(!sheet){
+    toast("ไม่พบใบแปะพัสดุค่ะ");
+    return;
+  }
+
+  const ship=o.shipping||{};
+  const items=(o.items||[]).map(i=>`
+    <div class="shipping-item">
+      <span>${esc(i.name||"สินค้า")} × ${Number(i.qty||0)}</span>
+      <b>${money(Number(i.price||0)*Number(i.qty||0))}</b>
+    </div>
+  `).join("");
+
+  sheet.innerHTML=`
+    <div class="shipping-label-head">📦 ใบแปะพัสดุ</div>
+    <div class="shipping-order-id">เลขที่คำสั่งซื้อ: <b>${esc(o.id)}</b></div>
+
+    <div class="shipping-section-label">ผู้รับ</div>
+    <div class="shipping-recipient">${esc(ship.name||o.userName||"")}</div>
+
+    <div class="shipping-section-label">เบอร์โทร</div>
+    <div class="shipping-phone">${esc(ship.phone||"-")}</div>
+
+    <div class="shipping-section-label">ที่อยู่สำหรับจัดส่ง</div>
+    <div class="shipping-address">${esc(ship.address||"")}</div>
+
+    <div class="shipping-divider"></div>
+    <div class="shipping-section-label">รายการสินค้า</div>
+    <div class="shipping-items">${items||"ไม่มีรายการสินค้า"}</div>
+    <div class="shipping-total">รวม ${money(Number(o.total||0))}</div>
+    <div class="shipping-cod">${esc(o.payment||"เก็บเงินปลายทาง (COD)")}</div>
+  `;
+
+  // แสดงหน้าพิมพ์ทันทีจากการกดปุ่ม เพื่อให้คอม/โทรศัพท์/iPad เรียกหน้าพิมพ์ของระบบได้จริง
+  try{
+    sheet.setAttribute("aria-hidden","false");
+    void sheet.offsetHeight;
+    window.print();
+  }catch(e){
+    toast("เปิดหน้าพิมพ์ไม่สำเร็จค่ะ กรุณาลองกดอีกครั้งนะคะ");
+  }
+}
 
 /* ==========================================
    CUSTOMER CHAT
@@ -4287,6 +4166,24 @@ read:false
 messages.push(m);
 
 
+/* ตอบกลับอัตโนมัติทันทีจากแอดมิน */
+const previousCustomerMessages=(messages||[]).filter(m=>m.userId===user.id && m.from==="customer").length;
+const autoReplyText = previousCustomerMessages===0
+  ? "กรุณารอสักครู่ มีเรื่องอะไรให้ช่วยเหลือแจ้งแอดมินไว้ได้เลยนะคะ"
+  : "หากพบปัญหาสามารถแจ้งไว้ได้เลยนะคะ";
+const autoReply={
+  id:id("MSG"),
+  userId:user.id,
+  userName:user.name,
+  from:"admin",
+  text:autoReplyText,
+  time:new Date().toISOString(),
+  read:false,
+  autoReply:true
+};
+messages.push(autoReply);
+
+
 save();
 
 
@@ -4296,6 +4193,12 @@ action:"message",
 
 message:m
 
+});
+
+
+send({
+  action:"message",
+  message:autoReply
 });
 
 
@@ -4316,6 +4219,7 @@ document
 
 
 renderChat();
+showChatTopPopup(1,autoReplyText);
 
 
 toast(
@@ -4325,71 +4229,58 @@ toast(
 }
 
 
-function renderChat(){
-
-let arr =
-messages.filter(
-m =>
-m.userId === user?.id
-);
-
-
-document
-.getElementById("chatMessages")
-.innerHTML =
-
-arr.length
-
-?
-
-arr.map(
-m => `
-
-<div
-class="bubble
-${m.from === "customer"
-?
-"mine"
-:
-"theirs"}">
-
-<b>
-${m.from === "customer"
-?
-"คุณ"
-:
-"แอดมิน"}
-</b>
-
-<br>
-
-${esc(m.text)}
-
-<br>
-
-<small>
-${date(m.time)}
-</small>
-
-</div>
-
-`
-)
-.join("")
-
-:
-
-`
-<div
-class="empty"
-style="padding:20px">
-
-ยังไม่มีข้อความ
-
-</div>
-`;
-
+function updateCustomerChatBadge(){
+  if(!user || user.role!=="customer") return;
+  const count=(messages||[]).filter(m=>m.userId===user.id && m.from==="admin" && !m.read).length;
+  const b=document.getElementById("customerChatBadge");
+  if(b){
+    b.textContent=count;
+    b.style.display=count?"inline-grid":"none";
+  }
 }
+
+function markCustomerChatRead(){
+  if(!user || user.role!=="customer") return;
+  let changed=false;
+  (messages||[]).forEach(m=>{
+    if(m.userId===user.id && m.from==="admin" && !m.read){
+      m.read=true;
+      changed=true;
+    }
+  });
+  if(changed){
+    save();
+    try{
+      localStorage.setItem("sn_messages_"+user.id,JSON.stringify(messages||[]));
+    }catch(e){}
+  }
+  updateCustomerChatBadge();
+}
+
+function renderChat(markRead=false){
+
+  let arr = (messages||[]).filter(m => m.userId === user?.id);
+
+  document.getElementById("chatMessages").innerHTML =
+    arr.length
+    ? arr.map(m => `
+      <div class="bubble ${m.from === "customer" ? "mine" : "theirs"}">
+        <b>${m.from === "customer" ? "คุณ" : "แอดมิน"}</b>
+        <br>
+        ${esc(m.text || m.body || "")}
+        <br>
+        <small>${date(m.time || m.timestamp || m.createdAt)}</small>
+      </div>
+    `).join("")
+    : `<div class="empty" style="padding:20px">ยังไม่มีข้อความ</div>`;
+
+  if(markRead) markCustomerChatRead();
+  else updateCustomerChatBadge();
+
+  const box=document.getElementById("chatMessages");
+  if(box) box.scrollTop=box.scrollHeight;
+}
+
 
 
 /* ==========================================
@@ -4406,28 +4297,12 @@ if(!user || user.role !== "admin" || user.name !== ADMIN_NAME){
 
 document.body.classList.add("admin-mode");
 
-user = {
-
-id:"ADMIN",
-
-name:ADMIN_NAME,
-
-role:"admin",
-
-email:""
-
-};
-
-
-save();
-
-
-switchScreen(
-"admin"
-);
+// ไม่ทับบัญชีลูกค้าที่กำลังใช้งาน เพื่อให้กลับหน้าบ้านแล้วเป็นบัญชีเดิม
+switchScreen("admin");
 
 
 renderAdmin();
+  pollMessages();
 
 }
 
@@ -4467,6 +4342,7 @@ messages
 
 
 function showAdminData(d){
+  hideAdminDetailCards();
 
 document
 .getElementById("sUsers")
@@ -4480,67 +4356,21 @@ document
 d.stats?.orders || 0;
 
 
-document
-.getElementById("sRevenue")
-.textContent =
-money(
-d.stats?.revenue || 0
-);
+const soldQty=(d.orders||[]).reduce((sum,o)=>sum+(o.items||[]).reduce((n,i)=>n+Number(i.qty||0),0),0);
+
+document.getElementById("sRevenue").textContent=money(d.stats?.revenue || 0);
+const salesQtyEl=document.getElementById("sSalesQty");
+if(salesQtyEl) salesQtyEl.textContent=`ขายได้ ${soldQty} ชิ้น`;
+const shipEl=document.getElementById("sShipping");
+if(shipEl) shipEl.textContent=soldQty;
+const prodEl=document.getElementById("sProducts");
+if(prodEl) prodEl.textContent=PRODUCTS.length;
+
+document.getElementById("sNotes").textContent=d.stats?.notes || 0;
 
 
-document
-.getElementById("sNotes")
-.textContent =
-d.stats?.notes || 0;
-
-
-/* ACTIVITIES */
-
-document
-.getElementById("adminActivities")
-.innerHTML =
-
-(d.activities || [])
-.slice(0,30)
-.map(
-a => `
-
-<div class="activity">
-
-<b>
-${esc(a.userName)}
-</b>
-
-—
-
-${esc(
-a.action ||
-a.eventAction
-)}
-
-<br>
-
-${esc(a.detail)}
-
-<br>
-
-<small>
-${date(
-a.time ||
-a.timestamp
-)}
-</small>
-
-</div>
-
-`
-)
-.join("")
-
-||
-
-"ยังไม่มีกิจกรรม";
-
+/* PRODUCTS */
+renderAdminProductsPanel();
 
 /* ORDERS */
 
@@ -4578,7 +4408,7 @@ ${money(o.total)}
 
 <br>
 
-<small>กดดูออเดอร์ / ที่อยู่ / พิมพ์ใบสั่งซื้อ</small>
+<button class="mini" type="button" onclick="event.stopPropagation(); currentOrderId='${esc(oid)}'; openOrderDetail('${esc(oid)}')">🖨️ ดูรายละเอียด / พิมพ์</button>
 
 <br>
 
@@ -4679,6 +4509,12 @@ renderAdminChatPanel();
    ADMIN REPLY
 ========================================== */
 
+function openAdminChatsPanel(){
+  if(user?.role!=="admin") return;
+  showAdminDetailCard("adminChatsCard");
+  document.getElementById("adminChatsCard")?.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
 function toggleAdminChatPanel(show){
 
   if(user?.role !== "admin") return;
@@ -4702,6 +4538,9 @@ function renderAdminChatPanel(){
 
   const usersBox = document.getElementById("adminChatUsers");
   if(!usersBox) return;
+  const unread=(messages||[]).filter(m=>m.from==="customer" && !m.read).length;
+  const badge=document.getElementById("adminChatBadge");
+  if(badge){ badge.textContent=unread; badge.style.display=unread?"inline-grid":"none"; }
 
   const grouped = {};
   (messages || []).forEach(m => {
@@ -4731,9 +4570,12 @@ function renderAdminChatPanel(){
 function openAdminCustomerChat(uid,name){
 
   if(user?.role !== "admin") return;
+  const pop=document.getElementById("adminChatTopPopup"); if(pop) pop.classList.remove("show");
 
   window.adminChatUserId = uid;
   window.adminChatUserName = name || "ลูกค้า";
+  (messages||[]).forEach(m=>{if(m.userId===uid && m.from==="customer") m.read=true;});
+  save();
   toggleAdminChatPanel(true);
   renderAdminChatPanel();
 }
@@ -4748,6 +4590,10 @@ function renderAdminConversation(){
   if(!title || !box) return;
 
   title.textContent = "💬 " + (window.adminChatUserName || "ลูกค้า");
+
+  const customerOrders=(orders||[]).filter(o=>o.userId===uid);
+  const orderSummary=customerOrders.length ? `<div style="margin-top:6px;padding:7px;background:#fff5f8;border-radius:9px;font-size:11px"><b>📦 สินค้าที่สั่ง:</b> ${customerOrders.map(o=>o.items.map(i=>`${esc(i.name)} × ${i.qty}`).join(", ")).join(" | ")}</div>` : `<div style="margin-top:6px;color:#999;font-size:11px">ยังไม่มีคำสั่งซื้อ</div>`;
+  title.innerHTML = `💬 ${esc(window.adminChatUserName || "ลูกค้า")}${orderSummary}`;
 
   const arr = (messages || []).filter(m => m.userId === uid);
 
@@ -4797,6 +4643,7 @@ function sendAdminChatReply(){
     const customerMessages = JSON.parse(localStorage.getItem(key) || "[]");
     customerMessages.push(msg);
     localStorage.setItem(key, JSON.stringify(customerMessages));
+    localStorage.setItem("sn_messages_updated_"+uid, String(Date.now()));
   }catch(e){}
 
   save();
@@ -4836,12 +4683,15 @@ x => x.id === oid
 
 
 if(o){
-
-o.status =
-status;
-
-save();
-
+  o.status=status;
+  let all=JSON.parse(localStorage.getItem("sn_all_orders")||"[]");
+  const ao=all.find(x=>x.id===oid); if(ao) ao.status=status;
+  localStorage.setItem("sn_all_orders",JSON.stringify(all));
+  if(window.__snCustomerBeforeAdmin?.orders){
+    const co=window.__snCustomerBeforeAdmin.orders.find(x=>x.id===oid);
+    if(co) co.status=status;
+  }
+  save();
 }
 
 
@@ -4876,6 +4726,44 @@ toast(
 /* ==========================================
    ADMIN DASHBOARD
 ========================================== */
+
+
+function renderAdminProductsPanel(){
+  const box=document.getElementById("adminProducts"); if(!box) return;
+  box.innerHTML=PRODUCTS.map(p=>`<div class="admin-product-row">${p.image?`<img src="${p.image}" alt="${esc(p.name)}">`:`<div class="emoji">${p.emoji}</div>`}<div class="grow"><b>${esc(p.name)}</b><br><small>${money(p.price)} · สต็อก ${p.stock}</small></div><button class="mini" onclick="openProductEditor('${esc(p.id)}')">แก้ไข</button></div>`).join("");
+  const stat=document.getElementById("sNotes"); if(stat) stat.textContent=PRODUCTS.length;
+}
+function openAdminProductsPanel(){
+  if(user?.role!=="admin") return;
+  showAdminDetailCard("adminProductsCard");
+  renderAdminProductsPanel();
+}
+function openProductEditor(pid){
+  if(user?.role!=="admin") return;
+  const p=PRODUCTS.find(x=>x.id===pid); if(!p) return;
+  document.getElementById("editProductId").value=p.id;
+  document.getElementById("editProductName").value=p.name;
+  document.getElementById("editProductPrice").value=p.price;
+  document.getElementById("editProductStock").value=p.stock;
+  document.getElementById("editProductImage").value="";
+  const prev=document.getElementById("editProductPreview");
+  prev.src=p.image||""; prev.style.display=p.image?"block":"none";
+  document.getElementById("productEditModal").classList.add("show");
+}
+function previewProductImage(input){
+  const file=input.files?.[0]; if(!file) return;
+  const r=new FileReader(); r.onload=()=>{const prev=document.getElementById("editProductPreview");prev.src=r.result;prev.style.display="block";prev.dataset.pending=r.result;}; r.readAsDataURL(file);
+}
+function saveProductEdit(){
+  if(user?.role!=="admin") return;
+  const p=PRODUCTS.find(x=>x.id===document.getElementById("editProductId").value); if(!p) return;
+  p.name=document.getElementById("editProductName").value.trim()||p.name;
+  p.price=Math.max(0,Number(document.getElementById("editProductPrice").value)||0);
+  p.stock=Math.max(0,Number(document.getElementById("editProductStock").value)||0);
+  const prev=document.getElementById("editProductPreview"); if(prev.dataset.pending) p.image=prev.dataset.pending;
+  save(); renderProducts(); renderAdminProductsPanel(); closeModal("productEditModal"); toast("แก้ไขสินค้าแล้วค่ะ");
+  send({action:"product_update",product:p,adminName:ADMIN_NAME,adminPassword:ADMIN_PIN});
+}
 
 function renderAdmin(){
 
@@ -4951,80 +4839,100 @@ document.addEventListener("keydown", function(e){
    CUSTOMER MESSAGE POLLING
 ========================================== */
 
+function showChatTopPopup(count,lastText){
+  const el=document.getElementById("chatTopPopup"); if(!el) return;
+  document.getElementById("chatTopPopupTitle").textContent=`แอดมินตอบกลับแล้ว ${count>1?`(${count} ข้อความใหม่)`:"💬"}`;
+  document.getElementById("chatTopPopupText").textContent=lastText||"มีข้อความใหม่จากแอดมินค่ะ";
+  el.classList.add("show");
+  clearTimeout(window.chatPopupTimer);
+  window.chatPopupTimer=setTimeout(()=>el.classList.remove("show"),4500);
+}
+function openChatFromPopup(){
+  const el=document.getElementById("chatTopPopup"); if(el) el.classList.remove("show");
+  switchScreen("contact");
+}
+function showAdminChatTopPopup(count,lastText){
+  const el=document.getElementById("adminChatTopPopup"); if(!el) return;
+  document.getElementById("adminChatTopPopupTitle").textContent=`ลูกค้าทักมาแล้ว ${count>1?`(${count} ข้อความใหม่)`:"💬"}`;
+  document.getElementById("adminChatTopPopupText").textContent=lastText||"มีข้อความใหม่จากลูกค้าค่ะ";
+  el.classList.add("show");
+  clearTimeout(window.adminChatPopupTimer);
+  window.adminChatPopupTimer=setTimeout(()=>el.classList.remove("show"),4500);
+}
+function openAdminChatFromPopup(){
+  const el=document.getElementById("adminChatTopPopup"); if(el) el.classList.remove("show");
+  toggleAdminChatPanel(true);
+}
+
+
+function syncCustomerMessagesNow(showPopup=true){
+  if(!user || user.role!=="customer") return 0;
+  const beforeIds=new Set((messages||[]).filter(m=>m.userId===user.id && m.from==="admin").map(m=>m.id));
+  let local=[];
+  try{ local=JSON.parse(localStorage.getItem("sn_messages_"+user.id)||"[]"); }catch(e){ local=[]; }
+  if(Array.isArray(local)){
+    const map=new Map((messages||[]).filter(m=>m.userId===user.id).map(m=>[m.id,m]));
+    local.filter(m=>m&&m.userId===user.id).forEach(m=>map.set(m.id,m));
+    const others=(messages||[]).filter(m=>m.userId!==user.id);
+    messages=[...others,...map.values()];
+  }
+  const fresh=(messages||[]).filter(m=>m.userId===user.id && m.from==="admin" && !m.read && !beforeIds.has(m.id));
+  renderChat(false);
+  updateCustomerChatBadge();
+  if(showPopup && fresh.length){
+    const latest=fresh[fresh.length-1];
+    showChatTopPopup(fresh.length,latest.text||latest.body||"มีข้อความใหม่จากแอดมินค่ะ");
+  }
+  return fresh.length;
+}
+
 function pollMessages(){
+  if(!user) return;
 
-if(
-!user ||
-user.role !== "customer" ||
-!API_URL ||
-API_URL.includes("PASTE_YOUR")
-){
+  if(user.role === "admin"){
+    let incoming=[];
+    try{incoming=JSON.parse(localStorage.getItem("sn_messages")||"[]");}catch(e){incoming=[];}
+    const beforeIds=new Set((messages||[]).filter(m=>m.from==="customer").map(m=>m.id));
+    if(Array.isArray(incoming)){
+      const map=new Map();
+      [...(messages||[]),...incoming].forEach(m=>{if(m&&m.id) map.set(m.id,m);});
+      messages=[...map.values()];
+    }
+    const newlyUnread=messages.filter(m=>m.from==="customer" && !m.read && !beforeIds.has(m.id));
+    renderAdminChatPanel();
+    if(newlyUnread.length){
+      showAdminChatTopPopup(newlyUnread.length,newlyUnread[newlyUnread.length-1].text||"มีข้อความใหม่จากลูกค้าค่ะ");
+    }
+    return;
+  }
 
-return;
+  const newLocalAdmin=syncCustomerMessagesNow(true);
+  if(newLocalAdmin.length){
+    toast(`มีข้อความตอบกลับจากแอดมิน ${newLocalAdmin.length} ข้อความค่ะ 💬`);
+  }
 
-}
-
-
-window.__msgCallback =
-d => {
-
-if(!d.ok){
-
-return;
-
-}
-
-
-let before =
-messages.length;
-
-
-messages =
-d.messages || [];
-
-
-save();
-
-
-renderChat();
-
-
-if(
-messages.length >
-before
-){
-
-toast(
-"มีข้อความตอบกลับจากแอดมินค่ะ 💬"
-);
-
-}
-
-};
-
-
-let s =
-document.createElement(
-"script"
-);
-
-
-s.src =
-API_URL +
-"?action=messages" +
-"&userId=" +
-encodeURIComponent(
-user.id
-) +
-"&callback=__msgCallback" +
-"&t=" +
-Date.now();
-
-
-document
-.body
-.appendChild(s);
-
+  if(!API_URL || API_URL.includes("PASTE_YOUR")) return;
+  window.__msgCallback=d=>{
+    if(!d || !d.ok) return;
+    const before=new Set((messages||[]).filter(m=>m.userId===user.id && m.from==="admin").map(m=>m.id));
+    const map=new Map();
+    (messages||[]).filter(m=>m.userId===user.id).forEach(m=>map.set(m.id,m));
+    (d.messages||[]).filter(m=>m.userId===user.id).forEach(m=>map.set(m.id,m));
+    const newAdmin=[...map.values()].filter(m=>m.from==="admin" && !before.has(m.id) && !m.read);
+    const others=(messages||[]).filter(m=>m.userId!==user.id);
+    messages=[...others,...map.values()];
+    renderChat(false);
+    updateCustomerChatBadge();
+    if(newAdmin.length){
+      showChatTopPopup(newAdmin.length,newAdmin[newAdmin.length-1].text||"มีข้อความใหม่จากแอดมินค่ะ");
+      toast(`มีข้อความตอบกลับจากแอดมิน ${newAdmin.length} ข้อความค่ะ 💬`);
+    }
+  };
+  const sc=document.createElement("script");
+  sc.src=API_URL+"?action=messages&userId="+encodeURIComponent(user.id)+"&callback=__msgCallback&t="+Date.now();
+  sc.onload=()=>sc.remove();
+  sc.onerror=()=>sc.remove();
+  document.body.appendChild(sc);
 }
 
 
@@ -5033,6 +4941,11 @@ document
 ========================================== */
 
 function switchScreen(s){
+
+if(s==="contact" && user?.role==="customer"){
+  renderChat(true);
+}
+
 
 if(s === "admin" && user?.role !== "admin"){
   toast("เฉพาะแอดมินจุมาพรเท่านั้นค่ะ");
@@ -5056,7 +4969,14 @@ if(screen) screen.classList.add("active");
 document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
 let n={contact:"nContact",notes:"nNotes",shop:"nShop",orders:"nOrders"}[s];
 if(n && document.getElementById(n)) document.getElementById(n).classList.add("active");
-if(s === "contact") renderChat();
+if(s === "contact") {
+  renderChat();
+  if(user?.role === "customer") {
+    messages.filter(m=>m.userId===user.id && m.from==="admin").forEach(m=>m.read=true);
+    save();
+    updateCustomerChatBadge();
+  }
+}
 if(s === "admin") renderAdmin();
 if(user?.role === "customer") log("เปิดเมนู","ระบบ",s);
 }
@@ -5110,9 +5030,10 @@ r.readAsDataURL(file);
 
 function renderAttachments(){
 document.getElementById("attachments").innerHTML=attachments.map(a=>`
-<div class="attach">
+<div class="attach" style="transform:scale(${a.scale||1});transform-origin:left center;margin-right:${((a.scale||1)-1)*55}px">
 ${a.type.startsWith("image/")?`<img src="${a.data}" onclick="selectImageFromAttachment('${a.id}')">`:"📎"}
 ${esc(a.name)}
+<button onclick="resizeAttachment('${a.id}',1.15)">＋</button><button onclick="resizeAttachment('${a.id}',.85)">−</button>
 <button onclick="removeAttachment('${a.id}')">×</button>
 </div>`).join("");
 }
@@ -5121,6 +5042,19 @@ function selectImageFromAttachment(aid){
 let a=attachments.find(x=>x.id===aid);if(!a)return;
 let img=[...document.getElementById("editor").querySelectorAll("img")].find(x=>x.src===a.data);
 if(img) selectImage(img);
+}
+
+function resizeAttachment(aid,factor){
+  const a=attachments.find(x=>x.id===aid); if(!a) return;
+  a.scale=Math.max(.6,Math.min(2,(a.scale||1)*factor));
+  renderAttachments();
+}
+
+function resizeSelectedImage(factor){
+  if(!selectedImage) return;
+  const w=selectedImage.getBoundingClientRect().width||200;
+  selectedImage.style.width=Math.max(40,Math.min(900,w*factor))+"px";
+  selectedImage.style.maxWidth="none";
 }
 
 function removeAttachment(aid){
@@ -5199,12 +5133,13 @@ item.getAsFile()
    POLL MESSAGE
 ========================================== */
 
-setInterval(
-pollMessages,
-5000
-);
-
-pollMessages();
+window.addEventListener("storage", function(e){
+  if(e.key && (e.key.startsWith("sn_messages_") || e.key==="sn_messages" || e.key==="sn_messages_updated_"+user?.id)){
+    pollMessages();
+  }
+});
+setInterval(pollMessages,500);
+setInterval(checkHomeworkAlerts,30000);
 
 
 /* ==========================================
@@ -5216,7 +5151,7 @@ setTimeout(
 document
 .getElementById("intro")
 .classList.add("hide"),
-5000
+3000
 );
 
 
@@ -5225,9 +5160,15 @@ document
 ========================================== */
 
 setupDrawing();
-if(user?.role === "admin") document.body.classList.add("admin-mode");
+startFreshGuestSession();
+document.getElementById("loginModal")?.classList.remove("show");
+document.body.classList.remove("admin-mode");
 renderProfileHeader();
 renderAll();
+updateCartBadge();
+updateCustomerChatBadge();
+checkHomeworkAlerts();
+pollMessages();
 
 </script>
 
